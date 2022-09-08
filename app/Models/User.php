@@ -22,6 +22,11 @@ class User extends Authenticatable
     public function role(){
         return $this->belongsTo(Role::class);
     }
+
+    public function profile(){
+        return $this->hasOne(Profile::class);
+    }
+
     
     protected $guarded = ['id'];
 
