@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('generations', function (Blueprint $table) {
+        Schema::create('lead_visions', function (Blueprint $table) {
             $table->id();
-            $table->integer('year');
-            $table->boolean('active');
+            $table->foreignId('user_id');
+            $table->json('vision')->nullable();
+            $table->json('mission')->nullable();
         });
     }
 
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('generations');
+        Schema::dropIfExists('lead_visions');
     }
 };

@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('generations', function (Blueprint $table) {
+        Schema::create('concentrations', function (Blueprint $table) {
             $table->id();
-            $table->integer('year');
-            $table->boolean('active');
+            $table->string('name');
+            $table->timestamps();
         });
     }
 
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('generations');
+        Schema::dropIfExists('concentrations');
     }
 };

@@ -17,11 +17,12 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->foreignId('gender_id');
             $table->foreignId('generation_id');
-            $table->string('image');
-            $table->text('address');
-            $table->string('birth_place');
-            $table->date('birth_date');
-            $table->string('whatsapp');
+            $table->boolean('lead')->default(false);
+            $table->string('image')->nullable();
+            $table->text('address')->nullable();
+            $table->string('birth_place')->nullable();
+            $table->date('birth_date')->nullable();
+            $table->string('whatsapp')->nullable();
         });
     }
 

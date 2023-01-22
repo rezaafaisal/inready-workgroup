@@ -13,10 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('generations', function (Blueprint $table) {
+        Schema::create('programs', function (Blueprint $table) {
             $table->id();
-            $table->integer('year');
-            $table->boolean('active');
+            $table->foreignId('generation_id');
+            $table->string('name');
+            $table->string('image');
+            $table->enum('status', ['complete', 'pending', 'cancelled']);
+            $table->timestamps();
         });
     }
 
@@ -27,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('generations');
+        Schema::dropIfExists('programs');
     }
 };
