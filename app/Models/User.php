@@ -27,6 +27,14 @@ class User extends Authenticatable
         return $this->hasOne(Profile::class);
     }
 
+    public function lead(){
+        return $this->hasOne(LeadVision::class);
+    }
+
+    public function creations(){
+        return $this->hasMany(Creation::class);
+    }
+
     
     protected $guarded = ['id'];
 

@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Program extends Model
 {
     use HasFactory;
+    public function geeration(){
+        return $this->belongsTo(Generation::class);
+    }
 }

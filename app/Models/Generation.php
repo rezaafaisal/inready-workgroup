@@ -9,5 +9,17 @@ class Generation extends Model
 {
     use HasFactory;
     public $timestamps = false;
+
+    public function programs(){
+        return $this->hasMany(Program::class);
+    }
+
+    public function structures(){
+        return $this->hasMany(Structure::class);
+    }
+
+    public function documents(){
+        return $this->hasMany(Document::class);
+    }
     
 }

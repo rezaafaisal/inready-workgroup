@@ -10,5 +10,8 @@ class Gender extends Model
     use HasFactory;
     public $timestamps = false;
 
+    public function profiles(){
+        return $this->hasMany(Profile::class);
+    }
 
 }

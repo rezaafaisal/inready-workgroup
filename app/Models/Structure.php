@@ -9,4 +9,7 @@ class Structure extends Model
 {
     use HasFactory;
     public $timestamps = false;
+    public function geeration(){
+        return $this->belongsTo(Generation::class);
+    }
 }

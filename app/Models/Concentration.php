@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Concentration extends Model
 {
     use HasFactory;
+
+    public function creations(){
+        return $this->hasMany(Creation::class);
+    }
 }
