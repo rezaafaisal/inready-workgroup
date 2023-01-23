@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.card{
+    @apply p-4 rounded-lg bg-white shadow-md border
+}
+
+.btn{
+    @apply shadow-md px-4 py-1 rounded-lg ease-in-out duration-100 font-medium text-sm
+}
+
+.btn-primary{
+    @apply  bg-cyan-500 text-white  hover:bg-cyan-600 
+}
+.btn-danger{
+    @apply bg-rose-500 text-white hover:bg-rose-600
+}
+
+/* list sidebar */
+.sidebar-item{
+    @apply flex items-center p-2 space-x-3 text-gray-400 rounded-md hover:text-white hover:bg-cyan-600 ease-in-out duration-150 
+
+}
+.admin-side .active{
+    @apply bg-cyan-600 text-white
+}
+
+.student-nav .active{
+    @apply text-slate-900 border-slate-600 font-medium
+}
+
+.wrapper{
+    @apply container mx-auto w-11/12 md:w-10/12 lg:w-9/12
+}
+
+.alert{
+    @apply p-4 rounded-lg text-center
+}
