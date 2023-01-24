@@ -4,6 +4,7 @@ import "../css/app.css";
 import { createApp, h } from "vue";
 import { createInertiaApp } from "@inertiajs/inertia-vue3";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
+import { InertiaProgress } from "@inertiajs/progress";
 
 createInertiaApp({
   title: (title) => `${title} - ${appName}`,
@@ -18,3 +19,5 @@ createInertiaApp({
       .mount(el);
   },
 });
+
+InertiaProgress.init({ color: "#000000", showSpinner: true });
