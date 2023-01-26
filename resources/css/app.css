@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .btn-yellow{
-    @apply px-4 py-2 text-inr-black rounded-full bg-inr-yellow font-semibold
+    @apply px-4 py-2 text-inr-black rounded-full bg-inr-yellow font-semibold hover:bg-inr-yellow-1 duration-150
 }
 
 .wrapper{

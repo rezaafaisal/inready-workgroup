@@ -29,7 +29,7 @@
                 <a href="" class="hover:text-inr-yellow duration-150">Tentang Kami</a>
             </li>
             <li>
-                <button class="px-4 py-1 bg-inr-yellow text-inr-black rounded-full">Masuk</button>
+                <button class="btn-yellow">Masuk</button>
             </li>
         </ul>
     </div>

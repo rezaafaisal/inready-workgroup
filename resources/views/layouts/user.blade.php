@@ -9,11 +9,16 @@
     @vite('resources/js/app.js')
     @yield('styles')
     <script src="https://kit.fontawesome.com/e8b696d2f5.js" crossorigin="anonymous"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body x-data>
     @include('partials.user.header')
     @yield('body')
     @yield('sripts')
     @include('partials.user.footer')
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init()
+    </script>
 </body>
 </html>

@@ -9,6 +9,7 @@ module.exports = {
     extend: {
       colors:{
         'inr-yellow': '#FFC400',
+        'inr-yellow-1': '#FFE283',
         'inr-black': '#121212',
         'inr-white': '#f1f1f1'
       }
