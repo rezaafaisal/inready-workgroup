@@ -31,7 +31,7 @@
         </div>
     </div>
 </section>
-<section class="bg-inr-black mb-20 py-20">
+<section class="bg-inr-black py-20">
     <div class="wrapper">
         <h2 class="font-semibold text-3xl mb-20 text-white">
             <span class="border-b-4 border-b-inr-yellow">Berita</span>
@@ -84,23 +84,23 @@
                         </div>
                     @endfor
                     <div class="swiper-slide">
-                            <div class="border border-white/20 rounded">
-                                <img class="rounded-t w-full object-cover h-60 md:h-36 xl:h-48"
-                                    src="{{ asset('images/ui/news_'.$i.'.png') }}"
-                                    alt="">
-                                <div class="p-3">
-                                    <span class="block text-xs text-inr-white/40 mb-2">28 Des 2022</span>
-                                    <a href="" class="text-inr-white text-sm font-semibold mb-2 block">
-                                        Pengumuman Calon Angkatan Muda yang berhasil lolos ke Tahap Selanjutnya
-                                    </a>
-                                    <p class="text-inr-white/70 text-xs text-justify font-light">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed ipsa quasi
-                                        consectetur cum cupiditate. onsectetur adipisicing elit. Sed ipsa quasi
-                                        consectetur cum cupiditate.
-                                    </p>
-                                </div>
+                        <div class="border border-white/20 rounded">
+                            <img class="rounded-t w-full object-cover h-60 md:h-36 xl:h-48"
+                                src="{{ asset('images/ui/news_'.$i.'.png') }}"
+                                alt="">
+                            <div class="p-3">
+                                <span class="block text-xs text-inr-white/40 mb-2">28 Des 2022</span>
+                                <a href="" class="text-inr-white text-sm font-semibold mb-2 block">
+                                    Pengumuman Calon Angkatan Muda yang berhasil lolos ke Tahap Selanjutnya
+                                </a>
+                                <p class="text-inr-white/70 text-xs text-justify font-light">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed ipsa quasi
+                                    consectetur cum cupiditate. onsectetur adipisicing elit. Sed ipsa quasi
+                                    consectetur cum cupiditate.
+                                </p>
                             </div>
                         </div>
+                    </div>
                 </div>
             </div>
 
@@ -114,6 +114,94 @@
         <div class="mt-10 flex justify-center">
             <div class="swiper-pagination"></div>
             <button class="btn-yellow text-sm">Lihat Berita Lainnya</button>
+        </div>
+    </div>
+</section>
+<section class="py-20">
+    <div class="wrapper">
+        <h2 class="font-semibold text-3xl mb-10"><span class="border-b-4 border-b-inr-black">Kegiatan</span></h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-20">
+            <div class="rounded-xl bg-inr-yellow ">
+                <img src="{{ asset('images/ui/activity.jpg') }}" alt=""
+                    class="h-52 w-full object-cover rounded-t-xl">
+                <div class="p-10 text-center">
+                    <h4 class="font-semibold text-2xl">Presentase Karya</h4>
+                    <p class="text-justify mt-3 text-sm text-inr-black">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis explicabo provident, eos nemo fugit reiciendis, ab nostrum ut itaque aspernatur officia modi ullam! Quos libero illo itaque sequi neque ipsam.</p>
+                    <span class="block mt-5 text-inr-white drop-shadow-lg font-bold text-sm">Acara Dimulai dalam : </span>
+                    <div class="flex text-white mt-5 justify-between drop-shadow-lg">
+                        <div>
+                            <span class="text-3xl font-bold">7</span>
+                            <span class="text-sm">Hari</span>
+                        </div>
+                        <div>
+                            <span class="text-3xl font-bold">10</span>
+                            <span class="text-sm">Jam</span>
+                        </div>
+                        <div>
+                            <span class="text-3xl font-bold">35</span>
+                            <span class="text-sm">Menit</span>
+                        </div>
+                        
+                        <div>
+                            <span class="text-3xl font-bold">7</span>
+                            <span class="text-sm">Detik</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-center font-bold text-2xl mb-10">Kegiatan Lainnya</h3>
+                <ul class="border border-inr-black/20 rounded divide-y divide-inr-black/20">
+                    <li>
+                        <a href="" class="block w-full px-5 py-3 hover:bg-slate-100 duration-100 rounded">
+                            <span class="font-medium block mb-1">Kegiatan pertama</span>
+                            <span class="block text-xs">
+                                <i class="fa-solid fa-calendar-days mr-1"></i>
+                                20 September 2022
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="block w-full px-5 py-3 hover:bg-slate-100 duration-100 rounded">
+                            <span class="font-medium block mb-1">Kegiatan pertama</span>
+                            <span class="block text-xs">
+                                <i class="fa-solid fa-calendar-days mr-1"></i>
+                                20 September 2022
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="block w-full px-5 py-3 hover:bg-slate-100 duration-100 rounded">
+                            <span class="font-medium block mb-1">Kegiatan pertama</span>
+                            <span class="block text-xs">
+                                <i class="fa-solid fa-calendar-days mr-1"></i>
+                                20 September 2022
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="block w-full px-5 py-3 hover:bg-slate-100 duration-100 rounded">
+                            <span class="font-medium block mb-1">Kegiatan pertama</span>
+                            <span class="block text-xs">
+                                <i class="fa-solid fa-calendar-days mr-1"></i>
+                                20 September 2022
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="block w-full px-5 py-3 hover:bg-slate-100 duration-100 rounded">
+                            <span class="font-medium block mb-1">Kegiatan pertama</span>
+                            <span class="block text-xs">
+                                <i class="fa-solid fa-calendar-days mr-1"></i>
+                                20 September 2022
+                            </span>
+                        </a>
+                    </li>
+                    <li class="bg-inr-yellow text-inr-black text-center py-2">
+                        <a href="" class="text-xs hover:text-inr-black/70 duration-150">Tampilkan lebih banyak <i class="fas fa-arrow-right ml-1"></i></a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </section>
