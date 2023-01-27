@@ -1,7 +1,7 @@
 <header class="bg-inr-black w-full fixed z-20">
     <div x-data="{nav:true}" class="wrapper flex justify-between items-center">
         <img src="{{ asset('images/ui/logo_yellow.png') }}" alt="logo" class="w-20 h-20">
-        <ul :class="nav?'translate-y-0 opacity-100 fixed md:static':'-translate-y-full  opacity-0 absolute'" class="p-5 h-screen top-0 bottom-0 left-0 right-0 w-full duration-300 ease-in-out md:h-auto md:top-auto md:bottom-auto md:left-auto md:right-auto md:w-auto bg-inr-black md:bg-transparent  md:flex md:items-center md:gap-7 text-white text-sm">
+        <ul :class="nav?'translate-y-0 opacity-100 fixed md:static':'-translate-y-full md:translate-y-0 opacity-0 absolute md:static'" class="p-5 h-screen top-0 bottom-0 left-0 right-0 w-full duration-300 ease-in-out md:h-auto md:top-auto md:bottom-auto md:left-auto md:right-auto md:w-auto bg-inr-black md:bg-transparent  md:flex md:items-center md:gap-7 text-white text-sm">
             <li class="md:hidden flex justify-between mb-5">
                 <input type="search" name="" id="" placeholder="Apa yang Ingin Anda Cari?" class="text-sm font-light bg-inr-white rounded px-4 py-2 w-9/12 text-inr-black focus:outline-none">
                 <button @click="nav=!nav" class="text-inr-white  w-12 h-10 rounded">
@@ -53,7 +53,7 @@
                 </a>
             </li>
             <li>
-                <button class="mt-4 w-full btn-yellow">Masuk</button>
+                <button class="mt-4 w-full md:mt-0 md:w-auto btn-yellow">Masuk</button>
             </li>
         </ul>
         <button @click="nav = !nav" class="text-inr-yellow border border-inr-yellow w-12 h-10 rounded md:hidden ">
