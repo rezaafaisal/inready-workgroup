@@ -9,7 +9,7 @@
                 <img class="rounded-t w-full object-cover h-60 md:h-36 xl:h-48 z-10"
                     src="{{ asset('images/ui/news_1.png') }}" alt="">
                 <div class="p-3">
-                    <div class="mb-2 text-sm text-inr-black/40">
+                    <div class="mb-2 text-xs text-inr-black/40">
                         <span class="block mb-2">
                             <i class="fa-solid fa-calendar-days w-5"></i>28 Des 2022
                         </span>
