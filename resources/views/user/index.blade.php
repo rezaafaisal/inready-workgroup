@@ -1,6 +1,6 @@
 @extends('layouts.user')
 @section('body')
-<section class="banner bg-inr-black w-full h-[calc(100vh-80px)] overflow-auto flex items-center mb-24">
+<section class="banner bg-inr-black w-full h-screen overflow-auto flex items-center mb-24">
     <div class="wrapper text-center md:text-left">
         <h1 class="text-inr-white font-bold text-3xl md:text-5xl mb-7">Dengan Hitam Emas</h1>
         <div class="md:grid md:grid-cols-2 gap-2 items-center">

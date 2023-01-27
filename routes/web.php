@@ -15,7 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('tes', function(){
+    return view('tes');
+});
+
 Route::get('/', [HomeController::class, 'index'])->name('index');
+
 
 Route::get('login', [AuthController::class, 'login'])->name('login');
 Route::post('login', [AuthController::class, 'verify'])->name('verify');
