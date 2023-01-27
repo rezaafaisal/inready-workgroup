@@ -11,7 +11,8 @@ module.exports = {
         'inr-yellow': '#FFC400',
         'inr-yellow-1': '#FFE283',
         'inr-black': '#121212',
-        'inr-white': '#f1f1f1'
+        'inr-white': '#f1f1f1',
+        'inr-white-1': '#dadada',
       }
     },
   },
