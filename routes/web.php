@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\User\ActivityController;
+use App\Http\Controllers\User\NewsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,7 +22,11 @@ Route::get('tes', function(){
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
+Route::get('berita', [NewsController::class, 'index'])->name('news');
+Route::get('berita/{slug}', [NewsController::class, 'show'])->name('show_news');
 
+Route::get('kegiatan', [ActivityController::class, 'index'])->name('activity');
+Route::get('kegiatan/{slug}', [ActivityController::class, 'show'])->name('show_activity');
 
 Route::get('login', [AuthController::class, 'login'])->name('login');
 Route::post('login', [AuthController::class, 'verify'])->name('verify');

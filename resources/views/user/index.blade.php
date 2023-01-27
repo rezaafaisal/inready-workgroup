@@ -113,7 +113,7 @@
         </div>
         <div class="mt-10 flex justify-center">
             <div class="swiper-pagination"></div>
-            <button class="btn-yellow text-sm">Lihat Berita Lainnya</button>
+            <a href="{{ route('news') }}" class="btn-yellow text-sm">Lihat Berita Lainnya</a>
         </div>
     </div>
 </section>

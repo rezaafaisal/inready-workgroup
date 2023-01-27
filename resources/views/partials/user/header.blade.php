@@ -9,7 +9,7 @@
                 </button>
             </li>
             <li>
-                <a href="" class="hover:text-inr-yellow flex justify-between items-center duration-150 w-full py-3 md:py-0 md:inline">
+                <a href="{{ route('index') }}" class="hover:text-inr-yellow flex justify-between items-center duration-150 w-full py-3 md:py-0 md:inline">
                     Beranda
                     <i class="md:hidden fas fa-arrow-up rotate-45 text-xs"></i>
                 </a>
