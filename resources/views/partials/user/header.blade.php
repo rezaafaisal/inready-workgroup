@@ -23,12 +23,12 @@
                     Profil
                     {{-- <i class="group-hover:-rotate-180 duration-300 ml-1 text-xs fas fa-angle-down"></i> --}}
                 </span>
-                <ul  :class="profile?'h-56 visible':'h-0 invisible'"  class="group-hover:visible group-hover:translate-y-0 translate-y-5 group-hover:opacity-100 opacity-0 group-hover:delay-100 delay-300  block md:h-auto overflow-hidden ease-in-out duration-300 md:duration-150 md:absolute text-sm md:mt-8 bg-[#292929] md:p-3 rounded">
+                <ul  :class="profile?'h-56 visible':'h-0 invisible'"  class="group-hover:visible group-hover:translate-y-0 translate-y-5 group-hover:opacity-100 opacity-0 group-hover:delay-100 delay-300  block md:h-auto overflow-hidden ease-in-out duration-300 md:absolute text-sm md:mt-8 bg-[#292929] md:p-3 rounded">
                     <li><a href="" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 md:transition-none rounded text-inr-white hover:text-inr-black font-light">Sejarah</a></li>
                     <li><a href="" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 md:transition-none rounded text-inr-white hover:text-inr-black font-light">AD-ART</a></li>
                     <li><a href="" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 md:transition-none rounded text-inr-white hover:text-inr-black font-light">JUKLAK JUKNIS</a></li>
                     <li><a href="" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 md:transition-none rounded text-inr-white hover:text-inr-black font-light">GBHO</a></li>
-                    <li><a href="" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 md:transition-none rounded text-inr-white hover:text-inr-black font-light">Mantan Ketuan</a></li>
+                    <li><a href="" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 md:transition-none rounded text-inr-white hover:text-inr-black font-light">Mantan Ketua</a></li>
                     <li><a href="" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 md:transition-none rounded text-inr-white hover:text-inr-black font-light">Struktur Organisasi</a></li>
                 </ul>
             </li>

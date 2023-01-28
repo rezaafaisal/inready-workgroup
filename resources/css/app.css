@@ -9,3 +9,7 @@
 .wrapper{
     @apply container mx-auto w-11/12 md:w-10/12 lg:w-9/12
 }
+
+.section-title{
+    @apply font-semibold text-3xl text-center mb-10
+}

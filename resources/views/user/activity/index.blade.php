@@ -2,7 +2,7 @@
 @section('body')
 <section class="pt-20">
     <div class="wrapper py-20">
-        <h2 class="font-semibold text-3xl mb-10">Kagiatan Akan Datang</h2>
+        <h2 class="section-title">Kagiatan Akan Datang</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             @for ($i = 0; $i < 6; $i++)
             <div class="shadow rounded">
@@ -17,7 +17,7 @@
                             <i class="fas fa-user w-5"></i>Divisi Keorganisasian
                         </span>
                     </div>
-                    <a href="{{ route('show_news', ['slug' => 'first']) }}" class="text-inr-black font-semibold mb-2 block hover:text-inr-yellow duration-150">
+                    <a href="{{ route('show_activity', ['slug' => 'first']) }}" class="text-inr-black font-semibold mb-2 block hover:text-inr-yellow duration-150">
                         Pengumuman Calon Angkatan Muda yang berhasil lolos ke Tahap Selanjutnya
                     </a>
                 </div>
