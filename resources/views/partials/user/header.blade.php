@@ -11,7 +11,7 @@
                 <span class="hover:text-inr-yellow py-0 cursor-pointer">
                     Profil
                 </span>
-                <ul class="group-hover:visible group-hover:translate-y-0 translate-y-5 group-hover:opacity-100 opacity-0 group-hover:delay-100 delay-300  block h-auto ease-in-out duration-300 absolute text-sm mt-8 bg-[#292929] md:p-3 rounded">
+                <ul class="group-hover:visible invisible group-hover:translate-y-0 translate-y-5 group-hover:opacity-100 opacity-0 group-hover:delay-100 delay-300  block h-auto ease-in-out duration-300 absolute text-sm mt-8 bg-[#292929] md:p-3 rounded">
                     <li><a href="" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 md:transition-none rounded text-inr-white hover:text-inr-black font-light">Sejarah</a></li>
                     <li><a href="" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 md:transition-none rounded text-inr-white hover:text-inr-black font-light">AD-ART</a></li>
                     <li><a href="" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 md:transition-none rounded text-inr-white hover:text-inr-black font-light">JUKLAK JUKNIS</a></li>
@@ -27,7 +27,7 @@
                 </a>
             </li>
             <li>
-                <a href="" class="hover:text-inr-yellow flex justify-between items-center duration-150 w-full py-3 md:py-0 md:inline">
+                <a href="{{ route('masterpiece') }}" class="hover:text-inr-yellow flex justify-between items-center duration-150 w-full py-3 md:py-0 md:inline">
                     Karya
                     <i class="md:hidden fas fa-arrow-up rotate-45 text-xs"></i>
                 </a>
@@ -90,7 +90,7 @@
                 </a>
             </li>
             <li>
-                <a href="" class="hover:text-inr-yellow flex justify-between items-center duration-150 w-full py-3">
+                <a href="{{ route('masterpiece') }}" class="hover:text-inr-yellow flex justify-between items-center duration-150 w-full py-3">
                     Karya
                     <i class="fas fa-arrow-up rotate-45 text-xs"></i>
                 </a>
