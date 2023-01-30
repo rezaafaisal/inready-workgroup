@@ -2,7 +2,7 @@
 @section('body')
 <section class="pt-20">
     <div class="wrapper py-20 text-inr-black">
-        <h1 class="section-title">keluarga Besar Inready Workgroup</h1>
+        <h1 class="section-title">Keluarga Besar Inready Workgroup</h1>
         <p class="py-10 text-justify leading-8 mb-10">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugit
             ipsam quaerat voluptatibus quod quisquam animi eaque, saepe nostrum reprehenderit inventore iure laborum
             consequuntur dolores veniam? Impedit, labore vel. Beatae dolores necessitatibus explicabo voluptatum veniam
