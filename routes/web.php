@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\User\ActivityController;
+use App\Http\Controllers\User\GenerationController;
 use App\Http\Controllers\User\MasterpieceController;
 use App\Http\Controllers\User\NewsController;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +31,9 @@ Route::get('kegiatan', [ActivityController::class, 'index'])->name('activity');
 Route::get('kegiatan/{slug}', [ActivityController::class, 'show'])->name('show_activity');
 
 Route::get('karya', [MasterpieceController::class, 'index'])->name('masterpiece');
+
+Route::get('angkatan', [GenerationController::class, 'index'])->name('generation');
+Route::get('angkatan/{generation}', [GenerationController::class, 'show'])->name('show_generation');
 
 
 Route::get('login', [AuthController::class, 'login'])->name('login');
