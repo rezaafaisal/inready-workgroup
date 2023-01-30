@@ -39,7 +39,7 @@
                 </a>
             </li>
             <li>
-                <a href="" class="hover:text-inr-yellow flex justify-between items-center duration-150 w-full py-3 md:py-0 md:inline">
+                <a href="{{ route('about') }}" class="hover:text-inr-yellow flex justify-between items-center duration-150 w-full py-3 md:py-0 md:inline">
                     Tentang Kami
                     <i class="md:hidden fas fa-arrow-up rotate-45 text-xs"></i>
                 </a>

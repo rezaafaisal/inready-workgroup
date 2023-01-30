@@ -25,7 +25,7 @@
                             Angkatan Pendiri (2005-2007) diketuai oleh Martis Ashura
                         </span>
                     </div>
-                    <a href="" class="px-3 py-2 w-full bg-inr-black text-inr-yellow text-center rounded font-light">Lihat Anggota</a>
+                    <a href="{{ route('show_generation', ['generation' => 'pendiri']) }}" class="px-3 py-2 w-full bg-inr-black text-inr-yellow text-center rounded font-light">Lihat Anggota</a>
                 </div>
             </div>
             @endfor

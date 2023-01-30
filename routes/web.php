@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\User\AboutController;
 use App\Http\Controllers\User\ActivityController;
 use App\Http\Controllers\User\GenerationController;
 use App\Http\Controllers\User\MasterpieceController;
@@ -34,6 +35,8 @@ Route::get('karya', [MasterpieceController::class, 'index'])->name('masterpiece'
 
 Route::get('angkatan', [GenerationController::class, 'index'])->name('generation');
 Route::get('angkatan/{generation}', [GenerationController::class, 'show'])->name('show_generation');
+
+Route::get('tentang', [AboutController::class, 'index'])->name('about');
 
 
 Route::get('login', [AuthController::class, 'login'])->name('login');
