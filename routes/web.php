@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\User\AboutController;
 use App\Http\Controllers\User\ActivityController;
 use App\Http\Controllers\User\GenerationController;
+use App\Http\Controllers\User\InternalController;
 use App\Http\Controllers\User\ManagerController;
 use App\Http\Controllers\User\MasterpieceController;
 use App\Http\Controllers\User\NewsController;
@@ -40,6 +41,10 @@ Route::get('angkatan/{generation}', [GenerationController::class, 'show'])->name
 Route::get('pengurus/{year}/{division}', [ManagerController::class, 'index'])->name('manager');
 
 Route::get('tentang', [AboutController::class, 'index'])->name('about');
+
+
+Route::get('dokumen/sejarah', [InternalController::class, 'history'])->name('history');
+Route::get('dokumen/mantan-ketua', [InternalController::class, 'leader'])->name('leader');
 
 
 Route::get('login', [AuthController::class, 'login'])->name('login');

@@ -33,21 +33,22 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             @for($i = 0; $i < 8; $i++)
-                <div class="rounded pb-5 bg-white shadow flex flex-col justify-center items-center ">
-                    <h3 class="font-medium text-lg mb-5 w-full py-3 bg-gray-200 text-inr-black text-center">Ketua Umum
-                    </h3>
-                    <div class="rounded-full h-40 w-40 object-cover shadow overflow-hidden mb-5">
-                        <img src="{{ asset('images/ui/eren.jpeg') }}" alt=""
-                            class="hover:scale-110 duration-150">
-                    </div>
-                    <h4 class="font-medium">Eren Jeager</h4>
-                    <div class="mt-5 flex gap-3">
-                        <a href="" class="flex justify-center items-center rounded-md h-8 w-8 bg-gray-200">
-                            <i class="fab fa-instagram text-lg"></i>
-                        </a>
-                        <a href="" class="flex justify-center items-center rounded-md h-8 w-8 bg-gray-200">
-                            <i class="fab fa-facebook-f text-lg"></i>
-                        </a>
+                <div class="rounded bg-white shadow">
+                    <h3 class="font-medium text-lg w-full py-3 bg-gray-200 text-inr-black text-center">Anggota</h3>
+                    <div class="p-5 grid grid-cols-1 justify-items-center">
+                        <div class="rounded-full h-40 w-40 object-cover shadow overflow-hidden mb-5">
+                            <img src="{{ asset('images/ui/reiner.jpeg') }}" alt=""
+                                class="hover:scale-110 duration-150">
+                        </div>
+                        <h4 class="font-medium">Reiner Braun</h4>
+                        <div class="mt-5 flex gap-3">
+                            <a href="" class="flex justify-center items-center rounded-md h-8 w-8 bg-gray-200">
+                                <i class="fab fa-instagram text-lg"></i>
+                            </a>
+                            <a href="" class="flex justify-center items-center rounded-md h-8 w-8 bg-gray-200">
+                                <i class="fab fa-facebook-f text-lg"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             @endfor
