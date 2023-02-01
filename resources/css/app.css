@@ -11,5 +11,5 @@
 }
 
 .section-title{
-    @apply font-semibold text-xl md:text-3xl mb-10
+    @apply font-semibold text-xl md:text-3xl mb-20
 }
