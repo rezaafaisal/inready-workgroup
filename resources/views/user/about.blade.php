@@ -12,7 +12,7 @@
                 <img src="{{ asset('images/ui/eren.jpeg') }}" alt="" class="w-full rounded-xl lg:h-[250px] object-cover">
                 <div class="px-10">
                     <h2 class="font-semibold text-xl text-inr-black">Ketua Umum</h2>
-                    <span class="block font-light">Eren Jeager</span>
+                    <span class="block font-medium">Eren Jeager</span>
                     <div class="mt-5 text-sm font-light">
                         <span class="block">Visi:</span>
                         <ul class="list-disc ml-6">
