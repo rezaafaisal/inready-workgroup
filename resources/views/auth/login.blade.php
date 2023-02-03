@@ -9,24 +9,23 @@
 
 </head>
 <body class="h-screen bg-inr-black">
-    <div class="flex h-screen items-center justify-center">
-        <div class="p-5 w-6/12 rounded-md bg-white shadow">
+    <div class="flex h-screen items-center justify-center mx-5">
+        <div class="p-20 w-full md:w-8/12 lg:w-6/12 rounded-xl bg-inr-white/10 shadow">
+            <h2 class="text-center text-inr-yellow font-bold text-xl pb-5">MASUK</h2>
             <form action="{{ route('verify') }}" method="POST">
                 @csrf
-                <label for="email" class="block mb-3">
-                    <span class="block text-sm mb-1 text-inr-yellow">Email</span>
-                    <input type="text" class="py-2 px-3 w-full focus:outline-none focus:ring focus:ring-slate-200 duration-100 rounded bg-slate-100 @error('email') border-2 border-pink-500 @enderror" name="email" id="email" placeholder="Masukkan Email Anda" value="{{ old('email') }}">
-                    @error('email')
+                <label for="email" class="block mb-5">
+                    <input type="text" class="py-2 px-3 w-full focus:outline-none focus:ring focus:ring-slate-200 duration-300 rounded bg-transparent outline outline-gray-500 @error('email') border-2 border-pink-500 @enderror" name="username" id="username" placeholder="Username" value="{{ old('username') }}">
+                    @error('username')
                         <span class="text-xs text-pink-500">{{ $message }}</span>
                     @enderror
                 </label>
-                <label for="password" class="block mb-3">
-                    <span class="block text-sm mb-1 text-slate-500">Password</span>
-                    <input type="password" class="py-2 px-3 w-full focus:outline-none focus:ring focus:ring-slate-200 duration-100 rounded bg-slate-100" name="password" id="password" placeholder="Masukkan Email Anda">
+                <label for="password" class="block mb-5">
+                    <input type="password" class="py-2 px-3 w-full focus:outline-none focus:ring focus:ring-slate-200 duration-300 rounded bg-transparent outline outline-gray-500" name="password" id="password" placeholder="Masukkan Email Anda">
                 </label>
-                <div class="text-end">
-                    <button class="rounded px-3 py-2 text-white bg-slate-500 hover:bg-slate-600 duration-150">Masuk</button>
-                </div>
+                <a href="#" class="block text-center text-inr-yellow text-sm mb-5">Lupa Password?</a>
+                <button class="rounded w-full mb-5 px-3 py-2 text-inr-black bg-inr-yellow hover:bg-inr-yellow-1 duration-150">Masuk</button>
+                <span class="block text-center text-inr-white text-sm">Belum punya akun? <a href="#" class="font-semibold text-inr-yellow">Daftar Sekarang</a></span>
             </form>
         </div>
     </div>
