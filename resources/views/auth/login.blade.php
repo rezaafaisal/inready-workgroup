@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Masuk | Inready Workgroup</title>
     @vite('resources/css/app.css')
 
 </head>
-<body class="">
-    <div class="flex mt-10 justify-center">
+<body class="h-screen bg-inr-black">
+    <div class="flex h-screen items-center justify-center">
         <div class="p-5 w-6/12 rounded-md bg-white shadow">
             <form action="{{ route('verify') }}" method="POST">
                 @csrf

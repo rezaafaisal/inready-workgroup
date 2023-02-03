@@ -73,7 +73,7 @@
                 </a>
             </li>
             <li>
-                <button class="mt-4 w-full md:mt-0 md:w-auto btn-yellow">Masuk</button>
+                <a href="{{ route('login') }}" class="mt-4 w-full md:mt-0 md:w-auto btn-yellow">Masuk</a>
             </li>
         </ul>
 

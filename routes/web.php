@@ -46,6 +46,5 @@ Route::get('tentang', [AboutController::class, 'index'])->name('about');
 Route::get('dokumen/sejarah', [InternalController::class, 'history'])->name('history');
 Route::get('dokumen/mantan-ketua', [InternalController::class, 'leader'])->name('leader');
 
-
-Route::get('login', [AuthController::class, 'login'])->name('login');
+Route::get('masuk', [AuthController::class, 'login'])->name('login');
 Route::post('login', [AuthController::class, 'verify'])->name('verify');
