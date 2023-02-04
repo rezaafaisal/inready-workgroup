@@ -12,7 +12,7 @@ class AuthController extends Controller
 
     public function verify(Request $req){
         $req->validate([
-            'email' => 'min:3',
+            'username' => 'min:3',
             'password' => 'min:2'
         ]);
     }

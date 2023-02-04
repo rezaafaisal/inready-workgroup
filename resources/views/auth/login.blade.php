@@ -12,16 +12,19 @@
     <div class="flex h-screen items-center justify-center mx-5">
         <div class="p-20 w-full md:w-8/12 lg:w-6/12 rounded-xl bg-inr-white/10 shadow">
             <h2 class="text-center text-inr-yellow font-bold text-xl pb-5">MASUK</h2>
-            <form action="{{ route('verify') }}" method="POST">
+            <form action="{{ route('verify') }}" method="POST" class="text-inr-white">
                 @csrf
                 <label for="email" class="block mb-5">
-                    <input type="text" class="py-2 px-3 w-full focus:outline-none focus:ring focus:ring-slate-200 duration-300 rounded bg-transparent outline outline-gray-500 @error('email') border-2 border-pink-500 @enderror" name="username" id="username" placeholder="Username" value="{{ old('username') }}">
+                    <input type="text" class="py-2 px-3 w-full focus:outline-none focus:ring focus:ring-inr-yellow duration-300 rounded bg-transparent outline outline-gray-500 @error('email') border-2 border-pink-500 @enderror" name="username" id="username" placeholder="Username" value="{{ old('username') }}">
                     @error('username')
-                        <span class="text-xs text-pink-500">{{ $message }}</span>
+                        <span class="text-xs text-rose-400">{{ $message }}</span>
                     @enderror
                 </label>
                 <label for="password" class="block mb-5">
-                    <input type="password" class="py-2 px-3 w-full focus:outline-none focus:ring focus:ring-slate-200 duration-300 rounded bg-transparent outline outline-gray-500" name="password" id="password" placeholder="Masukkan Email Anda">
+                    <input type="password" class="py-2 px-3 w-full focus:outline-none focus:ring focus:ring-inr-yellow duration-300 rounded bg-transparent outline outline-gray-500" name="password" id="password" placeholder="Password">
+                    @error('password')
+                        <span class="text-xs text-rose-400">{{ $message }}</span>
+                    @enderror
                 </label>
                 <a href="#" class="block text-center text-inr-yellow text-sm mb-5">Lupa Password?</a>
                 <button class="rounded w-full mb-5 px-3 py-2 text-inr-black bg-inr-yellow hover:bg-inr-yellow-1 duration-150">Masuk</button>
