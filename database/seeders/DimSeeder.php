@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Gender;
+use App\Models\Generation;
 use App\Models\Role;
-use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -18,7 +18,6 @@ class DimSeeder extends Seeder
      */
     public function run()
     {
-        $passwd = Hash::make('passwd');
         $genders = [
             ['name' => 'perempuan'],
             ['name' => 'laki-laki']
@@ -30,18 +29,17 @@ class DimSeeder extends Seeder
             ['name' => 'user']
         ];
 
-        $users = [
-            [
-                'role_id' => 1,
-                'name' => 'reza',
-                'username' => 'rezafaisal',
-                'email' => 'reza@gmail.com',
-                'password' => $passwd,
-            ]
+        $generations = [
+            ['year' => '2018'],
+            ['year' => '2019'],
+            ['year' => '2020'],
+            ['year' => '2021'],
+            ['year' => '2022'],
+            ['year' => '2023'],
         ];
 
         Gender::insert($genders);
         Role::insert($roles);
-        User::insert($users);
+        Generation::insert($generations);
     }
 }
