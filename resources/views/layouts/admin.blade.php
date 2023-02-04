@@ -92,7 +92,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<!--begin::Brand-->
 					<div class="brand flex-column-auto" id="kt_brand">
 						<!--begin::Logo-->
-						<a href="{{ route('home') }}" class="brand-logo">
+						<a href="{{ route('admin.home') }}" class="brand-logo">
 							<img src="{{asset('img/LOGO HH_NAVBAR.png')}}" alt="" width="130" class="" />
 						</a>
 						<!--end::Logo-->
@@ -150,7 +150,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<!--begin::Info-->
 								<div class="d-flex align-items-center flex-wrap mr-2">
 									<!--begin::Page Title-->
-									<h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">{{ ucwords($active) }}</h5>
+									<h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5"></h5>
 									<!--end::Page Title-->
 									<!--begin::Actions-->
 									
@@ -201,7 +201,7 @@ License: You must have a valid license purchased only from themeforest(the above
 						<i class="symbol-badge bg-success"></i>
 					</div>
 					<div class="d-flex flex-column">
-						<a href="#" class="font-weight-bold font-size-h5 text-dark-75 text-hover-primary">{{ Auth::user()->name }}</a>
+						<a href="#" class="font-weight-bold font-size-h5 text-dark-75 text-hover-primary"></a>
 						<div class="navi mt-2">
 							<a href="#" class="navi-item">
 								<span class="navi-link p-0 pb-2">
@@ -218,10 +218,10 @@ License: You must have a valid license purchased only from themeforest(the above
 											<!--end::Svg Icon-->
 										</span>
 									</span>
-									<span class="navi-text text-muted text-hover-primary">{{ Auth::user()->email }}</span>
+									<span class="navi-text text-muted text-hover-primary"></span>
 								</span>
 							</a>
-							<a href="{{ route('logout') }}" class="btn btn-sm btn-light-primary font-weight-bolder py-2 px-5">Keluar</a>
+							<a href="" class="btn btn-sm btn-light-primary font-weight-bolder py-2 px-5">Keluar</a>
 						</div>
 					</div>
 				</div>
@@ -398,7 +398,7 @@ License: You must have a valid license purchased only from themeforest(the above
 												<img alt="Pic" src="assets/media/users/300_21.jpg" />
 											</div>
 										</div>
-										<div class="mt-2 rounded p-5 bg-light-primary text-dark-50 font-weight-bold font-size-lg text-right max-w-400px">You’ll receive notifications for all issues, pull requests!</div>
+										<div class="mt-2 rounded p-5 bg-light-primary text-dark-50 font-weight-bold font-size-lg text-right max-w-400px">You'll receive notifications for all issues, pull requests!</div>
 									</div>
 									<!--end::Message Out-->
 									<!--begin::Message In-->
