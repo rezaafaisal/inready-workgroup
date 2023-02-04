@@ -18,8 +18,9 @@ return new class extends Migration
             $table->foreignId('role_id');
             $table->string('name');
             $table->string('username')->unique();
+            $table->string('email')->unique()->nullable();
             $table->string('password');
-            $table->dateTime('last_login');
+            $table->dateTime('last_login')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

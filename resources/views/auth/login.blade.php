@@ -26,7 +26,9 @@
                         <span class="text-xs text-rose-400">{{ $message }}</span>
                     @enderror
                 </label>
-                <a href="#" class="block text-center text-inr-yellow text-sm mb-5">Lupa Password?</a>
+                <div class="text-center mb-5">
+                    <a href="#" class="text-inr-yellow text-sm">Lupa Password?</a>
+                </div>
                 <button class="rounded w-full mb-5 px-3 py-2 text-inr-black bg-inr-yellow hover:bg-inr-yellow-1 duration-150">Masuk</button>
                 <span class="block text-center text-inr-white text-sm">Belum punya akun? <a href="#" class="font-semibold text-inr-yellow">Daftar Sekarang</a></span>
             </form>

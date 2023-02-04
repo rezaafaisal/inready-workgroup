@@ -3,6 +3,8 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Data\User;
+use App\Http\Controllers\DataController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\User\AboutController;
 use App\Http\Controllers\User\ActivityController;
@@ -28,6 +30,10 @@ Route::get('tes', function(){
     return view('tes');
 });
 
+
+Route::prefix('data')->name('data.')->group(function(){
+    Route::get('user', [DataController::class, 'user'])->name('user');
+});
 
 Route::prefix('admin')->name('admin.')->group(function(){
     Route::get('/', [AdminController::class, 'index'])->name('home');
