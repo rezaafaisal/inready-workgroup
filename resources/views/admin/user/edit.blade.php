@@ -2,40 +2,40 @@
 @section('body')
     <div class="container">
         <div class="row">
-            {{-- fungsi tambah --}}
             <div class="col-12 col-md-8 col-lg-8">
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex justify-content-between">
-                            <h4>Tambah Data Pengguna</h4>
+                            <h4>Edit Data Pengguna</h4>
                             <a href="{{ route('admin.pengguna.index') }}" class="btn btn-primary">Kembali</a>
                         </div>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('admin.pengguna.store') }}" method="POST">
+                        <form action="{{ route('admin.pengguna.update', ['pengguna' => $data['user']->id]) }}" method="POST">
+                            @method('PUT')
                             @csrf
                             <div class="form-group">
                                 <label for="fullname" class="form-label">Nama Lengkap</label>
-                                <input type="text" id="fullname" name="fullname" class="form-control @error('fullname') is-invalid @enderror" placeholder="Masukkan nama lengkap" value="{{ old('fullname') }}">
+                                <input type="text" id="fullname" name="fullname" class="form-control @error('fullname') is-invalid @enderror" placeholder="Masukkan nama lengkap" value="{{ old('fullname') ?? $data['user']->name }}">
                                 @error('fullname')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
                             <div class="form-group">
                                 <label for="username" class="form-label">Username</label>
-                                <input type="text" name="username" id="username" class="form-control @error('fullname') is-invalid @enderror" placeholder="Masukkan username" value="{{ old('username') }}">
+                                <input type="text" name="username" id="username" class="form-control @error('fullname') is-invalid @enderror" placeholder="Masukkan username" value="{{ old('username') ?? $data['user']->username }}">
                                 @error('username')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-12 col-md-6">
                                     <div class="form-group">
                                         <label for="major" class="form-label">Jurusan</label>
-                                        <select name="major" id="major" class="form-control @error('is-major') is-invalid @enderror">
+                                        <select name="major" id="major" class="form-control @error('is-major') is-invalid @enderror" value="2">
                                             <option value="" selected disabled>Pilih jurusan</option>
                                             @foreach ($data['major'] as $item)
-                                                <option value="{{ $item->id }}" {{ old('major') == $item->id ? 'selected' : '' }}>{{ $item->name }}</option>
+                                                <option value="{{ $item->id }}" {{ ($data['user']->profile->major_id == $item->id) ? 'selected' : '' }} {{ old('major') == $item->id ? 'selected' : '' }}>{{ $item->name }}</option>
                                             @endforeach
                                         </select>
                                         @error('major')
@@ -43,13 +43,13 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-12 col-md-6">
                                     <div class="form-group">
                                         <label for="generation" class="form-label @error('generation') is-invalid @enderror">Angkatan ke-</label>
                                         <select name="generation" id="generation" class="form-control">
                                             <option value="">Angkatan Inready Workgroup</option>
                                             @foreach ($data['generation'] as $item)
-                                                <option value="{{ $item->id }}" {{ old('generation') == $item->id ? 'selected' : '' }}>{{ $item->name }}</option>
+                                                <option value="{{ $item->id }}" {{ ($data['user']->profile->generation_id == $item->id) ? 'selected' : '' }} {{ old('generation') == $item->id ? 'selected' : '' }}>{{ $item->name }}</option>
                                             @endforeach
                                         </select>
                                         @error('generation')
@@ -58,27 +58,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label for="password" class="form-label">Password</label>
-                                        <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror">
-                                        @error('password')
-                                            <small class="text-danger">{{ $message }}</small>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label for="password_confirmation" class="form-label">Konfirmasi Password</label>
-                                        <input type="password" name="password_confirmation" id="password_confirmation" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
                             <div class="form-group">
                                 <div class="checkbox-inline mb-3">
                                     <label class="checkbox checkbox-outline checkbox-success">
-                                        <input type="checkbox" name="lead">
+                                        <input type="checkbox" name="lead" {{ $data['user']->profile->is_lead ? 'checked' : '' }}>
                                         <span></span>
                                         Ketua Umum
                                     </label>

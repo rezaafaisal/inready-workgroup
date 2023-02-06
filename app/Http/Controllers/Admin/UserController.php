@@ -97,7 +97,12 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = [
+            'generation' => Generation::all(),
+            'major' => Major::all(),
+            'user' => User::with('profile')->find($id)
+        ];
+        return view('admin.user.edit', Data::view('pengguna', $data));
     }
 
     /**
@@ -109,7 +114,24 @@ class UserController extends Controller
      */
     public function update(Request $request, $id = null)
     {
-        return $request->all();
+        $user = User::find($id);
+        
+        $success = $user->update([
+            'name' => $request->fullname,
+            'username' => $request->username,
+        ]);
+
+        if($success){
+            Profile::where('user_id', $user->id)->first()->update([
+                'generation_id' => $request->generation,
+                'major_id' => $request->major,
+                'is_lead' => $request->lead ? true : false
+            ]);
+
+            return Alert::default(true, 'Diperbaharui', 'admin.pengguna.index');
+        }
+
+        return Alert::default(false, 'Diperbaharui');
     }
 
     /**

@@ -22,6 +22,7 @@ class DataController extends Controller
             })
             ->addColumn('action', function($row){
                 $id = $row->id;
+                $edit = route('admin.pengguna.edit', ['pengguna' => $id]);
                 $data = json_encode($row);
                 $button = "
                     <div class='d-flex flex-nowrap gap-3'>
@@ -35,11 +36,10 @@ class DataController extends Controller
                             data-target='#reset_passwd' data-toggle='tooltip' data-placement='top' title='Reset Password'>
                             <i class='la la-key'></i>
                         </button>
-                        <button onclick='edit_data($data)'
-                            class='btn btn-sm btn-clean btn-outline-success btn-icon' data-toggle='modal'
-                            data-target='#update' data-toggle='tooltip' data-placement='top' title='Edit'>
+                        <a href='$edit'
+                            class='btn btn-sm btn-clean btn-outline-success btn-icon' data-toggle='tooltip' data-placement='top' title='Edit'>
                             <i class='la la-edit'></i>
-                        </button>
+                        </a>
                         <button onclick='delete_data($data)'
                             class='btn btn-sm btn-clean btn-outline-danger btn-icon' data-toggle='tooltip' data-placement='top' title='Hapus'>
                             <i class='la la-trash'></i>
