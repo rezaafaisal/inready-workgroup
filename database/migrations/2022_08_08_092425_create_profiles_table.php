@@ -15,9 +15,11 @@ return new class extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->foreignId('user_id');
-            $table->foreignId('gender_id');
+            $table->foreignId('gender_id')->nullable();
             $table->foreignId('generation_id');
-            $table->boolean('lead')->default(false);
+            $table->foreignId('major_id')->nullable();
+            $table->boolean('is_lead')->default(false);
+            $table->boolean('is_manager')->default(false);
             $table->string('image')->nullable();
             $table->text('address')->nullable();
             $table->string('birth_place')->nullable();

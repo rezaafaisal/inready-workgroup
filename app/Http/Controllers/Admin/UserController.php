@@ -2,8 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Helper\Data;
+use App\Models\User;
+use App\Helper\Alert;
+use App\Models\Major;
+use App\Models\Profile;
+use App\Models\Generation;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -14,7 +21,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('admin.user');
+        $data = [
+            'generation' => Generation::all()
+        ];
+        return view('admin.user.index', Data::view('user', $data));
     }
 
     /**
@@ -24,7 +34,11 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            'generation' => Generation::all(),
+            'major' => Major::all()
+        ];
+        return view('admin.user.create', Data::view('user', $data));
     }
 
     /**
@@ -35,7 +49,33 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'fullname' => 'required|min:3',
+            'username' => 'required|min:3|unique:users',
+            'password' => 'required|min:5|confirmed',
+            'generation' => 'required',
+            'major' => 'required'
+        ]);
+
+        $user = new User();
+        $user->role_id = 2;
+        $user->name = $request->fullname;
+        $user->username = $request->username;
+        $user->password = Hash::make($request->password);
+        $success = $user->save();
+
+        if($success){
+            Profile::create([
+                'user_id' => $user->id,
+                'generation_id' => $request->generation,
+                'major_id' => $request->major,
+                'is_lead' => $request->lead ? true : false
+            ]);
+
+            return Alert::default($success, 'Ditambah', 'admin.pengguna.index');
+        }
+
+        return Alert::default(false, 'Ditambah', 'admin.pengguna.create');
     }
 
     /**
@@ -67,9 +107,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id = null)
     {
-        //
+        return $request->all();
     }
 
     /**

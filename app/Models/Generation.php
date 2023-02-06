@@ -14,6 +14,10 @@ class Generation extends Model
         return $this->hasMany(Program::class);
     }
 
+    public function profiles(){
+        return $this->hasMany(Profile::class);
+    }
+
     public function structures(){
         return $this->hasMany(Structure::class);
     }

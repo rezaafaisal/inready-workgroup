@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Gender;
 use App\Models\Generation;
+use App\Models\Major;
 use App\Models\Role;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -25,21 +26,27 @@ class DimSeeder extends Seeder
 
         $roles = [
             ['name' => 'admin'],
-            ['name' => 'manager'],
+            // ['name' => 'manager'],
             ['name' => 'user']
         ];
 
         $generations = [
-            ['year' => '2018'],
-            ['year' => '2019'],
-            ['year' => '2020'],
-            ['year' => '2021'],
-            ['year' => '2022'],
-            ['year' => '2023'],
+            ['name' => 9],
+            ['name' => 10],
+            ['name' => 11],
+            ['name' => 12],
+            ['name' => 13],
+            ['name' => 14],
+        ];
+
+        $major = [
+            ['name' => 'teknik informatika'],
+            ['name' => 'sistem informasi']
         ];
 
         Gender::insert($genders);
         Role::insert($roles);
         Generation::insert($generations);
+        Major::insert($major);
     }
 }

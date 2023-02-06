@@ -9,6 +9,7 @@ class Profile extends Model
 {
     use HasFactory;
     public $timestamps = false;
+    protected $guarded = ['id'];
 
     public function user(){
         return $this->belongsTo(User::class);
@@ -16,5 +17,13 @@ class Profile extends Model
 
     public function gender(){
         return $this->belongsTo(Gender::class);
+    }
+
+    public function generation(){
+        return $this->belongsTo(Generation::class);
+    }
+
+    public function major(){
+        return $this->belongsTo(Major::class);
     }
 }

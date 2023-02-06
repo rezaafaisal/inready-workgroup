@@ -2,7 +2,7 @@
      namespace App\Helper;
 
      class Alert {
-        public static function default($success, $action){
+        public static function default($success, $action, $route){
             if($success){
                 session()->put('alert', ['icon' => 'success', 'title' => 'Berhasil', 'text' => 'Data Berhasil '.$action]);
             }
@@ -11,6 +11,6 @@
                 session()->put('alert', ['icon' => 'error', 'title' => 'Gagal', 'text' => 'Data Gagal '.$action]);
             }
 
-            return redirect()->back();
+            return redirect()->route($route);
          }
      }
