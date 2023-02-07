@@ -53,8 +53,6 @@ class UserController extends Controller
             'fullname' => 'required|min:3',
             'username' => 'required|min:3|unique:users',
             'password' => 'required|min:5|confirmed',
-            'generation' => 'required',
-            'major' => 'required'
         ]);
 
         $user = new User();
@@ -114,18 +112,26 @@ class UserController extends Controller
      */
     public function update(Request $request, $id = null)
     {
+        $request->validate([
+            'fullname' => 'required|min:3',
+            'username' => 'required|min:3|unique:users',
+        ]);
+
         $user = User::find($id);
         
         $success = $user->update([
             'name' => $request->fullname,
             'username' => $request->username,
+            'email' => $request->email
         ]);
 
         if($success){
             Profile::where('user_id', $user->id)->first()->update([
                 'generation_id' => $request->generation,
                 'major_id' => $request->major,
-                'is_lead' => $request->lead ? true : false
+                'is_lead' => $request->lead ? true : false,
+                'whatsapp' => $request->whatsapp,
+                'address' => $request->address,
             ]);
 
             return Alert::default(true, 'Diperbaharui', 'admin.pengguna.index');

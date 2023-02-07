@@ -32,7 +32,7 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <x-input type="email" name="email" label="Email" placeholder="Masukkan email valid" />
+                                        <x-input type="email" name="email" label="Email" placeholder="Masukkan email valid" value="{{ $data['user']->profile->email }}" />
                                     </div>
                                     <div class="form-group">
                                         <div class="checkbox-inline mb-3">
@@ -48,7 +48,7 @@
                                 <div class="col-12 col-md-6">
                                     <h5 class="mb-5">Profil Pengguna</h5>
                                     <div class="form-group">
-                                        <x-input type="number" name="whatsapp" label="Nomor Whatsapp" placeholder="Nomor whatsapp valid" />
+                                        <x-input type="number" name="whatsapp" label="Nomor Whatsapp" placeholder="Nomor whatsapp valid" value="{{ $data['user']->profile->whatsapp }}" />
                                     </div>
                                     <div class="row">
                                         <div class="col-12 col-md-6">
@@ -81,7 +81,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <x-textarea name="address" label="Alamat Sekarang" placeholder="Masukkan alamat yang valid" value="{{ 'hahahaha' }}" />
+                                        <x-textarea name="address" label="Alamat Sekarang" placeholder="Masukkan alamat yang valid" value="{{ $data['user']->profile->address }}" />
                                     </div>
                                 </div>
                             </div>

@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('profiles', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('user_id');
             $table->foreignId('gender_id')->nullable();
             $table->foreignId('generation_id');
