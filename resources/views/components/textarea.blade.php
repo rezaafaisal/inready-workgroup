@@ -1,6 +1,6 @@
 <div>
     <label class="form-label" for="{{ $name }}">{{ $label }}</label>
-    <input type="text" name="{{ $name }}" id="{{ $name }}" class="form-control @error('{{ $name }}') is-invalid @enderror">
+    <textarea name="{{ $name }}" class="form-control" id="{{ $name }}" rows="5" placeholder="{{ $placeholder }}">{{ $value }}</textarea>
     @error('{{ $name }}')
         <small class="text-danger">
             {{ $message }}
