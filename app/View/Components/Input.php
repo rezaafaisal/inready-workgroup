@@ -14,7 +14,7 @@ class Input extends Component
 
     public $type, $name, $label, $placeholder, $value;
      
-    public function __construct($type, $name, $label, $placeholder, $value = null)
+    public function __construct($type, $name, $label, $placeholder = null, $value = null)
     {
         $this->type = $type;
         $this->name = $name;

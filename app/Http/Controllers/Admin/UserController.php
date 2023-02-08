@@ -84,7 +84,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+        return view('admin.user.show', Data::view('user', $user));
     }
 
     /**
@@ -147,8 +148,34 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $req, $id)
     {
-        //
+        $id = $req->id;
+        $success = User::find($id)->delete();
+        if($success){
+            return Alert::default(true, 'Dihapus', 'admin.pengguna.index');
+        }
+        return Alert::default(false, 'Dihapus');
+    }
+
+    public function reset($id){
+        $user = User::find($id)->only('id', 'name');
+        return view('admin.user.reset', Data::view('user', $user));
+    }
+
+    public function reseted(Request $req, $id){
+        $req->validate([
+            'password' => 'required|min:3|confirmed'
+        ]);
+
+        $success = User::find($id)->update([
+            'password' => Hash::make($req->password)
+        ]);
+
+        if($success){
+            return Alert::default(true, 'Diupdate', 'admin.pengguna.index');
+        }
+        
+        return Alert::default(false, 'Diupdate');
     }
 }

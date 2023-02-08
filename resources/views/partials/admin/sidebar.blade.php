@@ -18,7 +18,7 @@
                 <h4 class="menu-text">Manajemen</h4>
                 <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
             </li>
-            <li class="menu-item "
+            <li class="menu-item {{ ($active=='user')?'menu-item-active':'' }}"
                 aria-haspopup="true">
                 <a href="{{ route('admin.pengguna.index') }}" class="menu-link">
                     <span class="svg-icon menu-icon">

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->foreignId('gender_id')->nullable();
             $table->foreignId('generation_id');
+            $table->string('job')->nullable();
             $table->foreignId('major_id')->nullable();
             $table->boolean('is_lead')->default(false);
             $table->boolean('is_manager')->default(false);

@@ -38,6 +38,8 @@ Route::prefix('data')->name('data.')->group(function(){
 Route::prefix('admin')->name('admin.')->group(function(){
     Route::get('/', [AdminController::class, 'index'])->name('home');
     Route::resource('pengguna', UserController::class);
+    Route::get('admin/pengguna/{id}/reset', [UserController::class, 'reset'])->name('pengguna.reset');
+    Route::post('admin/pengguna/{id}/reset', [UserController::class, 'reseted'])->name('pengguna.reseted');
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('index');

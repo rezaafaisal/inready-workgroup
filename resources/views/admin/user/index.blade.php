@@ -59,183 +59,11 @@
     </div>
 </div>
 
-{{-- modal --}}
-
-{{-- create modal --}}
-{{-- <x-modal target="create" title="Tambah Pengelola">
-    <form id="add_form" action="{{ route('admin.pengguna.store') }}" method="post">
-        @csrf
-        <div class="row">
-            <div class="col-12">
-                <div class="form-group">
-                    <label for="fullname">Nama Lengkap</label>
-                    <input type="text" name="fullname" id="fullname"
-                        class="form-control @error('fullname') is-invalid @enderror"
-                        value="{{ old('fullname') }}">
-                    @error('fullname')
-                        <small class="text-danger">
-                            {{ $message }}
-                        </small>
-                    @enderror
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" name="username" id="username"
-                        class="form-control @error('username') is-invalid @enderror"
-                        value="{{ old('username') }}" />
-                    @error('username')
-                        <small class="text-danger">
-                            {{ $message }}
-                        </small>
-                    @enderror
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="form-group">
-                    <label for="generation" class="form-label">Angkatan Ke-</label>
-                    <select name="generation" id="" class="form-control @error('generation') is-invalid @enderror">
-                        <option value="">Angkatan Inready Workgroup</option>
-                        @foreach($data['generation'] as $item)
-                            <option value="{{ $item->id }}">{{ $item->name }}</option>
-                        @endforeach
-                    </select>
-                    @error('generation')
-                        <small class="text-danger">
-                            {{ $message }}
-                        </small>
-                    @enderror
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" name="password" id="password"
-                        class="form-control @error('password') is-invalid @enderror">
-                    @error('password')
-                        <small class="text-danger">
-                            {{ $message }}
-                        </small>
-                    @enderror
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="form-group">
-                    <label for="password">Konfirmasi Password</label>
-                    <input type="password" name="password_confirmation" id="password_confirmation"
-                        class="form-control @error('password') is-invalid @enderror">
-                    @error('password_confirmation')
-                        <small class="text-danger">
-                            {{ $message }}
-                        </small>
-                    @enderror
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="form-group">
-                    <div class="checkbox-inline mb-3">
-                        <label class="checkbox checkbox-outline checkbox-success">
-                            <input type="checkbox" name="lead">
-                            <span></span>
-                            Ketua Umum
-                        </label>
-                    </div>
-                    <small class="text-success">*Cetang jika pengguna adalah ketua umum</small>
-                </div>
-            </div>
-        </div>
-    </form>
-</x-modal> --}}
-
-{{-- update modal --}}
-{{-- <x-modal target="update" title="Tambah Pengelola">
-    <form id="update_form" action="{{ route('admin.pengguna.update') }}" method="post">
-        @csrf
-        <div class="row">
-            <div class="col-12">
-                <div class="form-group">
-                    <label for="fullname">Nama Lengkap</label>
-                    <input type="text" name="fullname" id="fullname"
-                        class="form-control @error('fullname') is-invalid @enderror"
-                        value="{{ old('fullname') }}">
-                    @error('fullname')
-                        <small class="text-danger">
-                            {{ $message }}
-                        </small>
-                    @enderror
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" name="username" id="username"
-                        class="form-control @error('username') is-invalid @enderror"
-                        value="{{ old('username') }}" />
-                    @error('username')
-                        <small class="text-danger">
-                            {{ $message }}
-                        </small>
-                    @enderror
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="form-group">
-                    <label for="generation" class="form-label">Angkatan Ke-</label>
-                    <select name="generation" id="" class="form-control @error('generation') is-invalid @enderror">
-                        <option value="">Angkatan Inready Workgroup</option>
-                        @foreach($data['generation'] as $item)
-                            <option value="{{ $item->id }}">{{ $item->name }}</option>
-                        @endforeach
-                    </select>
-                    @error('generation')
-                        <small class="text-danger">
-                            {{ $message }}
-                        </small>
-                    @enderror
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" name="password" id="password"
-                        class="form-control @error('password') is-invalid @enderror">
-                    @error('password')
-                        <small class="text-danger">
-                            {{ $message }}
-                        </small>
-                    @enderror
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="form-group">
-                    <label for="password">Konfirmasi Password</label>
-                    <input type="password" name="password_confirmation" id="password_confirmation"
-                        class="form-control @error('password') is-invalid @enderror">
-                    @error('password_confirmation')
-                        <small class="text-danger">
-                            {{ $message }}
-                        </small>
-                    @enderror
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="form-group">
-                    <div class="checkbox-inline mb-3">
-                        <label class="checkbox checkbox-outline checkbox-success">
-                            <input type="checkbox" name="lead">
-                            <span></span>
-                            Ketua Umum
-                        </label>
-                    </div>
-                    <small class="text-success">*Cetang jika pengguna adalah ketua umum</small>
-                </div>
-            </div>
-        </div>
-    </form>
-</x-modal> --}}
-
-
+<form id="delete_form" action="{{ route('admin.pengguna.destroy', ['pengguna' => 'destroy']) }}" method="post">
+    @csrf
+    @method('DELETE')
+    <input type="hidden" name="id" value="">
+</form>
 
 @endsection
 @section('scripts')
@@ -284,6 +112,26 @@
             ]
         })
     })
-
+</script>
+<script>
+    function delete_data(data) {
+        const input = $('#delete_form input[name="id"]');
+        Swal.fire({
+            icon: 'warning',
+            title: 'Yakin Hapus?',
+            text: 'Data '+data.name+' akan dihapus permanen',
+            showCancelButton: true,
+            confirmButtonText: 'Hapus',
+            cancelButtonText: 'Batal',
+            confirmButtonColor: '#F64E60',
+            cancelButtonColor: '#1BC5BD',
+            reverseButtons: true
+        }).then((e) => {
+            if (e.isConfirmed) {
+                input.val(data.id);
+                $('#delete_form').submit()
+            }
+        })
+    }
 </script>
 @endsection

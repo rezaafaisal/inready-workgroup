@@ -23,19 +23,18 @@ class DataController extends Controller
             ->addColumn('action', function($row){
                 $id = $row->id;
                 $edit = route('admin.pengguna.edit', ['pengguna' => $id]);
-                $data = json_encode($row);
+                $detail = route('admin.pengguna.show', ['pengguna' => $id]);
+                $reset = route('admin.pengguna.reset', ['id' => $id]);
+                $data = json_encode($row->only(['id', 'name']));
                 $button = "
                     <div class='d-flex flex-nowrap gap-3'>
-                        <button onclick='detail($id)'
-                            class='btn btn-sm btn-clean btn-outline-info btn-icon' data-toggle='modal'
-                            data-target='detail' data-toggle='tooltip' data-placement='top' title='Detail'>
+                        <a href='$detail'
+                            class='btn btn-sm btn-clean btn-outline-info btn-icon' data-toggle='tooltip' data-placement='top' title='Detail'>
                             <i class='las la-info'></i>
-                        </button>
-                        <button onclick='reset_passwd($id)'
-                            class='btn btn-sm btn-clean btn-outline-warning btn-icon' data-toggle='modal'
-                            data-target='#reset_passwd' data-toggle='tooltip' data-placement='top' title='Reset Password'>
+                        </a>
+                        <a href='$reset' class='btn btn-sm btn-clean btn-outline-warning btn-icon' data-toggle='tooltip' data-placement='top' title='Reset Password'>
                             <i class='la la-key'></i>
-                        </button>
+                        </a>
                         <a href='$edit'
                             class='btn btn-sm btn-clean btn-outline-success btn-icon' data-toggle='tooltip' data-placement='top' title='Edit'>
                             <i class='la la-edit'></i>
