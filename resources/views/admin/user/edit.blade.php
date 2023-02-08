@@ -32,7 +32,7 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <x-input type="email" name="email" label="Email" placeholder="Masukkan email valid" value="{{ $data['user']->profile->email }}" />
+                                        <x-input type="email" name="email" label="Email" placeholder="Masukkan email valid" value="{{ $data['user']->email }}" />
                                     </div>
                                     <div class="form-group">
                                         <div class="checkbox-inline mb-3">
