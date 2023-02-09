@@ -19,7 +19,7 @@ return new class extends Migration
             $table->enum('type', ['ad-art', 'juklak-juknis', 'gbho']);
             $table->string('name');
             $table->string('file');
-            $table->boolean('status');
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
     }

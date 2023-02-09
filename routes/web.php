@@ -35,6 +35,7 @@ Route::get('tes', function(){
 
 Route::prefix('data')->name('data.')->group(function(){
     Route::get('user', [DataController::class, 'user'])->name('user');
+    Route::get('juklak-juknis', [DataController::class, 'juklis'])->name('juklis');
 });
 
 Route::prefix('admin')->name('admin.')->group(function(){
@@ -44,7 +45,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::get('admin/pengguna/{id}/reset', [UserController::class, 'reset'])->name('pengguna.reset');
     Route::post('admin/pengguna/{id}/reset', [UserController::class, 'reseted'])->name('pengguna.reseted');
 
-    Route::prefix('buku-besar')->name('ladger.')->group(function(){
+    Route::prefix('buku-besar')->name('ledger.')->group(function(){
         Route::prefix('juklak-juknis')->name('juklis.')->group(function(){
             Route::get('/', [JuklisConstroller::class, 'index'])->name('index');
             Route::get('create', [JuklisConstroller::class, 'create'])->name('create');

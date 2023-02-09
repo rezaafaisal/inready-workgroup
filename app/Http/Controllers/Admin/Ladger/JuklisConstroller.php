@@ -13,7 +13,7 @@ class JuklisConstroller extends Controller
     }
 
     public function create(){
-
+        return view('admin.ledger.juklak-juknis.create', Data::view('juklis'));
     }
 
     public function store(Request $request){

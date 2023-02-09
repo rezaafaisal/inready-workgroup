@@ -58,7 +58,6 @@
         </div>
     </div>
 </div>
-
 <form id="delete_form" action="{{ route('admin.pengguna.destroy', ['pengguna' => 'destroy']) }}" method="post">
     @csrf
     @method('DELETE')

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Document;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -16,8 +17,19 @@ class FactSeeder extends Seeder
     {
         $juklak_juknis = [
             [
-
-            ]
+                'generation_id' => 3,
+                'type' => 'juklak-juknis',
+                'name' => 'nama file saya',
+                'file' => 'document.pdf',
+            ],
+            [
+                'generation_id' => 4,
+                'type' => 'juklak-juknis',
+                'name' => 'nama file saya lagi',
+                'file' => 'document.pdf',
+            ],
         ];
+
+        Document::insert($juklak_juknis);
     }
 }
