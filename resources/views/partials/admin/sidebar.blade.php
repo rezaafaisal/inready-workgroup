@@ -30,8 +30,8 @@
             <li class="menu-item menu-item-submenu"
                 aria-haspopup="true" data-menu-toggle="hover">
                 <a href="javascript:;" class="menu-link menu-toggle">
-                    <i class="menu-icon fas fa-stethoscope"></i>
-                    <span class="menu-text">Diagnosa</span>
+                    <i class="menu-icon fas fa-book"></i>
+                    <span class="menu-text">Buku Besar</span>
                     <i class="menu-arrow"></i>
                 </a>
                 <div class="menu-submenu">
@@ -43,7 +43,16 @@
                                 <i class="menu-bullet menu-bullet-line">
                                     <span></span>
                                 </i>
-                                <span class="menu-text">Penyakit</span>
+                                <span class="menu-text">Sejarah</span>
+                            </a>
+                        </li>
+                        <li class="menu-item "
+                            aria-haspopup="true" data-menu-toggle="hover">
+                            <a href="{{ route('admin.ladger.juklis.index') }}" class="menu-link menu-toggle">
+                                <i class="menu-bullet menu-bullet-line">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">AD-ART</span>
                             </a>
                         </li>
                         <li class="menu-item "
@@ -52,19 +61,9 @@
                                 <i class="menu-bullet menu-bullet-line">
                                     <span></span>
                                 </i>
-                                <span class="menu-text">Gambar Penyakit</span>
-                            </a>
-                        </li>
-                        <li class="menu-item "
-                            aria-haspopup="true" data-menu-toggle="hover">
-                            <a href="" class="menu-link menu-toggle">
-                                <i class="menu-bullet menu-bullet-line">
-                                    <span></span>
-                                </i>
-                                <span class="menu-text">Pertanyaan Diagnosa</span>
+                                <span class="menu-text">Juklak Juknis</span>
                                 <span class="menu-label">
-                                    <span
-                                        class="label label-rounded label-primary"></span>
+                                    {{-- <span class="label label-rounded label-primary"></span> --}}
                                 </span>
                             </a>
                         </li>
@@ -74,7 +73,7 @@
                                 <i class="menu-bullet menu-bullet-line">
                                     <span></span>
                                 </i>
-                                <span class="menu-text">Catatan</span>
+                                <span class="menu-text">GBHO</span>
                             </a>
                         </li>
                     </ul>

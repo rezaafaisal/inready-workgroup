@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->foreignId('gender_id')->nullable();
-            $table->foreignId('generation_id');
+            $table->foreignId('generation_id')->nullable();
             $table->string('job')->nullable();
             $table->foreignId('major_id')->nullable();
             $table->boolean('is_lead')->default(false);
@@ -27,6 +27,10 @@ return new class extends Migration
             $table->string('birth_place')->nullable();
             $table->date('birth_date')->nullable();
             $table->string('whatsapp')->nullable();
+            $table->string('instagram')->nullable();
+            $table->string('linkedin')->nullable();
+            $table->string('twitter')->nullable();
+            $table->string('facebook')->nullable();
         });
     }
 

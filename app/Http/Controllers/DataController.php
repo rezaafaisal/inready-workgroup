@@ -12,7 +12,7 @@ class DataController extends Controller
         return DataTables::of(User::all())
             ->addIndexColumn()
             ->addColumn('generation', function($row){
-                return $row->profile->generation->name;
+                return $row->profile->generation?->name;
             })
             ->addColumn('whatsapp', function($row){
                 if(!$row->profile->whatsapp!= null){

@@ -101,7 +101,7 @@ class UserController extends Controller
             'major' => Major::all(),
             'user' => User::with('profile')->find($id)
         ];
-        return view('admin.user.edit', Data::view('pengguna', $data));
+        return view('admin.user.edit', Data::view('user', $data));
     }
 
     /**

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\Ladger\JuklisConstroller;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Data\User;
@@ -13,6 +14,7 @@ use App\Http\Controllers\User\InternalController;
 use App\Http\Controllers\User\ManagerController;
 use App\Http\Controllers\User\MasterpieceController;
 use App\Http\Controllers\User\NewsController;
+use App\Models\Role;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,9 +39,22 @@ Route::prefix('data')->name('data.')->group(function(){
 
 Route::prefix('admin')->name('admin.')->group(function(){
     Route::get('/', [AdminController::class, 'index'])->name('home');
+
     Route::resource('pengguna', UserController::class);
     Route::get('admin/pengguna/{id}/reset', [UserController::class, 'reset'])->name('pengguna.reset');
     Route::post('admin/pengguna/{id}/reset', [UserController::class, 'reseted'])->name('pengguna.reseted');
+
+    Route::prefix('buku-besar')->name('ladger.')->group(function(){
+        Route::prefix('juklak-juknis')->name('juklis.')->group(function(){
+            Route::get('/', [JuklisConstroller::class, 'index'])->name('index');
+            Route::get('create', [JuklisConstroller::class, 'create'])->name('create');
+            Route::get('edit/{id}', [JuklisConstroller::class, 'edit'])->name('edit');
+            Route::post('/', [JuklisConstroller::class, 'store'])->name('store');
+            Route::put('{id}', [JuklisConstroller::class, 'update'])->name('update');
+            Route::delete('/', [JuklisConstroller::class, 'destroy'])->name('destroy');
+        });
+    });
+
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
