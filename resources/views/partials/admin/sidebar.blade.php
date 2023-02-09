@@ -27,7 +27,7 @@
                     <span class="menu-text">Pengguna</span>
                 </a>
             </li>
-            <li class="menu-item menu-item-submenu"
+            <li class="menu-item menu-item-submenu menu-item-open"
                 aria-haspopup="true" data-menu-toggle="hover">
                 <a href="javascript:;" class="menu-link menu-toggle">
                     <i class="menu-icon fas fa-book"></i>
@@ -48,16 +48,16 @@
                         </li>
                         <li class="menu-item "
                             aria-haspopup="true" data-menu-toggle="hover">
-                            <a href="{{ route('admin.ladger.juklis.index') }}" class="menu-link menu-toggle">
+                            <a href="" class="menu-link menu-toggle">
                                 <i class="menu-bullet menu-bullet-line">
                                     <span></span>
                                 </i>
                                 <span class="menu-text">AD-ART</span>
                             </a>
                         </li>
-                        <li class="menu-item "
+                        <li class="menu-item menu-item-active"
                             aria-haspopup="true" data-menu-toggle="hover">
-                            <a href="" class="menu-link menu-toggle">
+                            <a href="{{ route('admin.ladger.juklis.index') }}" class="menu-link menu-toggle">
                                 <i class="menu-bullet menu-bullet-line">
                                     <span></span>
                                 </i>

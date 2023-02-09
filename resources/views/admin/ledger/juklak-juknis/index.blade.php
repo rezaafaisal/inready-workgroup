@@ -62,4 +62,5 @@
 @endsection
 @section('scripts')
     <x-datatable-script />
+    
 @endsection

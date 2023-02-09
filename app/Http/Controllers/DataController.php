@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Document;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
@@ -49,6 +50,14 @@ class DataController extends Controller
             })
             ->rawColumns(['action', 'whatsapp'])
             ->escapeColumns()
+            ->toJson();
+    }
+
+    public function juklis(){
+        return DataTables::of(Document::where('type', 'juklak-juknis')->get())
+            ->addIndexColumn()
+            ->rawColumns(['action'])
+            ->escapedColumn()
             ->toJson();
     }
 }

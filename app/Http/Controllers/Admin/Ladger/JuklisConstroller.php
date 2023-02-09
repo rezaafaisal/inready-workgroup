@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Admin\Ladger;
 
+use App\Helper\Data;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class JuklisConstroller extends Controller
 {
     public function index(){
-        
+        return view('admin.ledger.juklak-juknis.index', Data::view('juklis'));
     }
 
     public function create(){
