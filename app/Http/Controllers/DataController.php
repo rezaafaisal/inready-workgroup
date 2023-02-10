@@ -54,7 +54,7 @@ class DataController extends Controller
     }
 
     public function juklis(){
-        return DataTables::of(Document::where('type', 'juklak-juknis')->get())
+        return DataTables::of(Document::where('type', 'juklak-juknis')->orderBy('id', 'desc')->get())
             ->addIndexColumn()
             ->editColumn('status', function($row){
                 if(!$row->status){

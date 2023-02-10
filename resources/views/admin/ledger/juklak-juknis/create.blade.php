@@ -11,7 +11,7 @@
                         </a>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('admin.ledger.juklis.store') }}" method="post">
+                        <form action="{{ route('admin.ledger.juklis.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <x-input type="type" name="filename" label="Nama File" placeholder="Nama File" />
