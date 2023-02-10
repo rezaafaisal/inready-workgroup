@@ -12,14 +12,12 @@ class InputSelect extends Component
      * @return void
      */
 
-    public $label, $name, $option, $data_select;
+    public $label, $name = null;
     
-    public function __construct($label, $name, $option, $dataselect)
+    public function __construct($label, $name = null)
     {
         $this->label = $label;
         $this->$name = $name;
-        $this->option = $option;
-        $this->data_select = $dataselect;
     }
 
     /**

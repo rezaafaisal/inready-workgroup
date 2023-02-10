@@ -2,7 +2,7 @@
 @section('body')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-12 col-md-8 col-lg-6">
+            <div class="col-12 col-md-10 col-lg-8">
                 <div class="card">
                     <div class="card-header d-flex align-items-center justify-content-between">
                         <h4>Tambah Dokumen Juklak Juknis</h4>
@@ -14,10 +14,29 @@
                         <form action="{{ route('admin.ledger.juklis.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
-                                <x-input type="type" name="filename" label="Nama File" placeholder="Nama File" />
+                                <x-input type="type" name="filename" label="Nama File" placeholder="Nama File" value="{{ old('filename') }}" />
                             </div>
-                            <div class="form-group">
-                                <x-input-file name="file" label="Dokumen Juklak Juknis" />
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="" class="form-label">Periode Angkatan</label>
+                                        <select name="generation" id="generation" class="form-control @error('generation') is-invalid @enderror">
+                                            <x-slot:name>Generation</x-slot:name>
+                                            <option selected disabled>Pilih Periode</option>
+                                            @foreach ($data as $row)
+                                                <option value="{{ $row->id }}">{{ $row->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('generation')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <x-input-file name="file" label="Dokumen Juklak Juknis" />
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group d-flex justify-content-end">
                                 <button class="btn btn-primary">Simpan</button>
