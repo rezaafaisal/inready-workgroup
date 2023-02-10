@@ -64,7 +64,7 @@ class DataController extends Controller
             })
             ->addColumn('action', function($row){
                 $id = $row->id;
-                $edit = route('admin.pengguna.edit', ['pengguna' => $id]);
+                $edit = route('admin.ledger.juklis.edit', ['id' => $id]);
                 $detail = route('admin.pengguna.show', ['pengguna' => $id]);
                 $data = json_encode($row->only(['id', 'name']));
                 $button = "

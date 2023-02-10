@@ -64,10 +64,41 @@ class JuklisConstroller extends Controller
     }
 
     public function edit($id){
-
+        $data = [
+            'generation' => Generation::all(),
+            'document' => Document::find($id)
+        ];
+        return view('admin.ledger.juklak-juknis.edit', Data::view('juklis', $data));
     }
 
     public function update(Request $request, $id){
+        $request->validate([
+            'filename' => 'required|min:3',
+            'generation' => 'required'
+        ]);
+
+        $is_exist = Document::where(['type' => $this->type, 'generation_id' => $request->generation])->count();
+        // cek apakah sudah ada dokumen
+        if($is_exist > 0){
+            return Alert::error('Gagal', 'Dokumen sudah ada untuk periode angkatan '.Generation::find($request->generation)->name, 'admin.ledger.juklis.index');
+        }
+
+        $document = Document::find($id);
+        
+        if($request->file){
+            Storage::delete($this->path.$document->file);
+            $file = $request->file;
+            $filename = $this->type.'_'.Carbon::now()->format('YmdHis').'.'.$request->file->extension();
+            Storage::putFileAs($this->path, $file, $filename);
+        }
+
+        $document->name = $request->filename;
+        $document->generation_id = $request->generation;
+        $success = $document->save();
+
+        if($success){
+            return Alert::default(true, 'Diedit');
+        }
 
     }
 

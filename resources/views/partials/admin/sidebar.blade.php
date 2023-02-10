@@ -27,7 +27,7 @@
                     <span class="menu-text">Pengguna</span>
                 </a>
             </li>
-            <li class="menu-item menu-item-submenu menu-item-open"
+            <li class="menu-item menu-item-submenu {{ ($active == 'juklis') ? 'menu-item-open' : '' }}"
                 aria-haspopup="true" data-menu-toggle="hover">
                 <a href="javascript:;" class="menu-link menu-toggle">
                     <i class="menu-icon fas fa-book"></i>
@@ -55,7 +55,7 @@
                                 <span class="menu-text">AD-ART</span>
                             </a>
                         </li>
-                        <li class="menu-item menu-item-active"
+                        <li class="menu-item {{ ($active == 'juklis') ? 'menu-item-active' : '' }}"
                             aria-haspopup="true" data-menu-toggle="hover">
                             <a href="{{ route('admin.ledger.juklis.index') }}" class="menu-link menu-toggle">
                                 <i class="menu-bullet menu-bullet-line">
