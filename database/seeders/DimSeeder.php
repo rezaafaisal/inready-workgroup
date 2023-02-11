@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Gender;
 use App\Models\Generation;
+use App\Models\LedgerType;
 use App\Models\Major;
 use App\Models\Role;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -44,6 +45,13 @@ class DimSeeder extends Seeder
             ['name' => 'sistem informasi']
         ];
 
+        $ledger_type = [
+            ['type' => 'juklak-juknis'],
+            ['type' => 'ad-art'],
+            ['type' => 'gbho']
+        ];
+
+        LedgerType::insert($ledger_type);
         Gender::insert($genders);
         Role::insert($roles);
         Generation::insert($generations);

@@ -1,41 +1,41 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Ladger;
+namespace App\Http\Controllers\Admin\Ledger;
 
-use App\Helper\Alert;
-use Carbon\Carbon;
 use App\Helper\Data;
+use App\Helper\Alert;
 use App\Helper\Filename;
 use App\Models\Document;
+use App\Models\Generation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Generation;
 use Illuminate\Support\Facades\Storage;
 
-class JuklisConstroller extends Controller
+class AdartController extends Controller
 {
-    private $type = 'juklak-juknis';
-    private $path = 'documents/juklak-juknis/';
+    private $type = 'ad-art';
+    private $path = 'documents/ad-art/';
+    private $active = 'adart';
     private function generation(){
         return Generation::where('active', true)->first()->id;
     }
     public static function route($path){
-        return "admin.ledger.juklis.".$path;
+        return "admin.ledger.adart.".$path;
     }
     public static function view($path){
-        return "admin.ledger.juklak-juknis.".$path;
+        return "admin.ledger.ad-art.".$path;
     }
     
     public function index(){
         $data = [
             'destroy_route' => route($this->route('destroy')),
         ];
-        return view($this->view('index'), Data::view('juklis', $data));
+        return view($this->view('index'), Data::view($this->active, $data));
     }
 
     public function create(){
         $data = Generation::all();
-        return view($this->view('create'), Data::view('juklis', $data));
+        return view($this->view('create'), Data::view($this->active, $data));
     }
 
     public function store(Request $request){
@@ -81,7 +81,7 @@ class JuklisConstroller extends Controller
             'generation' => Generation::all(),
             'document' => Document::find($id)
         ];
-        return view($this->view('edit'), Data::view('juklis', $data));
+        return view($this->view('edit'), Data::view($this->active, $data));
     }
 
     public function update(Request $request, $id){

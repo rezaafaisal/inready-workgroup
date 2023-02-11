@@ -1,4 +1,6 @@
-
+@php
+	$type = ['ad-art','juklak-juknis', 'gbho'];
+@endphp
 <div class="aside-menu-wrapper flex-column-fluid" id="kt_aside_menu_wrapper">
     <!--begin::Menu Container-->
     <div id="kt_aside_menu" class="aside-menu my-4" data-menu-vertical="1" data-menu-scroll="1"
@@ -27,7 +29,7 @@
                     <span class="menu-text">Pengguna</span>
                 </a>
             </li>
-            <li class="menu-item menu-item-submenu {{ ($active == 'juklis') ? 'menu-item-open' : '' }}"
+            <li class="menu-item menu-item-submenu {{ ($active == $type[1]) ? 'menu-item-open' : '' }}"
                 aria-haspopup="true" data-menu-toggle="hover">
                 <a href="javascript:;" class="menu-link menu-toggle">
                     <i class="menu-icon fas fa-book"></i>
@@ -55,9 +57,9 @@
                                 <span class="menu-text">AD-ART</span>
                             </a>
                         </li>
-                        <li class="menu-item {{ ($active == 'juklis') ? 'menu-item-active' : '' }}"
+                        <li class="menu-item {{ ($active == $type[1]) ? 'menu-item-active' : '' }}"
                             aria-haspopup="true" data-menu-toggle="hover">
-                            <a href="{{ route('admin.ledger.juklis.index') }}" class="menu-link menu-toggle">
+                            <a href="{{ route('admin.ledger.document.index', ['type' => $type[1]]) }}" class="menu-link menu-toggle">
                                 <i class="menu-bullet menu-bullet-line">
                                     <span></span>
                                 </i>

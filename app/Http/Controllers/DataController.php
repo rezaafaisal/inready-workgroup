@@ -8,8 +8,8 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 // route and view controller
+use App\Http\Controllers\Admin\Ledger\DocumentController;
 use Yajra\DataTables\DataTables;
-use App\Http\Controllers\Admin\Ladger\JuklisConstroller as Juklis;
 
 class DataController extends Controller
 {
@@ -73,7 +73,7 @@ class DataController extends Controller
             })
             ->addColumn('action', function($row){
                 $id = $row->id;
-                $edit = route(Juklis::route('edit'), ['id' => $id]);
+                $edit = route(DocumentController::route('edit'), ['type' => 'juklak-juknis', 'id' => $id]);
                 $show = asset('documents/juklak-juknis/'.$row->file);
                 $data = json_encode($row->only(['id', 'name']));
                 $button = "

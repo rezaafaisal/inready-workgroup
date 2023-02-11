@@ -1,7 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\Ladger\JuklisConstroller;
+use App\Http\Controllers\Admin\Ledger\DocumentController;
+use App\Http\Controllers\Admin\Ledger\JuklisConstroller;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Data\User;
@@ -46,14 +47,23 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::post('admin/pengguna/{id}/reset', [UserController::class, 'reseted'])->name('pengguna.reseted');
 
     Route::prefix('buku-besar')->name('ledger.')->group(function(){
-        Route::prefix('juklak-juknis')->name('juklis.')->group(function(){
-            Route::get('/', [JuklisConstroller::class, 'index'])->name('index');
-            Route::get('create', [JuklisConstroller::class, 'create'])->name('create');
-            Route::get('edit/{id}', [JuklisConstroller::class, 'edit'])->name('edit');
-            Route::post('/', [JuklisConstroller::class, 'store'])->name('store');
-            Route::put('{id}', [JuklisConstroller::class, 'update'])->name('update');
-            Route::delete('/', [JuklisConstroller::class, 'destroy'])->name('destroy');
+        
+        Route::prefix('dokumen')->name('document.')->group(function(){
+            Route::get('/{type}', [DocumentController::class, 'index'])->name('index');
+            Route::get('{type}/create', [DocumentController::class, 'create'])->name('create');
+            Route::get('{type}/edit/{id}', [DocumentController::class, 'edit'])->name('edit');
+            Route::post('/{type}', [DocumentController::class, 'store'])->name('store');
+            Route::put('/{id}', [DocumentController::class, 'update'])->name('update');
+            Route::delete('/', [DocumentController::class, 'destroy'])->name('destroy');
         });
+        // Route::prefix('juklak-juknis')->name('juklis.')->group(function(){
+        //     Route::get('/', [JuklisConstroller::class, 'index'])->name('index');
+        //     Route::get('create', [JuklisConstroller::class, 'create'])->name('create');
+        //     Route::get('edit/{id}', [JuklisConstroller::class, 'edit'])->name('edit');
+        //     Route::post('/', [JuklisConstroller::class, 'store'])->name('store');
+        //     Route::put('{id}', [JuklisConstroller::class, 'update'])->name('update');
+        //     Route::delete('/', [JuklisConstroller::class, 'destroy'])->name('destroy');
+        // });
     });
 
 });
