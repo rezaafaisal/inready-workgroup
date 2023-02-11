@@ -58,7 +58,7 @@ class DataController extends Controller
     }
 
     public function juklis(){
-        return DataTables::of(Document::where('type', 'juklak-juknis')->orderBy('id', 'desc')->get())
+        return DataTables::of(Document::where('type', 'juklak-juknis')->orderBy('generation_id', 'desc')->get())
             ->addIndexColumn()
             ->editColumn('file', function($row){
                 $ext = '.'.last(explode('.', $row->file));

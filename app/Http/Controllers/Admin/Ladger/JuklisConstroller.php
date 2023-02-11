@@ -16,7 +16,9 @@ class JuklisConstroller extends Controller
 {
     private $type = 'juklak-juknis';
     private $path = 'documents/juklak-juknis/';
-
+    private function generation(){
+        return Generation::where('active', true)->first()->id;
+    }
     public static function route($path){
         return "admin.ledger.juklis.".$path;
     }
@@ -112,6 +114,10 @@ class JuklisConstroller extends Controller
     public function destroy(Request $request){
         $document = Document::find($request->id);
         
+        // kalau periode aktif tidak dapat dihapus
+        if($document->generation_id == $this->generation()){
+            return Alert::error('Gagal', 'Dokumen periode yang aktif tidak dapat dihapus');
+        }
         $success = $document->delete();
         if($success){
             Storage::delete($this->path.$document->file);

@@ -52,28 +52,19 @@
                 }
             },
             ajax: "{!! route('data.juklis') !!}",
-            columns: [{
+            columns: [
+                {
                     data: 'DT_RowIndex',
                     name: 'DT_Row_Index',
                     "className": "text-center",
                     orderable: false,
                     searchable: false
                 },
-                {
-                    data: 'name'
-                },
-                {
-                    data: 'file'
-                },
-                {
-                    data: 'generation'
-                },
-                {
-                    data: 'status'
-                },
-                {
-                    data: 'action'
-                }
+                {data: 'name'},
+                {data: 'file'},
+                {data: 'generation'},
+                {data: 'status'},
+                {data: 'action'}
             ]
         })
     </script>
