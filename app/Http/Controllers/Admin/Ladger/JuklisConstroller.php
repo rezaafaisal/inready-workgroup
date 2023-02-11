@@ -25,7 +25,10 @@ class JuklisConstroller extends Controller
     }
     
     public function index(){
-        return view($this->view('index'), Data::view('juklis'));
+        $data = [
+            'destroy_route' => route($this->route('destroy')),
+        ];
+        return view($this->view('index'), Data::view('juklis', $data));
     }
 
     public function create(){
@@ -53,9 +56,9 @@ class JuklisConstroller extends Controller
         }
         
         $file = $request->file;
-        $filename = Filename::hash($this->type, $request->file->extension());
+        $filename = Filename::make($request->file->extension());
         Storage::putFileAs($this->path, $file, $filename);
-        
+    
         $document = new Document();
         $document->name = $request->filename;
         $document->generation_id = $request->generation;
@@ -89,7 +92,7 @@ class JuklisConstroller extends Controller
         if($request->file){
             Storage::delete($this->path.$document->file);
             $file = $request->file;
-            $filename = Filename::hash($this->type, $request->file->extension());
+            $filename = Filename::make($request->file->extension());
             Storage::putFileAs($this->path, $file, $filename);
 
             $document->file = $filename;
@@ -106,8 +109,16 @@ class JuklisConstroller extends Controller
 
     }
 
-    public function destroy(){
+    public function destroy(Request $request){
+        $document = Document::find($request->id);
+        
+        $success = $document->delete();
+        if($success){
+            Storage::delete($this->path.$document->file);
+            return Alert::default(true, 'Dihapus', $this->route('index'));
+        }
 
+        return Alert::default(0, 'Dihapus');
     }
 
     public function set($id){

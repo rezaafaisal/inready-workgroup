@@ -30,6 +30,7 @@
         </div>
     </div>
 </div>
+<x-forms.delete action="{{ $data['destroy_route'] }}" />
 @endsection
 @section('scripts')
     <x-datatable-script />

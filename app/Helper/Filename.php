@@ -6,8 +6,8 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 
      class Filename{
-         public static function hash($name, $ext){
-            $now = Hash::make(Carbon::now()->format('YmdHis'));
-            return $name.'_'.$now.'.'.$ext;
+         public static function make($ext){
+            $now = md5(Carbon::now()->format('YmdHis'));
+            return $now.'.'.$ext;
          }
      }
