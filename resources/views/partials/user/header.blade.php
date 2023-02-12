@@ -1,3 +1,14 @@
+@php
+    $type = App\Http\Controllers\Admin\Ledger\DocumentController::type();
+    $adart = App\Models\Document::where(['type' => $type[0], 'status' => true])->first()?->file;
+    $juklis = App\Models\Document::where(['type' => $type[1], 'status' => true])->first()?->file;
+    $gbho = App\Models\Document::where(['type' => $type[2], 'status' => true])->first()?->file;
+    $data = [
+        'ad-art' => asset('documents/'.$type[0].'/'.$adart),
+        'juklat-juknis' => asset('documents/'.$type[1].'/'.$juklis),
+        'ad-art' => asset('documents/'.$type[2].'/'.$gbho),
+    ];
+@endphp
 <header class="bg-inr-black w-full fixed z-20">
     <div x-data="{nav:false}" class="wrapper flex justify-between items-center">
         <img src="{{ asset('images/ui/logo_yellow.png') }}" alt="logo" class="w-20 h-20">
@@ -14,7 +25,7 @@
                 <ul class="group-hover:visible invisible group-hover:translate-y-0 translate-y-5 group-hover:opacity-100 opacity-0 group-hover:delay-100 delay-300  block h-auto ease-in-out duration-300 absolute text-sm mt-8 bg-[#292929] md:p-3 rounded">
                     <li><a href="{{ route('history') }}" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 md:transition-none rounded text-inr-white hover:text-inr-black font-light">Sejarah</a></li>
                     <li><a href="{{ asset('document/dokumen.pdf') }}" target="_blank" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 md:transition-none rounded text-inr-white hover:text-inr-black font-light">AD-ART</a></li>
-                    <li><a href="{{ asset('document/dokumen.pdf') }}" target="_blank" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 md:transition-none rounded text-inr-white hover:text-inr-black font-light">JUKLAK JUKNIS</a></li>
+                    <li><a href="{{ $data['juklat-juknis'] }}" target="_blank" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 md:transition-none rounded text-inr-white hover:text-inr-black font-light">JUKLAT JUKNIS</a></li>
                     <li><a href="{{ asset('document/dokumen.pdf') }}" target="_blank" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 md:transition-none rounded text-inr-white hover:text-inr-black font-light">GBHO</a></li>
                     <li><a href="{{ route('leader') }}" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 md:transition-none rounded text-inr-white hover:text-inr-black font-light">Mantan Ketua</a></li>
                 </ul>

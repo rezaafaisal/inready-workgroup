@@ -15,7 +15,7 @@ use function PHPSTORM_META\type;
 
 class DocumentController extends Controller
 {
-    private function type(){
+    public static function type(){
         return [
             'ad-art',
             'juklat-juknis',

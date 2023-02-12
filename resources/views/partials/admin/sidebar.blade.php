@@ -1,5 +1,5 @@
 @php
-	$type = ['ad-art','juklat-juknis', 'gbho'];
+	$type = App\Http\Controllers\Admin\Ledger\DocumentController::type();
 @endphp
 <div class="aside-menu-wrapper flex-column-fluid" id="kt_aside_menu_wrapper">
     <!--begin::Menu Container-->
