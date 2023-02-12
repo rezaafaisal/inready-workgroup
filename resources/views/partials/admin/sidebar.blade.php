@@ -1,5 +1,5 @@
 @php
-	$type = ['ad-art','juklak-juknis', 'gbho'];
+	$type = ['ad-art','juklat-juknis', 'gbho'];
 @endphp
 <div class="aside-menu-wrapper flex-column-fluid" id="kt_aside_menu_wrapper">
     <!--begin::Menu Container-->
@@ -63,7 +63,7 @@
                                 <i class="menu-bullet menu-bullet-line">
                                     <span></span>
                                 </i>
-                                <span class="menu-text">Juklak Juknis</span>
+                                <span class="menu-text">JUKLAT-JUKNIS</span>
                                 <span class="menu-label">
                                     {{-- <span class="label label-rounded label-primary"></span> --}}
                                 </span>

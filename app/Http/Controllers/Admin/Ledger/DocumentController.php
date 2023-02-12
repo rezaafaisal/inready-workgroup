@@ -18,7 +18,7 @@ class DocumentController extends Controller
     private function type(){
         return [
             'ad-art',
-            'juklak-juknis',
+            'juklat-juknis',
             'gbho'
         ];
     }
@@ -53,7 +53,7 @@ class DocumentController extends Controller
         if(!in_array($type, $this->type())){
             return abort(404);
         }
-        
+
         $data = [
             'route' => $this->route(),
             'type' => $type,
@@ -157,7 +157,7 @@ class DocumentController extends Controller
         }
         $success = $document->delete();
         if($success){
-            Storage::delete($this->path($document->type).$document->file);
+            Storage::delete($this->path($document->type).'/'.$document->file);
             return Alert::default(true, 'Dihapus', $this->route('index'), ['type' => $type]);
         }
 
