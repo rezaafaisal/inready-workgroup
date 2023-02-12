@@ -36,7 +36,7 @@ Route::get('tes', function(){
 
 Route::prefix('data')->name('data.')->group(function(){
     Route::get('user', [DataController::class, 'user'])->name('user');
-    Route::get('juklak-juknis', [DataController::class, 'juklis'])->name('juklis');
+    Route::get('dokumen/{type}', [DataController::class, 'document'])->name('document');
 });
 
 Route::prefix('admin')->name('admin.')->group(function(){
@@ -56,7 +56,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
             Route::put('{type}/{id}', [DocumentController::class, 'update'])->name('update');
             Route::delete('{type}', [DocumentController::class, 'destroy'])->name('destroy');
         });
-        
+
         // Route::prefix('juklak-juknis')->name('juklis.')->group(function(){
         //     Route::get('/', [JuklisConstroller::class, 'index'])->name('index');
         //     Route::get('create', [JuklisConstroller::class, 'create'])->name('create');

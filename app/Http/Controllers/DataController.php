@@ -13,6 +13,7 @@ use Yajra\DataTables\DataTables;
 
 class DataController extends Controller
 {
+    private $type;
     public function user(){
         return DataTables::of(User::all())
             ->addIndexColumn()
@@ -57,8 +58,9 @@ class DataController extends Controller
             ->toJson();
     }
 
-    public function juklis(){
-        return DataTables::of(Document::where('type', 'juklak-juknis')->orderBy('generation_id', 'desc')->get())
+    public function document($type){
+        $this->type = $type;
+        return DataTables::of(Document::where('type', $type)->orderBy('generation_id', 'desc')->get())
             ->addIndexColumn()
             ->editColumn('file', function($row){
                 $ext = '.'.last(explode('.', $row->file));
@@ -73,8 +75,8 @@ class DataController extends Controller
             })
             ->addColumn('action', function($row){
                 $id = $row->id;
-                $edit = route(DocumentController::route('edit'), ['type' => 'juklak-juknis', 'id' => $id]);
-                $show = asset('documents/juklak-juknis/'.$row->file);
+                $edit = route(DocumentController::route('edit'), ['type' => $this->type, 'id' => $id]);
+                $show = asset('documents/'.$this->type.'/'.$row->file);
                 $data = json_encode($row->only(['id', 'name']));
                 $button = "
                     <div class='d-flex flex-nowrap gap-3'>

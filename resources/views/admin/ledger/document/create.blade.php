@@ -5,7 +5,7 @@
             <div class="col-12 col-md-10 col-lg-8">
                 <div class="card">
                     <div class="card-header d-flex align-items-center justify-content-between">
-                        <h4>Tambah Dokumen Juklak Juknis</h4>
+                        <h4>Tambah {{ $data['title'] }}</h4>
                         <a href="{{ route($data['route'].'index', ['type' => $data['type']]) }}" class="btn btn-sm btn-primary">
                             <i class="fas fa-arrow-left"></i>
                         </a>

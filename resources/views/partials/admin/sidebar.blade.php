@@ -29,7 +29,7 @@
                     <span class="menu-text">Pengguna</span>
                 </a>
             </li>
-            <li class="menu-item menu-item-submenu {{ ($active == $type[1]) ? 'menu-item-open' : '' }}"
+            <li class="menu-item menu-item-submenu {{ ($active == $type[1] || $active == $type[0] || $active == $type[2]) ? 'menu-item-open' : '' }}"
                 aria-haspopup="true" data-menu-toggle="hover">
                 <a href="javascript:;" class="menu-link menu-toggle">
                     <i class="menu-icon fas fa-book"></i>
@@ -48,9 +48,9 @@
                                 <span class="menu-text">Sejarah</span>
                             </a>
                         </li>
-                        <li class="menu-item "
+                        <li class="menu-item {{ ($active == $type[0]) ? 'menu-item-active' : '' }}"
                             aria-haspopup="true" data-menu-toggle="hover">
-                            <a href="" class="menu-link menu-toggle">
+                            <a href="{{ route('admin.ledger.document.index', ['type' => $type[0]]) }}" class="menu-link menu-toggle">
                                 <i class="menu-bullet menu-bullet-line">
                                     <span></span>
                                 </i>
@@ -69,9 +69,9 @@
                                 </span>
                             </a>
                         </li>
-                        <li class="menu-item"
+                        <li class="menu-item {{ ($active == $type[2]) ? 'menu-item-active' : '' }}"
                             aria-haspopup="true" data-menu-toggle="hover">
-                            <a href="" class="menu-link menu-toggle">
+                            <a href="{{ route('admin.ledger.document.index', ['type' => $type[2]]) }}" class="menu-link menu-toggle">
                                 <i class="menu-bullet menu-bullet-line">
                                     <span></span>
                                 </i>

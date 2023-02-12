@@ -4,7 +4,8 @@
     <div class="card card-custom">
         <div class="card-header flex-wrap py-5">
             <div class="card-title">
-                <h3 class="card-label">Petunjuk Teknis dan Petunjuk Lanjutan
+                <h3 class="card-label">
+                    {{ $data['title'] }}
                     <span class="d-block text-muted pt-2 font-size-sm">Data diurutkan berdasarkan yang terbaru</span>
                 </h3>
             </div>
@@ -31,6 +32,9 @@
     </div>
 </div>
 <x-forms.delete action="{{ route($data['route'].'destroy', ['type' => $data['type']]) }}" />
+    @php
+        $route = route('data.document', ['type' => $data['type']])
+    @endphp
 @endsection
 @section('scripts')
     <x-datatable-script />
@@ -51,7 +55,7 @@
                     sPrevious: "<i class='fa fa-angle-left'></i>"
                 }
             },
-            ajax: "{!! route('data.juklis') !!}",
+            ajax: "{!! $route !!}",
             columns: [
                 {
                     data: 'DT_RowIndex',

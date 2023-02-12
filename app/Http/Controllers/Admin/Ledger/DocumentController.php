@@ -30,6 +30,15 @@ class DocumentController extends Controller
     private function generation(){
         return Generation::where('active', true)->first()->id;
     }
+
+    private function title($type){
+        if($type == $this->type()[0]) $title = "Anggaran Dasar & Anggaran Rumah Tangga";
+        else if($type == $this->type()[1]) $title = "Petunjuk Lanjutan & Petunjuk Teknis";
+        else if($type == $this->type()[2]) $title = "Garis Besar Haluan Organisasi";
+        else $type = null;
+        return $title;
+    }
+    
     public static function route($path = null){
         if($path == null){
             return "admin.ledger.document.";
@@ -44,9 +53,11 @@ class DocumentController extends Controller
         if(!in_array($type, $this->type())){
             return abort(404);
         }
+        
         $data = [
             'route' => $this->route(),
             'type' => $type,
+            'title' => $this->title($type),
         ];
         return view($this->view('index'), Data::view($type, $data));
     }
@@ -55,7 +66,8 @@ class DocumentController extends Controller
          $data = [
             'generation' => Generation::all(),
             'route' => $this->route(),
-            'type' => $type
+            'type' => $type,
+            'title' => $this->title($type)
         ];
         return view($this->view('create'), Data::view($type, $data));
     }
@@ -103,7 +115,8 @@ class DocumentController extends Controller
             'generation' => Generation::all(),
             'document' => Document::find($id),
             'route' => $this->route(),
-            'type' => $type
+            'type' => $type,
+            'title' => $this->title($type)
         ];
         return view($this->view('edit'), Data::view($type, $data));
     }
