@@ -53,9 +53,10 @@ Route::prefix('admin')->name('admin.')->group(function(){
             Route::get('{type}/create', [DocumentController::class, 'create'])->name('create');
             Route::get('{type}/edit/{id}', [DocumentController::class, 'edit'])->name('edit');
             Route::post('/{type}', [DocumentController::class, 'store'])->name('store');
-            Route::put('/{id}', [DocumentController::class, 'update'])->name('update');
-            Route::delete('/', [DocumentController::class, 'destroy'])->name('destroy');
+            Route::put('{type}/{id}', [DocumentController::class, 'update'])->name('update');
+            Route::delete('{type}', [DocumentController::class, 'destroy'])->name('destroy');
         });
+        
         // Route::prefix('juklak-juknis')->name('juklis.')->group(function(){
         //     Route::get('/', [JuklisConstroller::class, 'index'])->name('index');
         //     Route::get('create', [JuklisConstroller::class, 'create'])->name('create');

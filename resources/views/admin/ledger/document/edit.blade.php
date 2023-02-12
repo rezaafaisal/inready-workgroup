@@ -11,7 +11,7 @@
                         </a>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route($data['route'].'update', ['id' => $data['document']->id]) }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route($data['route'].'update', ['id' => $data['document']->id, 'type' => $data['type']]) }}" method="post" enctype="multipart/form-data">
                             @method('PUT')
                             @csrf
                             <div class="form-group">

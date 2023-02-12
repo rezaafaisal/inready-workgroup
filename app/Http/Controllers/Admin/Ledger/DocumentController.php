@@ -45,7 +45,6 @@ class DocumentController extends Controller
             return abort(404);
         }
         $data = [
-            'destroy_route' => route($this->route('destroy')),
             'route' => $this->route(),
             'type' => $type,
         ];
@@ -53,7 +52,11 @@ class DocumentController extends Controller
     }
 
     public function create($type){
-        $data = Generation::all();
+         $data = [
+            'generation' => Generation::all(),
+            'route' => $this->route(),
+            'type' => $type
+        ];
         return view($this->view('create'), Data::view($type, $data));
     }
 
@@ -71,7 +74,7 @@ class DocumentController extends Controller
         }
 
         // set all to false
-        $generation_active = Generation::where('active', true)->first()->id;
+        $generation_active = Generation::where('active', true)->first()?->id;
         if(Document::all()->count() > 0){
             Document::where('status', true)->where('generation_id', '!=', $generation_active)->update(['status' => false]);
         }
@@ -89,7 +92,7 @@ class DocumentController extends Controller
         $success = $document->save();
 
         if($success){
-            return Alert::default(true, 'Ditambah', $this->route('index'));
+            return Alert::default(true, 'Ditambah', $this->route('index'), ['type' => $type]);
         }
 
         return Alert::default(false, 'Ditambah');
@@ -105,7 +108,7 @@ class DocumentController extends Controller
         return view($this->view('edit'), Data::view($type, $data));
     }
 
-    public function update(Request $request, $id){
+    public function update(Request $request, $type, $id){
         $request->validate([
             'filename' => 'required|min:3',
         ]);  
@@ -132,7 +135,7 @@ class DocumentController extends Controller
 
     }
 
-    public function destroy(Request $request){
+    public function destroy(Request $request, $type){
         $document = Document::find($request->id);
         
         // kalau periode aktif tidak dapat dihapus
@@ -142,7 +145,7 @@ class DocumentController extends Controller
         $success = $document->delete();
         if($success){
             Storage::delete($this->path($document->type).$document->file);
-            return Alert::default(true, 'Dihapus', $this->route('index'));
+            return Alert::default(true, 'Dihapus', $this->route('index'), ['type' => $type]);
         }
 
         return Alert::default(0, 'Dihapus');

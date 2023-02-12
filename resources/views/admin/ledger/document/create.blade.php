@@ -6,12 +6,12 @@
                 <div class="card">
                     <div class="card-header d-flex align-items-center justify-content-between">
                         <h4>Tambah Dokumen Juklak Juknis</h4>
-                        <a href="{{ route('admin.ledger.juklis.index') }}" class="btn btn-sm btn-primary">
+                        <a href="{{ route($data['route'].'index', ['type' => $data['type']]) }}" class="btn btn-sm btn-primary">
                             <i class="fas fa-arrow-left"></i>
                         </a>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('admin.ledger.juklis.store') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route($data['route'].'store', ['type' => $data['type']]) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <x-input type="type" name="filename" label="Nama File" placeholder="Nama File" value="{{ old('filename') }}" />
@@ -23,7 +23,7 @@
                                         <select name="generation" id="generation" class="form-control @error('generation') is-invalid @enderror">
                                             <x-slot:name>Generation</x-slot:name>
                                             <option selected disabled>Pilih Periode</option>
-                                            @foreach ($data as $row)
+                                            @foreach ($data['generation'] as $row)
                                                 <option value="{{ $row->id }}">{{ $row->name }}</option>
                                             @endforeach
                                         </select>
