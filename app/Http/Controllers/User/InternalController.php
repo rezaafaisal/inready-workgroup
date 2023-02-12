@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Helper\Data;
 use App\Http\Controllers\Controller;
+use App\Models\Note;
 use Illuminate\Http\Request;
 
 class InternalController extends Controller
 {
     public function history(){
-        return view('user.internal.history');
+        $data = Note::where('type', 'history')->first() ?? null;
+        return view('user.internal.history', Data::view('sejarah', $data));
     }
 
     public function leader(){

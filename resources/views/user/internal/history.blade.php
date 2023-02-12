@@ -4,12 +4,7 @@
         <div class="wrapper py-20">
             <h1 class="section-title">Sejarah Inready Workgroup</h1>
             <div class="grid grid-cols-1 gap-5 text-justify font-extralight leading-8 text-inr-black">
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis corrupti nemo quaerat? Nam consequatur perspiciatis enim, obcaecati atque nisi ab unde doloribus deleniti quod nulla error itaque praesentium. Ipsa fuga, omnis facilis doloremque necessitatibus numquam a, magnam veritatis, quam beatae exercitationem hic sunt reprehenderit suscipit. Rem, incidunt. Iste autem recusandae quis ullam ab error qui, fuga incidunt repudiandae consequatur quisquam, placeat optio facere magnam cum animi eveniet quas necessitatibus nostrum quos. Ab, est illo reprehenderit assumenda eligendi voluptatem reiciendis quasi magnam! Iusto officia animi esse consectetur fuga. Provident, maxime iure. Natus quia officiis pariatur at? Accusantium reiciendis asperiores dicta.
-                </p>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis corrupti nemo quaerat? Nam consequatur perspiciatis enim, obcaecati atque nisi ab unde doloribus deleniti quod nulla error itaque praesentium. Ipsa fuga, omnis facilis doloremque necessitatibus numquam a, magnam veritatis, quam beatae exercitationem hic sunt reprehenderit suscipit. Rem, incidunt. Iste autem recusandae quis ullam ab error qui, fuga incidunt repudiandae consequatur quisquam, placeat optio facere magnam cum animi eveniet quas necessitatibus nostrum quos. Ab, est illo reprehenderit assumenda eligendi voluptatem reiciendis quasi magnam! Iusto officia animi esse consectetur fuga. Provident, maxime iure. Natus quia officiis pariatur at? Accusantium reiciendis asperiores dicta.
-                </p>
+                {!! $data->body ?? '' !!}
             </div>
         </div>
     </section>
