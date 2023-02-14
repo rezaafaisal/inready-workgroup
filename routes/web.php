@@ -16,6 +16,7 @@ use App\Http\Controllers\User\InternalController;
 use App\Http\Controllers\User\ManagerController;
 use App\Http\Controllers\User\MasterpieceController;
 use App\Http\Controllers\User\NewsController;
+use App\Http\Controllers\User\ProfileController;
 use App\Models\Role;
 use Illuminate\Support\Facades\Route;
 
@@ -64,6 +65,10 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
 });
 
+Route::prefix('user')->name('user.')->group(function(){
+    Route::get('profil', [ProfileController::class, 'index'])->name('profile');
+});
+
 Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('berita', [NewsController::class, 'index'])->name('news');
 Route::get('berita/{slug}', [NewsController::class, 'show'])->name('show_news');
@@ -85,4 +90,4 @@ Route::get('dokumen/sejarah', [InternalController::class, 'history'])->name('his
 Route::get('dokumen/mantan-ketua', [InternalController::class, 'leader'])->name('leader');
 
 Route::get('masuk', [AuthController::class, 'login'])->name('login');
-Route::post('login', [AuthController::class, 'verify'])->name('verify');
+Route::post('masuk', [AuthController::class, 'verify'])->name('verify');

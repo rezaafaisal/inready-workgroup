@@ -26,6 +26,7 @@ return new class extends Migration
             $table->text('address')->nullable();
             $table->string('birth_place')->nullable();
             $table->date('birth_date')->nullable();
+            $table->text('biography')->nullable();
             $table->string('whatsapp')->nullable();
             $table->string('instagram')->nullable();
             $table->string('linkedin')->nullable();

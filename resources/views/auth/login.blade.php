@@ -26,8 +26,12 @@
                         <span class="text-xs text-rose-400">{{ $message }}</span>
                     @enderror
                 </label>
-                <div class="text-center mb-5">
-                    <a href="#" class="text-inr-yellow text-sm">Lupa Password?</a>
+                <div class="flex justify-between mb-5 text-inr-yellow text-sm">
+                    <label class="cursor-pointer flex items-center">
+                        <input type="checkbox" name="remember" id="remember" class="mr-2 duration-300 cursor-pointer w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-lg focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <span>Ingat Saya</span>
+                    </label>
+                    <a href="#" class="">Lupa Password?</a>
                 </div>
                 <button class="rounded w-full mb-5 px-3 py-2 text-inr-black bg-inr-yellow hover:bg-inr-yellow-1 duration-150">Masuk</button>
                 <span class="block text-center text-inr-white text-sm">Belum punya akun? <a href="#" class="font-semibold text-inr-yellow">Daftar Sekarang</a></span>
