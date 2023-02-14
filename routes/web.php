@@ -65,8 +65,9 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
 });
 
-Route::prefix('user')->name('user.')->group(function(){
+Route::prefix('pengguna')->name('user.')->group(function(){
     Route::get('profil', [ProfileController::class, 'index'])->name('profile');
+    Route::get('pengaturan/profil', [ProfileController::class, 'setting'])->name('setting');
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
@@ -91,3 +92,4 @@ Route::get('dokumen/mantan-ketua', [InternalController::class, 'leader'])->name(
 
 Route::get('masuk', [AuthController::class, 'login'])->name('login');
 Route::post('masuk', [AuthController::class, 'verify'])->name('verify');
+Route::get('keluar', [AuthController::class, 'logout'])->name('logout');

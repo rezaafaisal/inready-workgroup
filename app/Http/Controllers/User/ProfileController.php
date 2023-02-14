@@ -13,4 +13,8 @@ class ProfileController extends Controller
         $data = Auth::user();
         return view('user.profile.index', Data::view('profile', $data));
     }
+
+    public function setting(){
+        return view('user.profile.setting');
+    }
 }

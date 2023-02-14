@@ -18,6 +18,7 @@
             <li>
                 <a href="{{ route('index') }}" class="hover:text-inr-yellow duration-150 inline">Beranda</a>
             </li>
+            @if (Auth::user())
             <li class="group">
                 <span class="hover:text-inr-yellow py-0 cursor-pointer">
                     Buku Besar
@@ -30,6 +31,7 @@
                     <li><a href="{{ route('leader') }}" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 md:transition-none rounded text-inr-white hover:text-inr-black font-light">Mantan Ketua</a></li>
                 </ul>
             </li>
+            @endif
             <li>
                 <a href="{{ route('activity') }}" class="hover:text-inr-yellow flex justify-between items-center duration-150 w-full py-3 md:py-0 md:inline">
                     Kegiatan
@@ -84,7 +86,36 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('login') }}" class="mt-4 w-full md:mt-0 md:w-auto btn-yellow">Masuk</a>
+                @if (Auth::user())
+                <div class="group">
+                    <div class="flex items-center cursor-pointer">
+                        <img src="{{ asset('images/ui/eren.jpeg') }}" alt="" class="h-8 w-8 object-cover rounded-full ring-inr-yellow ring-2 ring-offset-2 ring-offset-inr-black">
+                        <i class="fas fa-angle-down ml-3 group-hover:rotate-180 duration-300"></i>
+                    </div>
+                    <ul class="group-hover:visible invisible group-hover:translate-y-0 translate-y-5 group-hover:opacity-100 opacity-0 group-hover:delay-100 delay-200 -ml-20  block h-auto ease-in-out duration-300 absolute text-sm mt-3 bg-[#292929] rounded">
+                        <li>
+                            <a href="{{ route('user.profile') }}" class="py-3 px-5 w-full block hover:bg-inr-yellow duration-150 md:transition-none rounded text-inr-white hover:text-inr-black font-light">
+                                <i class="fas fa-user w-6 text-xs"></i>
+                                <span>Profil</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('user.setting') }}" class="py-3 px-5 w-full block hover:bg-inr-yellow duration-150 md:transition-none rounded text-inr-white hover:text-inr-black font-light">
+                                <i class="fas fa-gear w-5 text-xs"></i>
+                                <span>Pengaturan</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('logout') }}" class="py-3 px-5 w-full block hover:bg-inr-yellow duration-150 md:transition-none rounded text-inr-white hover:text-inr-black font-light">
+                                <i class="fas fa-arrow-right-from-bracket w-5 text-xs text-red-500"></i>
+                                <span>Keluar</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                @else
+                    <a href="{{ route('login') }}" class="mt-4 w-full md:mt-0 md:w-auto btn-yellow">Masuk</a>
+                @endif
             </li>
         </ul>
 
