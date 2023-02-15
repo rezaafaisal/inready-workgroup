@@ -100,7 +100,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('user.setting') }}" class="py-3 px-5 w-full block hover:bg-inr-yellow duration-150 md:transition-none rounded text-inr-white hover:text-inr-black font-light">
+                            <a href="{{ route('user.setting.profile') }}" class="py-3 px-5 w-full block hover:bg-inr-yellow duration-150 md:transition-none rounded text-inr-white hover:text-inr-black font-light">
                                 <i class="fas fa-gear w-5 text-xs"></i>
                                 <span>Pengaturan</span>
                             </a>

@@ -8,7 +8,7 @@
                     <img src="{{ asset('images/ui/eren.jpeg') }}" alt=""
                         class="h-60 w-60 object-cover rounded-full shadow-lg">
                     <div class="absolute bottom-5 left-48">
-                        <a href="{{ route('user.setting') }}" class="p-2 btn-yellow block">
+                        <a href="{{ route('user.setting.profile') }}" class="p-2 btn-yellow block">
                             Edit
                         </a>
                     </div>

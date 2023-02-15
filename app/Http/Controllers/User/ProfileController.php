@@ -14,7 +14,7 @@ class ProfileController extends Controller
         return view('user.profile.index', Data::view('profile', $data));
     }
 
-    public function setting(){
-        return view('user.profile.setting');
+    public function profile(){
+        return view('user.profile.profile');
     }
 }

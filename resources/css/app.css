@@ -13,3 +13,11 @@
 .section-title{
     @apply font-semibold text-xl md:text-3xl mb-20
 }
+
+.form-control{
+    @apply rounded bg-white border border-slate-300 px-3 py-2 duration-150 focus:outline-none focus:ring focus:ring-inr-yellow/40 font-extralight 
+}
+
+.setting-active{
+    @apply border-l-4 border-inr-yellow
+}
