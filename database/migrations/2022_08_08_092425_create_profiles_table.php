@@ -23,8 +23,9 @@ return new class extends Migration
             $table->boolean('is_lead')->default(false);
             $table->boolean('is_manager')->default(false);
             $table->string('image')->nullable();
+            $table->unsignedBigInteger('current_place')->nullable();
             $table->text('address')->nullable();
-            $table->string('birth_place')->nullable();
+            $table->unsignedBigInteger('birth_place')->nullable();
             $table->date('birth_date')->nullable();
             $table->text('biography')->nullable();
             $table->string('whatsapp')->nullable();
@@ -32,6 +33,8 @@ return new class extends Migration
             $table->string('linkedin')->nullable();
             $table->string('twitter')->nullable();
             $table->string('facebook')->nullable();
+
+            // $table->foreign('current_place')->references()
         });
     }
 

@@ -15,6 +15,14 @@ class ProfileController extends Controller
     }
 
     public function profile(){
-        return view('user.profile.profile');
+        return view('user.profile.profile', Data::view('profile'));
+    }
+
+    public function personal(){
+        return view('user.profile.personal', Data::view('personal'));
+    }
+    
+    public function account(){
+        return view('user.profile.account', Data::view('account'));
     }
 }

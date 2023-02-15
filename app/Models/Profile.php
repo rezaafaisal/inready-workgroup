@@ -26,4 +26,12 @@ class Profile extends Model
     public function major(){
         return $this->belongsTo(Major::class);
     }
+
+    public function birthPlace(){
+        return $this->belongsTo(City::class, 'birth_place', 'id');
+    }
+
+    public function currentPlace(){
+        return $this->belongsTo(City::class, 'current_place', 'id');
+    }
 }
