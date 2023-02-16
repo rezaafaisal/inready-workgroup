@@ -14,7 +14,7 @@
                         <span class="shrink-0 bg-gray-200 w-20 rounded-l flex items-center justify-center border border-r-0 font-extralight">
                             +62
                         </span>
-                        <input type="text" class="form-control grow rounded-l-none">
+                        <input type="text" class="rounded-l-none form-control grow ">
                     </div>
                 </label>
                 <label class="block mb-7">
@@ -46,6 +46,14 @@
                         </label>
                     </div>
                 </div>
+                <label class="block mb-7">
+                    <span class="font-semibold mb-2 block">Pekerjaan Saat Ini</span>
+                    <input type="text" class="form-control w-9/12" placeholder="Ketikkan pekerjaan anda">
+                </label>
+                <label class="block mb-7">
+                    <span class="font-semibold mb-2 block">Perusahaan Saat Ini</span>
+                    <input type="text" class="form-control w-9/12" placeholder="Ketikkan perusahaan tempat kerja anda">
+                </label>
             </x-forms.profile-setting>
         </div>
     </div>

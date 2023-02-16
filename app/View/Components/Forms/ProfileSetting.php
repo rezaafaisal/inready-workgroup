@@ -11,11 +11,12 @@ class ProfileSetting extends Component
      *
      * @return void
      */
-    public $title, $route;
-    public function __construct($title, $route)
+    public $title, $route, $submit;
+    public function __construct($title, $route, $submit = null)
     {
         $this->title = $title;
         $this->route = $route;
+        $this->submit = $submit;
     }
 
     /**
