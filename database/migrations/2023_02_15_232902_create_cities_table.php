@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
-            // $table->
+            $table->foreignId('province_id');
+            $table->string('name');
         });
     }
 

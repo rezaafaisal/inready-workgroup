@@ -19,5 +19,11 @@
                 <span>Akun</span>
             </a>
         </li>
+        <li class="text-xl">
+            <a href="{{ route('user.setting.personal') }}" class="py-4 px-7 block hover:bg-gray-200">
+                <i class="las la-user-tag w-8 text-2xl"></i>
+                <span>Lainnya</span>
+            </a>
+        </li>
     </ul>
 </aside>

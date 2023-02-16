@@ -18,7 +18,6 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->foreignId('gender_id')->nullable();
             $table->foreignId('generation_id')->nullable();
-            $table->string('job')->nullable();
             $table->foreignId('major_id')->nullable();
             $table->boolean('is_lead')->default(false);
             $table->boolean('is_manager')->default(false);
@@ -28,13 +27,34 @@ return new class extends Migration
             $table->unsignedBigInteger('birth_place')->nullable();
             $table->date('birth_date')->nullable();
             $table->text('biography')->nullable();
+            
+            $table->string('sd')->nullable();
+            $table->string('sltp')->nullable();
+            $table->string('slta')->nullable();
+            $table->year('sd_year')->nullable();
+            $table->year('sltp_year')->nullable();
+            $table->year('slta_year')->nullable();
+            
+            $table->string('job')->nullable();
+            $table->string('instance')->nullable();
+            
             $table->string('whatsapp')->nullable();
             $table->string('instagram')->nullable();
             $table->string('linkedin')->nullable();
             $table->string('twitter')->nullable();
             $table->string('facebook')->nullable();
 
-            // $table->foreign('current_place')->references()
+            $table->foreign('current_place')
+                ->references('id')
+                ->on('cities')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
+            $table->foreign('birth_place')
+                ->references('id')
+                ->on('cities')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 
