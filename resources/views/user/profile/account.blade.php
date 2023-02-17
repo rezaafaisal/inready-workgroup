@@ -5,9 +5,9 @@
 @section('body')
 <section class="pt-20">
     <div class="wrapper py-20">
-        <div class="flex bg-cyan-300">
+        <div class="flex">
             @include('partials.user.setting_sidebar')
-            <div class="grow">
+            <div class="grow grid grid-cols-1 gap-10">
                 <x-forms.profile-setting title="Ubah Email" route="">
                     <x-slot:submit>Ubah Email</x-slot:submit>
                     <label class="block mb-7">
