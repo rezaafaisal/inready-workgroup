@@ -70,6 +70,7 @@ Route::prefix('pengguna')->name('user.')->group(function(){
     Route::get('pengaturan/profil', [ProfileController::class, 'profile'])->name('setting.profile');
     Route::get('pengaturan/pribadi', [ProfileController::class, 'personal'])->name('setting.personal');
     Route::get('pengaturan/akun', [ProfileController::class, 'account'])->name('setting.account');
+    Route::get('pengaturan/lainnya', [ProfileController::class, 'etcetera'])->name('setting.etcetera');
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('index');

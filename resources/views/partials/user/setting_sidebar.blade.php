@@ -20,7 +20,7 @@
             </a>
         </li>
         <li class="text-xl">
-            <a href="{{ route('user.setting.personal') }}" class="py-4 px-7 block hover:bg-gray-200  {{ ($active == 'etcetera') ? 'setting-active' : '' }}">
+            <a href="{{ route('user.setting.etcetera') }}" class="py-4 px-7 block hover:bg-gray-200  {{ ($active == 'etcetera') ? 'setting-active' : '' }}">
                 <i class="las la-user-tag w-8 text-2xl"></i>
                 <span>Lainnya</span>
             </a>

@@ -7,17 +7,37 @@
     <div class="wrapper py-20">
         <div class="flex">
             @include('partials.user.setting_sidebar')
-            <x-forms.profile-setting title="Data Pribadi" route="">
-                <label class="block mb-7">
-                    <span for="" class="font-semibold mb-2 block">No. Whatsapp</span>
-                    <div class="flex w-9/12">
-                        <span class="shrink-0 bg-gray-200 w-20 rounded-l flex items-center justify-center border border-r-0 font-extralight">
-                            +62
-                        </span>
-                        <input type="text" class="form-control grow rounded-l-none">
-                    </div>
-                </label>
-            </x-forms.profile-setting>
+            <div class="grow">
+                <x-forms.profile-setting title="Sosial Media" route="">
+                    <label class="block mb-7">
+                        <span for="" class="font-semibold mb-2 block">Instagram</span>
+                        <div class="flex w-7/12">
+                            <span class="shrink-0 bg-gray-200 w-10 rounded-l flex items-center justify-center border border-r-0 font-extralight">
+                                <i class="fab fa-instagram"></i>
+                            </span>
+                            <input type="text" class="form-control-1 grow rounded-r">
+                        </div>
+                    </label>
+                    <label class="block mb-7">
+                        <span for="" class="font-semibold mb-2 block">Twitter</span>
+                        <div class="flex w-7/12">
+                            <span class="shrink-0 bg-gray-200 w-10 rounded-l flex items-center justify-center border border-r-0 font-extralight">
+                                <i class="fab fa-twitter"></i>
+                            </span>
+                            <input type="text" class="form-control-1 grow rounded-r">
+                        </div>
+                    </label>
+                    <label class="block mb-7">
+                        <span for="" class="font-semibold mb-2 block">Facebook</span>
+                        <div class="flex w-7/12">
+                            <span class="shrink-0 bg-gray-200 w-10 rounded-l flex items-center justify-center border border-r-0 font-extralight">
+                                <i class="fab fa-facebook-f"></i>
+                            </span>
+                            <input type="text" class="form-control-1 grow rounded-r">
+                        </div>
+                    </label>
+                </x-forms.profile-setting>
+            </div>
         </div>
     </div>
 </section>
