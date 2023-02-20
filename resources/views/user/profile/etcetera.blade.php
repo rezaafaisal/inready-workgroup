@@ -50,7 +50,7 @@
                         <span for="" class="font-semibold mb-2 block">Organisasi Pilihan 2</span>
                         <div class="flex flex-col md:flex-row w-full md:w-8/12 gap-2">
                             <input type="text" class="form-control grow rounded-r" placeholder="Nama Organisasi">
-                            <input type="text" id="organization_3" class="form-control md:w-32" autocomplete="off" placeholder="Periode">
+                            <input type="text" id="halo" class="form-control md:w-32" autocomplete="off" placeholder="Periode">
                         </div>
                     </label>
                 </x-forms.profile-setting>
@@ -82,6 +82,15 @@
                             <input type="text" class="form-control-1 grow rounded-r">
                         </div>
                     </label>
+                    <label class="block mb-7">
+                        <span for="" class="font-semibold mb-2 block">LinkedIn</span>
+                        <div class="flex w-7/12">
+                            <span class="shrink-0 bg-gray-200 w-10 rounded-l flex items-center justify-center border border-r-0 font-extralight">
+                                <i class="fab fa-linkedin-in"></i>
+                            </span>
+                            <input type="text" class="form-control-1 grow rounded-r">
+                        </div>
+                    </label>
                 </x-forms.profile-setting>
             </div>
         </div>
@@ -89,7 +98,5 @@
 </section>
 @endsection
 @section('scripts')
-    <script>
-        test()
-    </script>
+
 @endsection

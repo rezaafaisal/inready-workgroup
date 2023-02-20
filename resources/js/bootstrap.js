@@ -16,8 +16,4 @@ Alpine.start();
 
 curiculumViate();
 
-function test(){
-    alert('haloo')
-}
-
 
