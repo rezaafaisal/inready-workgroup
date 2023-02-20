@@ -1,6 +1,8 @@
 import _ from 'lodash';
 window._ = _;
 
+import { curiculumViate } from './datepicker/scripts';
+
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
@@ -12,13 +14,10 @@ import Alpine from 'alpinejs';
 window.Alpine = Alpine ;
 Alpine.start();
 
-import AirDatepicker from 'air-datepicker';
-import localeId from 'air-datepicker/locale/id';
-import 'air-datepicker/air-datepicker.css';
+curiculumViate();
 
-new AirDatepicker('#date', {
-    locale: localeId,
-    isMobile: false,
-    autoClose: true,
+function test(){
+    alert('haloo')
+}
 
-});
+

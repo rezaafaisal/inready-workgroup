@@ -13,7 +13,7 @@
                         <span for="" class="font-semibold mb-2 block">No. Whatsapp</span>
                         <div class="flex w-9/12">
                             <span
-                                class="shrink-0 bg-gray-200 w-20 rounded-l flex items-center justify-center border border-r-0 font-extralight">
+                                class="shrink-0 bg-gray-200 w-16 rounded-l flex items-center justify-center border border-r-0 font-extralight">
                                 +62
                             </span>
                             <input type="text" class="rounded-l-none form-control-1 rounded-r grow ">

@@ -8,30 +8,49 @@
         <div class="flex">
             @include('partials.user.setting_sidebar')
             <div class="grow grid grid-cols-1 gap-10">
-                <x-forms.profile-setting title="Riwayat Hidup" route="">
+                <x-forms.profile-setting title="Riwayat Pendidikan" route="">
                     <label class="block mb-7">
-                        <span for="" class="font-semibold mb-2 block">Instagram</span>
-                        <div class="flex w-7/12">
-                            <input type="text" class="form-control grow rounded-r">
-                            <input type="text" id="date" class="form-control">
+                        <span for="" class="font-semibold mb-2 block">Sekolah Dasar</span>
+                        <div class="flex flex-col md:flex-row w-full md:w-8/12 gap-2">
+                            <input type="text" class="form-control grow rounded-r" placeholder="Nama sekolah">
+                            <input type="text" id="sd" class="form-control md:w-32" placeholder="Tahun sekolah">
                         </div>
                     </label>
                     <label class="block mb-7">
-                        <span for="" class="font-semibold mb-2 block">Twitter</span>
-                        <div class="flex w-7/12">
-                            <span class="shrink-0 bg-gray-200 w-10 rounded-l flex items-center justify-center border border-r-0 font-extralight">
-                                <i class="fab fa-twitter"></i>
-                            </span>
-                            <input type="text" class="form-control-1 grow rounded-r">
+                        <span for="" class="font-semibold mb-2 block">Sekolah Lanjutan Tingkat Pertama</span>
+                        <div class="flex flex-col md:flex-row w-full md:w-8/12 gap-2">
+                            <input type="text" class="form-control grow rounded-r" placeholder="Nama sekolah">
+                            <input type="text" id="sltp" class="form-control md:w-32" autocomplete="off" placeholder="Tahun sekolah">
                         </div>
                     </label>
                     <label class="block mb-7">
-                        <span for="" class="font-semibold mb-2 block">Facebook</span>
-                        <div class="flex w-7/12">
-                            <span class="shrink-0 bg-gray-200 w-10 rounded-l flex items-center justify-center border border-r-0 font-extralight">
-                                <i class="fab fa-facebook-f"></i>
-                            </span>
-                            <input type="text" class="form-control-1 grow rounded-r">
+                        <span for="" class="font-semibold mb-2 block">Sekolah Lanjutan Tingkat Atas</span>
+                        <div class="flex flex-col md:flex-row w-full md:w-8/12 gap-2">
+                            <input type="text" class="form-control grow rounded-r" placeholder="Nama sekolah">
+                            <input type="text" id="slta" class="form-control md:w-32" autocomplete="off" placeholder="Tahun sekolah">
+                        </div>
+                    </label>
+                </x-forms.profile-setting>
+                <x-forms.profile-setting title="Riwayat Organisasi" route="">
+                    <label class="block mb-7">
+                        <span for="" class="font-semibold mb-2 block">Organisasi</span>
+                        <div class="flex flex-col md:flex-row w-full md:w-8/12 gap-2">
+                            <input type="text" class="form-control grow rounded-r" placeholder="Nama Organisasi">
+                            <input type="text" id="organization_1" class="form-control md:w-32" placeholder="Periode">
+                        </div>
+                    </label>
+                    <label class="block mb-7">
+                        <span for="" class="font-semibold mb-2 block">Organisasi Pilihan 1</span>
+                        <div class="flex flex-col md:flex-row w-full md:w-8/12 gap-2">
+                            <input type="text" class="form-control grow rounded-r" placeholder="Nama Organisasi">
+                            <input type="text" id="organization_2" class="form-control md:w-32" autocomplete="off" placeholder="Periode">
+                        </div>
+                    </label>
+                    <label class="block mb-7">
+                        <span for="" class="font-semibold mb-2 block">Organisasi Pilihan 2</span>
+                        <div class="flex flex-col md:flex-row w-full md:w-8/12 gap-2">
+                            <input type="text" class="form-control grow rounded-r" placeholder="Nama Organisasi">
+                            <input type="text" id="organization_3" class="form-control md:w-32" autocomplete="off" placeholder="Periode">
                         </div>
                     </label>
                 </x-forms.profile-setting>
@@ -68,4 +87,9 @@
         </div>
     </div>
 </section>
+@endsection
+@section('scripts')
+    <script>
+        test()
+    </script>
 @endsection

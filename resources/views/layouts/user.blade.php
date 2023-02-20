@@ -17,7 +17,7 @@
 <body x-data style="background: #F5F8FA">
     @include('partials.user.header')
     @yield('body')
-    @yield('sripts')
+    @yield('scripts')
     @include('partials.user.footer')
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
