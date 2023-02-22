@@ -32,6 +32,7 @@ return new class extends Migration
             $table->string('instance')->nullable();
             
             $table->string('whatsapp')->nullable();
+            
             $table->string('instagram')->nullable();
             $table->string('linkedin')->nullable();
             $table->string('twitter')->nullable();

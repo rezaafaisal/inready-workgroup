@@ -8,28 +8,28 @@
         <div class="flex">
             @include('partials.user.setting_sidebar')
             <div class="grow grid grid-cols-1 gap-10">
-                <x-forms.profile-setting title="Riwayat Pendidikan" route="">
+                <x-forms.profile-setting title="Riwayat Pendidikan" route="{{ route('user.etcetera.education') }}">
                     <label class="block mb-7">
                         <span for="" class="font-semibold mb-2 block">Sekolah Dasar</span>
                         <div class="flex flex-col md:flex-row w-full md:w-8/12 gap-2">
-                            <input type="text" class="form-control grow rounded-r" placeholder="Nama sekolah">
-                            <input type="text" id="sd" class="form-control md:w-32" placeholder="Tahun sekolah" readonly>
+                            <input type="text" name="sd" class="form-control grow rounded-r" placeholder="Nama sekolah" value="{{ $data['sd']['name'] ?? '' }}">
+                            <input type="text" id="sd" name="sd_period" class="form-control md:w-32" placeholder="Tahun sekolah" readonly value="{{ $data['sd']['period'] ?? '' }}">
                         </div>
                     </label>
                     <label class="block mb-7">
                         <span for="" class="font-semibold mb-2 block">Sekolah Lanjutan Tingkat Pertama</span>
                         <div class="flex flex-col md:flex-row w-full md:w-8/12 gap-2">
-                            <input type="text" class="form-control grow rounded-r" placeholder="Nama sekolah">
-                            <input type="text" id="sltp" class="form-control md:w-32" autocomplete="off"
-                                placeholder="Tahun sekolah" readonly>
+                            <input type="text" name="sltp" class="form-control grow rounded-r" placeholder="Nama sekolah" value="{{ $data['sltp']['name'] ?? '' }}">
+                            <input type="text" name="sltp_period" id="sltp" class="form-control md:w-32" autocomplete="off"
+                                placeholder="Tahun sekolah" readonly value="{{ $data['sltp']['period'] ?? '' }}">
                         </div>
                     </label>
                     <label class="block mb-7">
                         <span for="" class="font-semibold mb-2 block">Sekolah Lanjutan Tingkat Atas</span>
                         <div class="flex flex-col md:flex-row w-full md:w-8/12 gap-2">
-                            <input type="text" class="form-control grow rounded-r" placeholder="Nama sekolah">
-                            <input type="text" id="slta" class="form-control md:w-32" autocomplete="off"
-                                placeholder="Tahun sekolah" readonly>
+                            <input type="text" name="slta" class="form-control grow rounded-r" placeholder="Nama sekolah" value="{{ $data['slta']['name'] ?? '' }}">
+                            <input type="text" name="slta_period" id="slta" class="form-control md:w-32" autocomplete="off"
+                                placeholder="Tahun sekolah" readonly value="{{ $data['slta']['period'] ?? '' }}">
                         </div>
                     </label>
                 </x-forms.profile-setting>
@@ -62,7 +62,7 @@
                                 class="shrink-0 bg-gray-200 w-10 rounded-l flex items-center justify-center border border-r-0 font-extralight">
                                 <i class="fab fa-instagram"></i>
                             </span>
-                            <input type="text" class="form-control-1 grow rounded-r">
+                            <input type="text" class="form-control-1 grow rounded-r" placeholder="username">
                         </div>
                     </label>
                     <label class="block mb-7">
@@ -72,7 +72,7 @@
                                 class="shrink-0 bg-gray-200 w-10 rounded-l flex items-center justify-center border border-r-0 font-extralight">
                                 <i class="fab fa-twitter"></i>
                             </span>
-                            <input type="text" class="form-control-1 grow rounded-r">
+                            <input type="text" class="form-control-1 grow rounded-r" placeholder="username">
                         </div>
                     </label>
                     <label class="block mb-7">
@@ -82,7 +82,7 @@
                                 class="shrink-0 bg-gray-200 w-10 rounded-l flex items-center justify-center border border-r-0 font-extralight">
                                 <i class="fab fa-facebook-f"></i>
                             </span>
-                            <input type="text" class="form-control-1 grow rounded-r">
+                            <input type="text" class="form-control-1 grow rounded-r" placeholder="username">
                         </div>
                     </label>
                     <label class="block mb-7">
@@ -92,7 +92,7 @@
                                 class="shrink-0 bg-gray-200 w-10 rounded-l flex items-center justify-center border border-r-0 font-extralight">
                                 <i class="fab fa-linkedin-in"></i>
                             </span>
-                            <input type="text" class="form-control-1 grow rounded-r">
+                            <input type="text" class="form-control-1 grow rounded-r" placeholder="username">
                         </div>
                     </label>
                 </x-forms.profile-setting>

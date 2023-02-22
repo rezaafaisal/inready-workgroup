@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('biographies', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->enum('type', ['sd', 'sltp', 'slta', 'organization', 'etc']);
             $table->string('period')->nullable();
             $table->timestamps();

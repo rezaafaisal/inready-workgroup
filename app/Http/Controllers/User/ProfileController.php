@@ -31,9 +31,37 @@ class ProfileController extends Controller
 
     public function etcetera(){
         $data = [
-            'organization' => Biography::where('user_id', Auth::id())->get(),
+            'organization' => Biography::where('user_id', Auth::id())->where('type', 'organization')->get(),
+            'sd' => Biography::where(['user_id' => Auth::id(), 'type' => 'sd'])->first(),
+            'sltp' => Biography::where(['user_id' => Auth::id(), 'type' => 'sltp'])->first(),
+            'slta' => Biography::where(['user_id' => Auth::id(), 'type' => 'slta'])->first(),
         ];
         return view('user.profile.etcetera', Data::view('etcetera', $data));
+    }
+
+    public function education(Request $request){
+       $request->validate([
+            'sd' => 'required',
+            'sltp' => 'required',
+            'slta' => 'required'
+        ]);
+
+        $filtered = $request->collect()->except('_token')->toArray();
+
+        $types = ['sd', 'sltp', 'slta'];
+
+        foreach ($types as $type) {
+            $success = Biography::updateOrCreate(
+                ['user_id' => Auth::id(), 'type' => $type],
+                ['name' => $filtered[$type] ?? null, 'period' => $filtered[$type.'_period'] ?? null]
+            );
+        }
+
+        if($success){
+            return Alert::success('Berhasil Diupdate', 'Data Pendidikan Berhasil Diupdate');
+        }
+
+        return Alert::error('Gagal', 'Gagal Memperbarui');  
     }
 
     public function organization(Request $request){

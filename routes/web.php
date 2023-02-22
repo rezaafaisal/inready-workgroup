@@ -73,6 +73,7 @@ Route::prefix('pengguna')->name('user.')->group(function(){
     Route::get('pengaturan/lainnya', [ProfileController::class, 'etcetera'])->name('setting.etcetera');
 
     Route::prefix('lainnya')->name('etcetera.')->group(function($row){
+        Route::post('pendidikan', [ProfileController::class, 'education'])->name('education');
         Route::post('organisasi', [ProfileController::class, 'organization'])->name('organization');
     });
 });
