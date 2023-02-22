@@ -32,15 +32,19 @@
                     </label>
                 </x-forms.profile-setting>
                 <x-forms.profile-setting title="Riwayat Organisasi" route="">
-                    <label class="block mb-7">
-                        <span for="" class="font-semibold mb-2 block">Organisasi</span>
-                        <div class="flex flex-col md:flex-row w-full md:w-8/12 gap-2">
-                            <input type="text" class="form-control grow rounded-r" placeholder="Nama Organisasi">
-                            <input type="text" id="organization_1" class="form-control md:w-32" placeholder="Periode">
+                    <div x-data="{count: 1}">
+                        <template x-for="i in count">
+                            <label class="block mb-7">
+                                <span for="" class="font-semibold mb-2 block">Organisasi <span x-text="i"></span></span>
+                                <div class="flex flex-col md:flex-row w-full md:w-8/12 gap-2">
+                                    <input type="text" class="form-control grow rounded-r" placeholder="Nama Organisasi">
+                                    <input type="text" id="organization_1" class="form-control md:w-32" placeholder="Periode">
+                                </div>
+                            </label>
+                        </template>
+                        <div class="w-full mb-7">
+                            <button @click="count++" type="button" class="text-xs px-3 py-1 rounded-full bg-gray-200">Tambah Kolom</button>
                         </div>
-                    </label>
-                    <div class="w-full mb-7">
-                        <button @click="alert('halo')" type="button" class="text-xs px-3 py-1 rounded-full bg-gray-200">Tambah Kolom</button>
                     </div>
                 </x-forms.profile-setting>
                 <x-forms.profile-setting title="Sosial Media" route="">
