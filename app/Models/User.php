@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Models\User\Biography;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -33,6 +35,10 @@ class User extends Authenticatable
 
     public function creations(){
         return $this->hasMany(Creation::class);
+    }
+
+    public function biography(){
+        return $this->hasMany(Biography::class);
     }
 
     

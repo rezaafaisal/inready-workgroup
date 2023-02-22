@@ -32,6 +32,7 @@ function curiculumViate(){
     for (let index = 1; index <= 10; index++) {
         new AirDatepicker('#organization_'+index, {
             locale: localeId,
+            // inline: true,
             autoClose: true,
             view: 'years',
             minView: 'years',

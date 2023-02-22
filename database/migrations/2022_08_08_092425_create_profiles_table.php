@@ -28,20 +28,6 @@ return new class extends Migration
             $table->date('birth_date')->nullable();
             $table->text('biography')->nullable();
             
-            $table->string('sd')->nullable();
-            $table->string('sltp')->nullable();
-            $table->string('slta')->nullable();
-            $table->string('sd_year')->nullable();
-            $table->string('sltp_year')->nullable();
-            $table->string('slta_year')->nullable();
-
-            $table->string('organization_1')->nullable();
-            $table->string('organization_2')->nullable();
-            $table->string('organization_3')->nullable();
-            $table->string('organization_1_year')->nullable();
-            $table->string('organization_2_year')->nullable();
-            $table->string('organization_3_year')->nullable();
-            
             $table->string('job')->nullable();
             $table->string('instance')->nullable();
             

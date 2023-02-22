@@ -13,7 +13,7 @@
                         <span for="" class="font-semibold mb-2 block">Sekolah Dasar</span>
                         <div class="flex flex-col md:flex-row w-full md:w-8/12 gap-2">
                             <input type="text" class="form-control grow rounded-r" placeholder="Nama sekolah">
-                            <input type="text" id="sd" class="form-control md:w-32" placeholder="Tahun sekolah">
+                            <input type="text" id="sd" class="form-control md:w-32" placeholder="Tahun sekolah" readonly>
                         </div>
                     </label>
                     <label class="block mb-7">
@@ -21,7 +21,7 @@
                         <div class="flex flex-col md:flex-row w-full md:w-8/12 gap-2">
                             <input type="text" class="form-control grow rounded-r" placeholder="Nama sekolah">
                             <input type="text" id="sltp" class="form-control md:w-32" autocomplete="off"
-                                placeholder="Tahun sekolah">
+                                placeholder="Tahun sekolah" readonly>
                         </div>
                     </label>
                     <label class="block mb-7">
@@ -29,7 +29,7 @@
                         <div class="flex flex-col md:flex-row w-full md:w-8/12 gap-2">
                             <input type="text" class="form-control grow rounded-r" placeholder="Nama sekolah">
                             <input type="text" id="slta" class="form-control md:w-32" autocomplete="off"
-                                placeholder="Tahun sekolah">
+                                placeholder="Tahun sekolah" readonly>
                         </div>
                     </label>
                 </x-forms.profile-setting>
@@ -42,7 +42,7 @@
                                 <div class="flex flex-col md:flex-row w-full md:w-8/12 gap-2">
                                     <input type="text" name="organization_{{ $i }}" class="form-control grow rounded-r"
                                         placeholder="Nama Organisasi">
-                                    <input type="text" name="organization_{{ $i }}_year" id="organization_{{ $i }}"
+                                    <input type="text" readonly name="organization_{{ $i }}_year" id="organization_{{ $i }}"
                                         class="form-control md:w-32" placeholder="Periode" autocomplete="off">
                                 </div>
                             </label>
@@ -99,27 +99,7 @@
         </div>
     </div>
 </section>
-<script>
-    function setCount(){
-        if(localStorage.getItem('count') < 1){
-            localStorage.setItem('count', 1)
-        }
-        else{
-            let count = localStorage.getItem('count');
-            localStorage.setItem('count', count += 1);
-        }
-
-        alert(localStorage.getItem('count'))
-    }
-</script>
 @endsection
 @section('scripts')
-{{-- <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/air-datepicker@3.3.5/air-datepicker.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $('#satu').AirDatepicker();
-        })
-    </script> --}}
 
 @endsection
