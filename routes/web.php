@@ -71,6 +71,10 @@ Route::prefix('pengguna')->name('user.')->group(function(){
     Route::get('pengaturan/pribadi', [ProfileController::class, 'personal'])->name('setting.personal');
     Route::get('pengaturan/akun', [ProfileController::class, 'account'])->name('setting.account');
     Route::get('pengaturan/lainnya', [ProfileController::class, 'etcetera'])->name('setting.etcetera');
+
+    Route::prefix('lainnya')->name('etcetera.')->group(function($row){
+        Route::post('organisasi', [ProfileController::class, 'organization'])->name('organization');
+    });
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('index');

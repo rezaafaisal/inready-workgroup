@@ -29,4 +29,8 @@ class ProfileController extends Controller
     public function etcetera(){
         return view('user.profile.etcetera', Data::view('etcetera'));
     }
+
+    public function organization(Request $request){
+        return $request;
+    }
 }
