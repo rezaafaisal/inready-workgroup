@@ -16,7 +16,7 @@ new AirDatepicker('.year', {
 });
 
 function curiculumViate(){
-    const dataElement = ['#sd', '#sltp', '#slta', '#organization_1', '#organization_2', '#organization_3', '#organization_4', '#organization_4', '#organization_5', '#organization_6', '#organization_7', '#organization_7', '#organization_8', '#organization_9'];
+    const dataElement = ['#sd', '#sltp', '#slta'];
     dataElement.forEach(element => {
         new AirDatepicker(element, {
             locale: localeId,
@@ -28,8 +28,9 @@ function curiculumViate(){
             multipleDatesSeparator: ' - '
         })
     });
-
-    new AirDatepicker('#organization_2', {
+    
+    for (let index = 1; index <= 10; index++) {
+        new AirDatepicker('#organization_'+index, {
             locale: localeId,
             autoClose: true,
             view: 'years',
@@ -37,7 +38,9 @@ function curiculumViate(){
             dateFormat: 'yyyy',
             range: true,
             multipleDatesSeparator: ' - '
-        })
+        });
+        
+    }
 }
 
 export {curiculumViate}
