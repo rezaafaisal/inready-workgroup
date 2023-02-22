@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->string('name');
             $table->enum('type', ['sd', 'sltp', 'slta', 'organization', 'etc']);
-            $table->string('period');
+            $table->string('period')->nullable();
             $table->timestamps();
         });
     }

@@ -41,9 +41,10 @@
                                 <span class="font-semibold mb-2 block">Organisasi {{ $i }}</span>
                                 <div class="flex flex-col md:flex-row w-full md:w-8/12 gap-2">
                                     <input type="text" name="organization_{{ $i }}" class="form-control grow rounded-r"
-                                        placeholder="Nama Organisasi">
+                                    placeholder="Nama Organisasi" value="{{ $data['organization'][$i-1]['name'] ?? '' }}">
                                     <input type="text" readonly name="organization_{{ $i }}_year" id="organization_{{ $i }}"
-                                        class="form-control md:w-32" placeholder="Periode" autocomplete="off">
+                                    class="form-control md:w-32" placeholder="Periode" autocomplete="off" value="{{ $data['organization'][$i-1]['period'] ?? null }}">
+                                    <input type="hidden" name="organization_{{ $i }}_id" value="{{ $data['organization'][$i-1]['id'] ?? null }}">
                                 </div>
                             </label>
                         @endfor
@@ -101,5 +102,10 @@
 </section>
 @endsection
 @section('scripts')
-
+    @php
+        $count = count($data['organization'])
+    @endphp
+    <script>
+        count = localStorage.setItem('count', {{ $count-1 }});
+    </script>
 @endsection
