@@ -9,6 +9,7 @@ class Province extends Model
 {
     use HasFactory;
     public $timestamps = false;
+    protected $guarded = ['id'];
 
     public function cities(){
         return $this->hasMany(City::class);
