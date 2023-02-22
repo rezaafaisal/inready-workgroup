@@ -54,7 +54,7 @@
                         </div>
                     </div>
                 </x-forms.profile-setting>
-                <x-forms.profile-setting title="Sosial Media" route="">
+                <x-forms.profile-setting title="Sosial Media" route="{{ route('user.etcetera.social') }}">
                     <label class="block mb-7">
                         <span for="" class="font-semibold mb-2 block">Instagram</span>
                         <div class="flex w-7/12">
@@ -62,7 +62,7 @@
                                 class="shrink-0 bg-gray-200 w-10 rounded-l flex items-center justify-center border border-r-0 font-extralight">
                                 <i class="fab fa-instagram"></i>
                             </span>
-                            <input type="text" class="form-control-1 grow rounded-r" placeholder="username">
+                            <input type="text" name="instagram" class="form-control-1 grow rounded-r" placeholder="username" value="{{ $data['social']['instagram'] }}">
                         </div>
                     </label>
                     <label class="block mb-7">
@@ -72,7 +72,7 @@
                                 class="shrink-0 bg-gray-200 w-10 rounded-l flex items-center justify-center border border-r-0 font-extralight">
                                 <i class="fab fa-twitter"></i>
                             </span>
-                            <input type="text" class="form-control-1 grow rounded-r" placeholder="username">
+                            <input type="text" name="twitter" class="form-control-1 grow rounded-r" placeholder="username" value="{{ $data['social']['twitter'] }}">
                         </div>
                     </label>
                     <label class="block mb-7">
@@ -82,7 +82,7 @@
                                 class="shrink-0 bg-gray-200 w-10 rounded-l flex items-center justify-center border border-r-0 font-extralight">
                                 <i class="fab fa-facebook-f"></i>
                             </span>
-                            <input type="text" class="form-control-1 grow rounded-r" placeholder="username">
+                            <input type="text" name="facebook" class="form-control-1 grow rounded-r" placeholder="username" value="{{ $data['social']['facebook'] }}">
                         </div>
                     </label>
                     <label class="block mb-7">
@@ -92,7 +92,7 @@
                                 class="shrink-0 bg-gray-200 w-10 rounded-l flex items-center justify-center border border-r-0 font-extralight">
                                 <i class="fab fa-linkedin-in"></i>
                             </span>
-                            <input type="text" class="form-control-1 grow rounded-r" placeholder="username">
+                            <input type="text" name="linkedin" class="form-control-1 grow rounded-r" placeholder="username"  value="{{ $data['social']['linkedin'] }}">
                         </div>
                     </label>
                 </x-forms.profile-setting>

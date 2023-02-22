@@ -5,9 +5,11 @@ namespace App\Http\Controllers\User;
 use App\Helper\Alert;
 use App\Helper\Data;
 use App\Http\Controllers\Controller;
+use App\Models\Profile;
 use App\Models\User\Biography;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use SebastianBergmann\CodeUnit\FunctionUnit;
 
 class ProfileController extends Controller
 {
@@ -35,6 +37,7 @@ class ProfileController extends Controller
             'sd' => Biography::where(['user_id' => Auth::id(), 'type' => 'sd'])->first(),
             'sltp' => Biography::where(['user_id' => Auth::id(), 'type' => 'sltp'])->first(),
             'slta' => Biography::where(['user_id' => Auth::id(), 'type' => 'slta'])->first(),
+            'social' => Profile::where('user_id', Auth::id())->first(['instagram', 'twitter', 'facebook', 'linkedin'])
         ];
         return view('user.profile.etcetera', Data::view('etcetera', $data));
     }
@@ -91,5 +94,20 @@ class ProfileController extends Controller
         }
 
         return Alert::error('Gagal', 'Gagal Memperbarui');    
+    }
+
+    public function social(Request $request){
+        $success = Profile::where('user_id', Auth::id())->update([
+            'instagram' => $request->instagram,
+            'twitter' => $request->twitter,
+            'facebook' => $request->facebook,
+            'linkedin' => $request->linkedin,
+        ]);
+
+        if($success){
+            return Alert::success('Berhasil Update', 'Data Sosial Media Berhasil Diperbarui');
+        }
+
+        return Alert::error('Gagal', 'Terjadi Kesalahan');
     }
 }

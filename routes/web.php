@@ -75,6 +75,7 @@ Route::prefix('pengguna')->name('user.')->group(function(){
     Route::prefix('lainnya')->name('etcetera.')->group(function($row){
         Route::post('pendidikan', [ProfileController::class, 'education'])->name('education');
         Route::post('organisasi', [ProfileController::class, 'organization'])->name('organization');
+        Route::post('sosmed', [ProfileController::class, 'social'])->name('social');
     });
 });
 
