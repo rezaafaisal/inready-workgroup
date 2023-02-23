@@ -4,12 +4,14 @@ namespace App\Http\Controllers\User;
 
 use App\Helper\Alert;
 use App\Helper\Data;
+use App\Helper\Filename;
 use App\Http\Controllers\Controller;
 use App\Models\City;
 use App\Models\Profile;
 use App\Models\User\Biography;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use SebastianBergmann\CodeUnit\FunctionUnit;
 
 class ProfileController extends Controller
@@ -148,6 +150,15 @@ class ProfileController extends Controller
     }
 
     public function setProfile(Request $request){
-        return $request;
+        $data = $request->image_result;
+        list($type, $data) = explode(';', $data);
+        list(, $data)      = explode(',', $data);
+
+        return "
+            <img src='$request->image_result' >
+        ";
+        return $image_name= time().'.png';
+        // $filename = Filename::make('png');
+        Storage::putFileAs('profiles', $data, $image_name);
     }
 }

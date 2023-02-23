@@ -29,11 +29,12 @@
         <div class="flex">
             @include('partials.user.setting_sidebar')
             <div class="grow">
-                <x-forms.profile-setting title="Profil Pengguna" route="{{ 'hg' }}">
+                <x-forms.profile-setting title="Profil Pengguna" route="{{ route('user.setting.setProfile') }}">
                     <div class="group mb-7">
                         <span class="font-semibold block mb-2">Foto Diri</span>
                         <input type="file" x-ref="image" name="image" id="image" class="hidden" x-on:change="show=true"
                             onchange="readImg(this)">
+                        <input type="hidden" name="image_result" id="image_result">
                         <div class="flex gap-5">
                             <img id="profile_image" src="{{ asset('images/ui/eren.jpeg') }}"
                                 alt="" class="w-28 h-28 object-cover rounded">
@@ -94,7 +95,7 @@
             format: 'png'
         }).then((image) => {
             $('#profile_image').attr('src', image);
-            $('#image').val(image);
+            $('#image_result').val(image);
         })
         $('#close_crop').trigger('click');
     })

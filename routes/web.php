@@ -67,6 +67,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
 Route::prefix('pengguna')->name('user.')->group(function(){
     Route::get('profil', [ProfileController::class, 'index'])->name('profile');
     Route::get('pengaturan/profil', [ProfileController::class, 'profile'])->name('setting.profile');
+    Route::post('pengaturan/profil', [ProfileController::class, 'setProfile'])->name('setting.setProfile');
     Route::get('pengaturan/pribadi', [ProfileController::class, 'personal'])->name('setting.personal');
     Route::post('pengaturan/pribadi', [ProfileController::class, 'setPersonal'])->name('setting.setPersonal');
     Route::get('pengaturan/akun', [ProfileController::class, 'account'])->name('setting.account');
