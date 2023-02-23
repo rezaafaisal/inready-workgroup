@@ -7,11 +7,12 @@
        document.documentElement.style.overflow = 'hidden';
 </script> --}}
 <section x-data="{show:false}" class="pt-20">
-    <div x-show="show" class="fixed flex top-0 z-50 justify-center items-center bg-inr-black bg-opacity-50 h-screen w-full overflow-hidden">
+    <div x-show="show"
+        class="fixed flex top-0 z-50 justify-center items-center bg-inr-black bg-opacity-50 h-screen w-full overflow-hidden">
         <div class="w-full m-10 md:w-8/12 lg:w-4/12 bg-inr-white rounded-lg">
             <div class="p-4 border-b border-slate-300 flex justify-between">
                 <span>Sesuaikan Gambar</span>
-                <button @click="show=false"><i class="fas fa-xmark"></i></button>
+                <button id="close_crop" @click="show=false"><i class="fas fa-xmark"></i></button>
             </div>
             <div class="p-4">
                 <img src="" alt="" id="cropping" class="croppie">
@@ -31,17 +32,17 @@
                 <x-forms.profile-setting title="Profil Pengguna" route="{{ 'hg' }}">
                     <div class="group mb-7">
                         <span class="font-semibold block mb-2">Foto Diri</span>
-                        <input type="file" x-ref="image" name="image" id="image" class="hidden"
-                            x-on:change="show=true" onchange="readImg(this)">
+                        <input type="file" x-ref="image" name="image" id="image" class="hidden" x-on:change="show=true"
+                            onchange="readImg(this)">
                         <div class="flex gap-5">
-                            <img id="profile_image" src="{{ asset('images/ui/eren.jpeg') }}" alt=""
-                                class="w-28 h-28 object-cover rounded">
+                            <img id="profile_image" src="{{ asset('images/ui/eren.jpeg') }}"
+                                alt="" class="w-28 h-28 object-cover rounded">
                             <div>
-                            <button @click="$refs.image.click()" type="button" class="btn-yellow text-sm">Pilih
-                                Foto</button>
-                            <p class="font-extralight mt-4 text-sm max-w-md">Gambar Profile Anda sebaiknya memiliki
-                                rasio 1:1
-                                dan berukuran tidak lebih dari 2MB.</p>
+                                <button @click="$refs.image.click()" type="button" class="btn-yellow text-sm">Pilih
+                                    Foto</button>
+                                <p class="font-extralight mt-4 text-sm max-w-md">Gambar Profile Anda sebaiknya memiliki
+                                    rasio 1:1
+                                    dan berukuran tidak lebih dari 2MB.</p>
                             </div>
                         </div>
                     </div>
@@ -67,6 +68,7 @@
             </div>
         </div>
     </div>
+
 </section>
 @endsection
 @section('scripts')
@@ -86,17 +88,22 @@
         },
     });
 
-    $('#crop_image').click(()=>{
-        preview.croppie('result', {type: 'base64', format: 'png'}).then((image) => {
-            $('#profile_image').attr('src', image)
+    $('#crop_image').click(() => {
+        preview.croppie('result', {
+            type: 'base64',
+            format: 'png'
+        }).then((image) => {
+            $('#profile_image').attr('src', image);
+            $('#image').val(image);
         })
+        $('#close_crop').trigger('click');
     })
-    
-    function readImg(e){
+
+    function readImg(e) {
         const file = e.files[0];
-        if(file){
+        if (file) {
             let reader = new FileReader();
-            reader.onload = function(event){
+            reader.onload = function (event) {
                 preview.croppie('bind', {
                     url: event.target.result
                 });
@@ -104,5 +111,6 @@
             reader.readAsDataURL(file);
         }
     }
+
 </script>
 @endsection
