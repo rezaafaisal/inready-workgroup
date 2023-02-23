@@ -150,15 +150,15 @@ class ProfileController extends Controller
     }
 
     public function setProfile(Request $request){
-        $data = $request->image_result;
-        list($type, $data) = explode(';', $data);
-        list(, $data)      = explode(',', $data);
+        $filter = explode(',', $request->image_result) ;
+        $bin = base64_decode($filter[1]);
+        $ext = explode(';', explode('/',$filter[0])[1])[0];
+        
+        $image = imagecreatefromstring($bin);
 
-        return "
-            <img src='$request->image_result' >
-        ";
-        return $image_name= time().'.png';
-        // $filename = Filename::make('png');
-        Storage::putFileAs('profiles', $data, $image_name);
+        // save image to storage
+        $filename = Filename::make($ext);
+        $img_file = storage_path('app/profiles/'.$filename);
+        imagepng($image, $img_file, 0);
     }
 }
