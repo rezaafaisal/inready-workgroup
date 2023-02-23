@@ -47,13 +47,26 @@
                             </div>
                         </div>
                     </div>
-                    <label for="" class="mb-7 block">
+                    <label class="mb-7 block">
                         <span class="font-semibold block mb-2">Nama Lengkap <span class="text-rose-500">*</span></span>
-                        <input type="text" class="form-control w-9/12">
+                        <input type="text" name="fullname" class="form-control w-9/12 @error('fullname') is-invalid @enderror">
+                        @error('fullname')
+                            <span class="invalid-feedback">{{ $message }}</span>
+                        @enderror
                     </label>
-                    <label for="" class="mb-7 block">
+                    <label class="mb-7 block">
                         <span class="font-semibold block mb-2">Username <span class="text-rose-500">*</span></span>
-                        <input type="text" class="form-control w-9/12">
+                        <input type="text" name="username" class="form-control w-9/12 @error('username') is-invalid @enderror">
+                        @error('username')
+                            <span class="invalid-feedback">{{ $message }}</span>
+                        @enderror
+                    </label>
+                    <label class="mb-7 block">
+                        <span class="font-semibold block mb-2">Jurusan</span>
+                        <select name="major" class="form-control w-9/12">
+                            <option value="">Pilih jurusan</option>
+                            <option value=""></option>
+                        </select>
                     </label>
                     <label for="" class="mb-7 block">
                         <span class="font-semibold block mb-2">Headline</span>

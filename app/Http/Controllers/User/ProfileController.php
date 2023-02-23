@@ -150,15 +150,21 @@ class ProfileController extends Controller
     }
 
     public function setProfile(Request $request){
-        $filter = explode(',', $request->image_result) ;
-        $bin = base64_decode($filter[1]);
-        $ext = explode(';', explode('/',$filter[0])[1])[0];
-        
-        $image = imagecreatefromstring($bin);
+        return $request;
+        $profile = Profile::where('user_id', Auth::id());
 
-        // save image to storage
-        $filename = Filename::make($ext);
-        $img_file = storage_path('app/profiles/'.$filename);
-        imagepng($image, $img_file, 0);
+        // cek apakah mengupload gambar
+        if($request->image_result){
+            $filter = explode(',', $request->image_result) ;
+            $bin = base64_decode($filter[1]);
+            
+            $image = imagecreatefromstring($bin);
+    
+            // save image to storage
+            $filename = Filename::make('png');
+            $img_file = storage_path('app/profiles/'.$filename);
+            imagepng($image, $img_file, 0);
+            $profile->image = $filename;
+        }
     }
 }
