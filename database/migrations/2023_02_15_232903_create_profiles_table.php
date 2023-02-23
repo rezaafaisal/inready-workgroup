@@ -26,6 +26,7 @@ return new class extends Migration
             $table->text('address')->nullable();
             $table->unsignedBigInteger('birth_place')->nullable();
             $table->date('birth_date')->nullable();
+            $table->string('headline')->nullable();
             $table->text('biography')->nullable();
             
             $table->string('job')->nullable();

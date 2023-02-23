@@ -70,12 +70,12 @@
                     </label>
                     <label for="" class="mb-7 block">
                         <span class="font-semibold block mb-2">Headline</span>
-                        <input type="text" class="form-control w-9/12"
+                        <input type="text" name="headline" class="form-control w-9/12"
                             placeholder="Contoh : Software Enginer at Inready Workgroup">
                     </label>
                     <label for="" class="mb-7 block">
                         <span class="font-semibold block mb-2">Tentang Saya</span>
-                        <textarea name="" id="" rows="3" class="form-control w-9/12 "
+                        <textarea name="biography" rows="3" class="form-control w-9/12 "
                             placeholder="Tulis sesuatu tentang anda"></textarea>
                     </label>
                 </x-forms.profile-setting>
