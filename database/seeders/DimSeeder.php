@@ -21,8 +21,8 @@ class DimSeeder extends Seeder
     public function run()
     {
         $genders = [
+            ['name' => 'laki-laki'],
             ['name' => 'perempuan'],
-            ['name' => 'laki-laki']
         ];
 
         $roles = [
@@ -43,14 +43,6 @@ class DimSeeder extends Seeder
             ['name' => 'teknik informatika'],
             ['name' => 'sistem informasi']
         ];
-
-        $ledger_type = [
-            ['type' => 'juklak-juknis'],
-            ['type' => 'ad-art'],
-            ['type' => 'gbho']
-        ];
-
-        LedgerType::insert($ledger_type);
         Gender::insert($genders);
         Role::insert($roles);
         Generation::insert($generations);

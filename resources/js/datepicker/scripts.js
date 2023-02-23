@@ -2,19 +2,6 @@ import AirDatepicker from 'air-datepicker';
 import localeId from 'air-datepicker/locale/id';
 import 'air-datepicker/air-datepicker.css';
 
-new AirDatepicker('.date', {
-    locale: localeId,
-    isMobile: false,
-    autoClose: true,
-});
-
-new AirDatepicker('.year', {
-    locale: localeId,
-    autoClose: true,
-    view: 'years',
-    dateFormat: 'yyyy'
-});
-
 function curiculumViate(){
     const dataElement = ['#sd', '#sltp', '#slta'];
     dataElement.forEach(element => {
@@ -40,8 +27,21 @@ function curiculumViate(){
             range: true,
             multipleDatesSeparator: ' - '
         });
-        
     }
+
+    new AirDatepicker('#date', {
+        locale: localeId,
+        isMobile: false,
+        autoClose: true,
+        dateFormat: 'yyyy-MM-dd'
+    });
+
+    new AirDatepicker('#year', {
+        locale: localeId,
+        autoClose: true,
+        view: 'years',
+        dateFormat: 'yyyy'
+    });
 }
 
 export {curiculumViate}

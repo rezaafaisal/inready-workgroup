@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Helper\Alert;
 use App\Helper\Data;
 use App\Http\Controllers\Controller;
+use App\Models\City;
 use App\Models\Profile;
 use App\Models\User\Biography;
 use Illuminate\Http\Request;
@@ -24,8 +25,13 @@ class ProfileController extends Controller
     }
 
     public function personal(){
-        return view('user.profile.personal', Data::view('personal'));
+        $data = [
+            'cities' => City::all(),
+        ];
+        return view('user.profile.personal', Data::view('personal', $data));
     }
+
+
     
     public function account(){
         return view('user.profile.account', Data::view('account'));
@@ -109,5 +115,39 @@ class ProfileController extends Controller
         }
 
         return Alert::error('Gagal', 'Terjadi Kesalahan');
+    }
+
+    public function setPersonal(Request $request){
+        $request->validate([
+            'whatsapp' => 'required|numeric|digits_between:7,12',
+            'current_place' => 'required',
+            'address' => 'required',
+            'birth_place' => 'required',
+            'birth_date' => 'required',
+            'gender' => 'required',
+            'job' => 'required',
+            'instance' => 'required'
+        ]);
+
+        $profile = Profile::where('user_id', Auth::id())->first();
+        $profile->whatsapp = $request->whatsapp;
+        $profile->current_place = $request->current_place;
+        $profile->address = $request->address;
+        $profile->birth_place = $request->birth_place;
+        $profile->birth_date = $request->birth_date;
+        $profile->gender_id = $request->gender;
+        $profile->job = $request->job;
+        $profile->instance = $request->instance;
+        $success = $profile->save();
+
+        if($success){
+            return Alert::success('Berhasil Update', 'Data Pribadi Telah Diperbarui');
+        }
+
+        return Alert::error('Gagal Mengupdate', 'Gagal Menyimpan Perubahan');
+    }
+
+    public function setProfile(Request $request){
+        return $request;
     }
 }
