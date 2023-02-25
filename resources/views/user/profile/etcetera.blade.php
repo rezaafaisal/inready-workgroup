@@ -103,9 +103,13 @@
 @endsection
 @section('scripts')
     @php
-        $count = count($data['organization'])
+        $count = count($data['organization']);
+        // dd($count);
+        // $count = 5;
+        if($count == 0) $count = 1;
     @endphp
     <script>
-        count = localStorage.setItem('count', {{ $count-1 }});
+        localStorage.setItem('count', {{ $count-1 }});
+        let count = localStorage.getItem('count');
     </script>
 @endsection

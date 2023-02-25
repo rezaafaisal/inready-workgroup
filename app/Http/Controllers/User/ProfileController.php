@@ -7,7 +7,9 @@ use App\Helper\Data;
 use App\Helper\Filename;
 use App\Http\Controllers\Controller;
 use App\Models\City;
+use App\Models\Major;
 use App\Models\Profile;
+use App\Models\User;
 use App\Models\User\Biography;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,7 +25,12 @@ class ProfileController extends Controller
     }
 
     public function profile(){
-        return view('user.profile.profile', Data::view('profile'));
+        $data = [
+            'majors' => Major::all(),
+            'user' => User::find(Auth::id(), ['username', 'name']),
+            'profile' => Profile::where('user_id', Auth::id())->first(['major_id', 'address', 'image', 'headline', 'biography'])
+        ];
+        return view('user.profile.profile', Data::view('profile', $data));
     }
 
     public function personal(){
@@ -150,8 +157,7 @@ class ProfileController extends Controller
     }
 
     public function setProfile(Request $request){
-        return $request;
-        $profile = Profile::where('user_id', Auth::id());
+        $profile = Profile::where('user_id', Auth::id())->first();
 
         // cek apakah mengupload gambar
         if($request->image_result){
@@ -166,5 +172,7 @@ class ProfileController extends Controller
             imagepng($image, $img_file, 0);
             $profile->image = $filename;
         }
+
+        $profile->save();
     }
 }

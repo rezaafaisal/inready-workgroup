@@ -36,7 +36,7 @@
                             onchange="readImg(this)">
                         <input type="hidden" name="image_result" id="image_result">
                         <div class="flex gap-5">
-                            <img id="profile_image" src="{{ asset('images/ui/eren.jpeg') }}"
+                            <img id="profile_image" src="{{ asset('profiles/'.$data['profile']->image) ?? asset('images/ui/eren.jpeg') }}"
                                 alt="" class="w-28 h-28 object-cover rounded">
                             <div>
                                 <button @click="$refs.image.click()" type="button" class="btn-yellow text-sm">Pilih
@@ -49,14 +49,14 @@
                     </div>
                     <label class="mb-7 block">
                         <span class="font-semibold block mb-2">Nama Lengkap <span class="text-rose-500">*</span></span>
-                        <input type="text" name="fullname" class="form-control w-9/12 @error('fullname') is-invalid @enderror">
+                        <input type="text" name="fullname" class="form-control w-9/12 @error('fullname') is-invalid @enderror" value="{{ $data['user']->name }}">
                         @error('fullname')
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
                     </label>
                     <label class="mb-7 block">
                         <span class="font-semibold block mb-2">Username <span class="text-rose-500">*</span></span>
-                        <input type="text" name="username" class="form-control w-9/12 @error('username') is-invalid @enderror">
+                        <input type="text" name="username" class="form-control w-9/12 @error('username') is-invalid @enderror" value="{{ $data['user']->username }}">
                         @error('username')
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
@@ -64,19 +64,21 @@
                     <label class="mb-7 block">
                         <span class="font-semibold block mb-2">Jurusan</span>
                         <select name="major" class="form-control w-9/12">
-                            <option value="">Pilih jurusan</option>
-                            <option value=""></option>
+                            <option value="" selected disabled>Pilih jurusan</option>
+                            @foreach ($data['majors'] as $major)
+                                <option value="{{ $major->id }}">{{ $major->name }}</option>
+                            @endforeach
                         </select>
                     </label>
                     <label for="" class="mb-7 block">
                         <span class="font-semibold block mb-2">Headline</span>
                         <input type="text" name="headline" class="form-control w-9/12"
-                            placeholder="Contoh : Software Enginer at Inready Workgroup">
+                            placeholder="Contoh : Software Enginer at Inready Workgroup" value="{{ $data['profile']->headline }}">
                     </label>
                     <label for="" class="mb-7 block">
                         <span class="font-semibold block mb-2">Tentang Saya</span>
                         <textarea name="biography" rows="3" class="form-control w-9/12 "
-                            placeholder="Tulis sesuatu tentang anda"></textarea>
+                            placeholder="Tulis sesuatu tentang anda">{{ $data['profile']->bipgraphy }}</textarea>
                     </label>
                 </x-forms.profile-setting>
             </div>
