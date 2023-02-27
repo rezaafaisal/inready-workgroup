@@ -89,7 +89,7 @@
                 @if (Auth::user())
                 <div class="group">
                     <div class="flex items-center cursor-pointer">
-                        <img src="{{ asset('images/ui/eren.jpeg') }}" alt="" class="h-8 w-8 object-cover rounded-full ring-inr-yellow ring-2 ring-offset-2 ring-offset-inr-black">
+                        <img src="{{ asset('profiles/'.Auth::user()->profile->image) }}" alt="" class="h-8 w-8 object-cover rounded-full ring-inr-yellow ring-2 ring-offset-2 ring-offset-inr-black">
                         <i class="fas fa-angle-down ml-3 group-hover:rotate-180 duration-300"></i>
                     </div>
                     <ul class="group-hover:visible invisible group-hover:translate-y-0 translate-y-5 group-hover:opacity-100 opacity-0 group-hover:delay-100 delay-200 -ml-20  block h-auto ease-in-out duration-300 absolute text-sm mt-3 bg-[#292929] rounded">

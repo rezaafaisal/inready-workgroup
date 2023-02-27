@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Helper\Alert;
 use App\Helper\Data;
-use App\Helper\Filename;
-use App\Http\Controllers\Controller;
 use App\Models\City;
+use App\Models\User;
+use App\Helper\Alert;
 use App\Models\Major;
 use App\Models\Profile;
-use App\Models\User;
-use App\Models\User\Biography;
+use App\Helper\Filename;
 use Illuminate\Http\Request;
+use App\Models\User\Biography;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use SebastianBergmann\CodeUnit\FunctionUnit;
 
 class ProfileController extends Controller
@@ -157,10 +158,31 @@ class ProfileController extends Controller
     }
 
     public function setProfile(Request $request){
-        $profile = Profile::where('user_id', Auth::id())->first();
+        Validator::extend('without_spaces', function($attr, $value){
+            return preg_match('/^\S*$/u', $value);
+        });
+        $request->validate([
+            'fullname' => 'required',
+            'username' => 'required|without_spaces|unique:users,username,'.Auth::id(),
+            'major' => 'required'
+        ],
+        [
+            'username.without_spaces' => 'Username tidak boleh menggunakan spasi',
+            'username.unique' => 'Username tidak tersedia, silahkan pilih yang lain'
+        ]);
 
+        $user = User::find(Auth::id());
+        $user->username = $request->username;
+        $user->name = $request->fullname;
+        $user->save();
+
+        $profile = Profile::where('user_id', Auth::id())->first();
         // cek apakah mengupload gambar
         if($request->image_result){
+            // cek apakah sudah ada gambar, kalaua ada hapus gambar lama
+            if($profile->image != null){
+                Storage::delete('profiles/'.$profile->image);
+            }
             $filter = explode(',', $request->image_result) ;
             $bin = base64_decode($filter[1]);
             
@@ -172,7 +194,14 @@ class ProfileController extends Controller
             imagepng($image, $img_file, 0);
             $profile->image = $filename;
         }
+        $profile->headline = $request->headline;
+        $profile->biography = $request->biography;
+        $profile->major_id = $request->major;
+        $success = $profile->save();
+        if($success){
+            return Alert::default(true, 'Diperbarui');
+        }
 
-        $profile->save();
+        return Alert::default(false, 'Diperbarui');
     }
 }

@@ -5,7 +5,7 @@
         <div class="flex items-center flex-col md:flex-row gap-12 ">
             <div class="flex justify-center shrink-0">
                 <div class="relative">
-                    <img src="{{ asset('images/ui/eren.jpeg') }}" alt=""
+                    <img src="{{ asset('profiles/'.Auth::user()->profile->image) }}" alt=""
                         class="h-60 w-60 object-cover rounded-full shadow-lg">
                     <div class="absolute bottom-5 left-48">
                         <a href="{{ route('user.setting.profile') }}" class="p-2 btn-yellow block">

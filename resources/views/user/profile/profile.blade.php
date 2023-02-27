@@ -63,12 +63,15 @@
                     </label>
                     <label class="mb-7 block">
                         <span class="font-semibold block mb-2">Jurusan</span>
-                        <select name="major" class="form-control w-9/12">
+                        <select name="major" class="form-control w-9/12 @error('major') is-invalid @enderror">
                             <option value="" selected disabled>Pilih jurusan</option>
                             @foreach ($data['majors'] as $major)
-                                <option value="{{ $major->id }}">{{ $major->name }}</option>
+                                <option {{ ($data['profile']->major_id == $major->id)? 'selected' : ''}} value="{{ $major->id }}">{{ $major->name }}</option>
                             @endforeach
                         </select>
+                        @error('major')
+                            <span class="invalid-feedback">{{ $message }}</span>
+                        @enderror
                     </label>
                     <label for="" class="mb-7 block">
                         <span class="font-semibold block mb-2">Headline</span>
@@ -78,7 +81,7 @@
                     <label for="" class="mb-7 block">
                         <span class="font-semibold block mb-2">Tentang Saya</span>
                         <textarea name="biography" rows="3" class="form-control w-9/12 "
-                            placeholder="Tulis sesuatu tentang anda">{{ $data['profile']->bipgraphy }}</textarea>
+                            placeholder="Tulis sesuatu tentang anda">{{ $data['profile']->biography }}</textarea>
                     </label>
                 </x-forms.profile-setting>
             </div>
