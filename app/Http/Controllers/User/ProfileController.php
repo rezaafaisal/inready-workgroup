@@ -28,7 +28,7 @@ class ProfileController extends Controller
     public function profile(){
         $data = [
             'majors' => Major::all(),
-            'user' => User::find(Auth::id(), ['username', 'name']),
+            'user' => User::find(Auth::id(), ['username', 'name', 'email']),
             'profile' => Profile::where('user_id', Auth::id())->first(['major_id', 'address', 'image', 'headline', 'biography'])
         ];
         return view('user.profile.profile', Data::view('profile', $data));
@@ -37,6 +37,7 @@ class ProfileController extends Controller
     public function personal(){
         $data = [
             'cities' => City::all(),
+            'profile' => Profile::where('user_id', Auth::id())->first()
         ];
         return view('user.profile.personal', Data::view('personal', $data));
     }
@@ -135,8 +136,8 @@ class ProfileController extends Controller
             'birth_place' => 'required',
             'birth_date' => 'required',
             'gender' => 'required',
-            'job' => 'required',
-            'instance' => 'required'
+            // 'job' => 'required',
+            // 'instance' => 'required'
         ]);
 
         $profile = Profile::where('user_id', Auth::id())->first();
@@ -159,7 +160,7 @@ class ProfileController extends Controller
 
     public function setProfile(Request $request){
         Validator::extend('without_spaces', function($attr, $value){
-            return preg_match('/^\S*$/u', $value);
+            return preg_match('~^(?!\.)[\w.]*$(?<!\.)~', $value);
         });
         $request->validate([
             'fullname' => 'required',
@@ -167,7 +168,7 @@ class ProfileController extends Controller
             'major' => 'required'
         ],
         [
-            'username.without_spaces' => 'Username tidak boleh menggunakan spasi',
+            'username.without_spaces' => 'Username hanya boleh menggunakan karakter a-z 0-9 - _ dan .',
             'username.unique' => 'Username tidak tersedia, silahkan pilih yang lain'
         ]);
 

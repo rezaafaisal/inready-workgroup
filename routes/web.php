@@ -9,6 +9,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Data\User;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\User\AboutController;
 use App\Http\Controllers\User\ActivityController;
@@ -33,6 +34,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Route::get('tes', [TestController::class, 'index']);
+Route::get('kirim', [MailController::class, 'verifyEmail']);
+Route::get('kirim/email', [MailController::class, 'view']);
 
 
 Route::prefix('data')->name('data.')->group(function(){

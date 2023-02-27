@@ -4,6 +4,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/datepicker.min.js"></script>
 @endsection
 @section('body')
+{{-- {{ dd($data['profile']->whatsapp) }} --}}
 <section class="pt-20">
     <div class="wrapper py-20">
         <div class="flex">
@@ -17,7 +18,7 @@
                                 class="shrink-0 bg-gray-200 w-16 rounded-l flex items-center justify-center border border-r-0 font-extralight">
                                 +62
                             </span>
-                            <input type="text" name="whatsapp" class="rounded-l-none form-control-1 rounded-r grow" value="{{ old('whatsapp') }}" placeholder="85XXXXXXX">
+                            <input type="text" name="whatsapp" class="rounded-l-none form-control-1 rounded-r grow" value="{{ old('whatsapp') ?? $data['profile']->whatsapp }}" placeholder="85XXXXXXX">
                         </div>
                         @error('whatsapp')
                             <span class="invalid-feedback">{{ $message }}</span>
@@ -28,7 +29,7 @@
                         <select class="city w-9/12 @error('current_place') is-invalid rounded @enderror" name="current_place" placeholder="Ketikkan kota anda">
                             <option value=""></option>
                             @foreach ($data['cities'] as $city)
-                                <option  value="{{ $city->id }}">{{ $city->name }} - {{ $city->province->name }}</option>
+                                <option {{ ($data['profile']->current_place == $city->id) ? 'selected' : '' }}  value="{{ $city->id }}">{{ $city->name }} - {{ $city->province->name }}</option>
                             @endforeach
                         </select>
                         @error('current_place')
@@ -38,7 +39,7 @@
                     <label class="block mb-7">
                         <span class="font-semibold mb-2 block">Alamat Lengkap</span>
                         <textarea name="address" rows="3" class="form-control w-9/12 @error('address') is-invalid @enderror"
-                            placeholder="Alamat anda saat ini"></textarea>
+                            placeholder="Alamat anda saat ini">{{ $data['profile']->address }}</textarea>
                         @error('adress')
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
@@ -48,7 +49,7 @@
                         <select class="city w-9/12 @error('birth_place') is-invalid rounded @enderror" name="birth_place" placeholder="Ketikkan kota anda">
                             <option value=""></option>
                             @foreach ($data['cities'] as $city)
-                                <option value="{{ $city->id }}">{{ $city->name }} - {{ $city->province->name }}</option>
+                                <option {{ ($data['profile']->birth_place == $city->id) ? 'selected' : '' }} value="{{ $city->id }}">{{ $city->name }} - {{ $city->province->name }}</option>
                             @endforeach
                         </select>
                         @error('birth_place')
@@ -59,7 +60,7 @@
                         <label class="block mb-7">
                             <span class="font-semibold mb-2 block">Tanggal Lahir</span>
                             <div class="flex @error('birth_date') is-invalid @enderror">
-                                <input type="text" name="birth_date" id="date" class="form-control-1 rounded-l w-full" readonly placeholder="Pilih tanggal lahir">
+                                <input type="text" name="birth_date" id="date" class="form-control-1 rounded-l w-full" readonly placeholder="Pilih tanggal lahir" value="{{ $data['profile']->birth_date }}">
                                 <span
                                     class="shrink-0 cursor-pointer w-10 rounded-r flex items-center justify-center border border-slate-300 border-l-0 font-extralight">
                                     <i class="fas fa-calendar-day"></i>
@@ -72,12 +73,12 @@
                         <div class="block mb-7 font-extralight">
                             <span class="font-semibold mb-2 block">Jenis Kelamin</span>
                             <label class="flex items-center mb-5 cursor-pointer">
-                                <input type="radio" name="gender" id="" value="1"
+                                <input {{ ($data['profile']->gender_id == 1) ? 'checked' : '' }} type="radio" name="gender" id="" value="1"
                                     class="appearance-none h-3 w-3 rounded-full checked:bg-inr-yellow ring-offset-2 ring-offset-white ring ring-inr-yellow">
                                 <span class="ml-4">Laki-laki</span>
                             </label>
                             <label class="flex items-center cursor-pointer">
-                                <input type="radio" name="gender" id="" value="2"
+                                <input {{ ($data['profile']->gender_id == 2) ? 'checked' : '' }} type="radio" name="gender" id="" value="2"
                                     class="appearance-none h-3 w-3 rounded-full checked:bg-inr-yellow ring-offset-2 ring-offset-white ring ring-inr-yellow">
                                 <span class="ml-4">Perempuan</span>
                             </label>
@@ -88,7 +89,7 @@
                     </div>
                     <label class="block mb-7">
                         <span class="font-semibold mb-2 block">Pekerjaan Saat Ini</span>
-                        <input type="text" name="job" class="form-control w-9/12 @error('job') is-invalid @enderror" placeholder="Ketikkan pekerjaan anda" value="{{ old('job') }}">
+                        <input type="text" name="job" class="form-control w-9/12 @error('job') is-invalid @enderror" placeholder="Ketikkan pekerjaan anda" value="{{ old('job') ?? $data['profile']->job }}">
                         @error('job')
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
@@ -96,7 +97,7 @@
                     <label class="block mb-7">
                         <span class="font-semibold mb-2 block">Perusahaan Saat Ini</span>
                         <input type="text" name="instance" class="form-control w-9/12 @error('instance') is-invalid @enderror"
-                            placeholder="Ketikkan perusahaan tempat kerja anda" value="{{ old('instance') }}">
+                            placeholder="Ketikkan perusahaan tempat kerja anda" value="{{ old('instance') ?? $data['profile']->instance }}">
                         @error('instance')
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror

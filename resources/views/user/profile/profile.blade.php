@@ -56,10 +56,17 @@
                     </label>
                     <label class="mb-7 block">
                         <span class="font-semibold block mb-2">Username <span class="text-rose-500">*</span></span>
-                        <input type="text" name="username" class="form-control w-9/12 @error('username') is-invalid @enderror" value="{{ $data['user']->username }}">
+                        <input type="text" name="username" class="form-control lowercase w-9/12 @error('username') is-invalid @enderror" value="{{ $data['user']->username }}">
                         @error('username')
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
+                    </label>
+                    <label class="mb-7 block">
+                        <span class="font-semibold block mb-2">Email</span>
+                        <input disabled type="text" class="form-control lowercase w-9/12 disabled:bg-gray-100" value="{{ $data['user']->email }}">
+                        <span class="block text-xs font-light mt-2 text-inr-black">
+                            Anda dapat mengubah alamat email melalui menu <a class="font-semibold text-sky-500" href="{{ route('user.setting.account') }}">Akun</a>.
+                        </span>
                     </label>
                     <label class="mb-7 block">
                         <span class="font-semibold block mb-2">Jurusan</span>
