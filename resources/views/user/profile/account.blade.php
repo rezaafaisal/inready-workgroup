@@ -15,7 +15,7 @@
                             <p class="text-yellow-800 mb-5 leading-8">
                                 Anda memiliki permintaan perubahan email yang belum Anda verifikasi. Mohon cek email verifikasi yang telah kami kirim ke <span class="font-semibold"> zxennly@gmail.com</span>.
                             </p>
-                            <button class="btn-yellow text-sm">Hapus Permintaan</button>
+                            <a href="{{ route('user.cancelVerifyEmail') }}" class="btn-yellow text-sm">Hapus Permintaan</a>
                         </div>
                     </div>
                     

@@ -48,7 +48,7 @@ class ProfileController extends Controller
     
     public function account(){
         $data = [
-            'sending' => VerifyKey::where('user_id', Auth::id())->first()
+            'sending' => VerifyKey::where('user_id', Auth::id())->where('type', 'verify')->first()
         ];
         return view('user.profile.account', Data::view('account', $data));
     }
@@ -214,7 +214,7 @@ class ProfileController extends Controller
     public function verifyEmail($key){
         $match_token = VerifyKey::where('token', $key)->first();
 
-        if(!$match_token) return "Kadaluarsa";
+        if(!$match_token) return view('emails.fail');
 
         $combined = Crypt::decryptString($key);
         $email = explode('|', $combined)[0];
@@ -223,10 +223,22 @@ class ProfileController extends Controller
         $success = User::where('username', $username)->update([
             'email' => $email
         ]);
-        // session()->forget(['email_verify_key', 'sending_key']);
+        
+        // delete token
+        $match_token->delete();
 
         if($success){
             return view('emails.success', ['email' => $email, 'username' => $username]);
         }
+        
+    }
+
+    public function cancelVerifyEmail(){
+        VerifyKey::where([
+            'user_id' => Auth::id(),
+            'type' => 'verify'
+        ])->delete();
+
+        return redirect()->back();
     }
 }
