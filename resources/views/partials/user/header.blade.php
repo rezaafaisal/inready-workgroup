@@ -16,7 +16,7 @@
         {{-- list tab - desktop --}}
         <ul class="hidden bg-inr-black md:flex items-center gap-7 text-white text-sm">
             <li>
-                <a href="{{ route('index') }}" class="hover:text-inr-yellow duration-150 inline">Beranda</a>
+                <a href="{{ route('home') }}" class="hover:text-inr-yellow duration-150 inline">Beranda</a>
             </li>
             @if (Auth::user())
             <li class="group">
@@ -128,7 +128,7 @@
                 </button>
             </li>
             <li>
-                <a href="{{ route('index') }}" class="hover:text-inr-yellow flex justify-between items-center duration-150 w-full py-3">
+                <a href="{{ route('home') }}" class="hover:text-inr-yellow flex justify-between items-center duration-150 w-full py-3">
                     Beranda
                     <i class="md:hidden fas fa-arrow-up rotate-45 text-xs"></i>
                 </a>

@@ -34,8 +34,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Route::get('tes', [TestController::class, 'index']);
-Route::get('kirim', [MailController::class, 'verifyEmail']);
-Route::get('kirim/email', [MailController::class, 'view']);
+// Route::get('kirim', [MailController::class, 'verifyEmail']);
+// Route::get('kirim/email', [MailController::class, 'view']);
 
 
 Route::prefix('data')->name('data.')->group(function(){
@@ -74,16 +74,18 @@ Route::prefix('pengguna')->name('user.')->group(function(){
     Route::get('pengaturan/pribadi', [ProfileController::class, 'personal'])->name('setting.personal');
     Route::post('pengaturan/pribadi', [ProfileController::class, 'setPersonal'])->name('setting.setPersonal');
     Route::get('pengaturan/akun', [ProfileController::class, 'account'])->name('setting.account');
+    Route::post('pengaturan/akun/email', [MailController::class, 'verifyEmail'])->name('verifyEmail');
     Route::get('pengaturan/lainnya', [ProfileController::class, 'etcetera'])->name('setting.etcetera');
-
+    
     Route::prefix('lainnya')->name('etcetera.')->group(function($row){
         Route::post('pendidikan', [ProfileController::class, 'education'])->name('education');
         Route::post('organisasi', [ProfileController::class, 'organization'])->name('organization');
         Route::post('sosmed', [ProfileController::class, 'social'])->name('social');
     });
 });
-
-Route::get('/', [HomeController::class, 'index'])->name('index');
+// verifikasi email baru
+Route::get('email/verifikasi/{key}', [ProfileController::class, 'verifyEmail'])->name('verifyEmail');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('berita', [NewsController::class, 'index'])->name('news');
 Route::get('berita/{slug}', [NewsController::class, 'show'])->name('show_news');
 

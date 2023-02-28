@@ -48,6 +48,9 @@ class User extends Authenticatable
         return $this->hasMany(Biography::class);
     }
 
+    public function verifyKey(){
+        return $this->hasMany(VerifyKey::class);
+    }
     
     protected $guarded = ['id'];
 

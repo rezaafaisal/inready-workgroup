@@ -12,7 +12,9 @@ use App\Helper\Filename;
 use Illuminate\Http\Request;
 use App\Models\User\Biography;
 use App\Http\Controllers\Controller;
+use App\Models\VerifyKey;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use SebastianBergmann\CodeUnit\FunctionUnit;
@@ -45,7 +47,10 @@ class ProfileController extends Controller
 
     
     public function account(){
-        return view('user.profile.account', Data::view('account'));
+        $data = [
+            'sending' => VerifyKey::where('user_id', Auth::id())->first()
+        ];
+        return view('user.profile.account', Data::view('account', $data));
     }
 
     public function etcetera(){
@@ -204,5 +209,24 @@ class ProfileController extends Controller
         }
 
         return Alert::default(false, 'Diperbarui');
+    }
+
+    public function verifyEmail($key){
+        $match_token = VerifyKey::where('token', $key)->first();
+
+        if(!$match_token) return "Kadaluarsa";
+
+        $combined = Crypt::decryptString($key);
+        $email = explode('|', $combined)[0];
+        $username = explode('|', $combined)[1];
+
+        $success = User::where('username', $username)->update([
+            'email' => $email
+        ]);
+        // session()->forget(['email_verify_key', 'sending_key']);
+
+        if($success){
+            return view('emails.success', ['email' => $email, 'username' => $username]);
+        }
     }
 }

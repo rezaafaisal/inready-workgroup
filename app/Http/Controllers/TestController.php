@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\City;
 use App\Models\Province;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 class TestController extends Controller
 {
@@ -738,5 +740,16 @@ class TestController extends Controller
                 ]);
             }
         }
+    }
+
+    public function email(Request $request){
+        
+       $combined = $request->email;
+       $encrypt_key = Crypt::encryptString($combined);
+       session()->put('email_verify_key', $encrypt_key);
+       session()->put('sending', true);
+       
+       return redirect()->back();
+
     }
 }
