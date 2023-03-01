@@ -15,13 +15,13 @@
             <form action="{{ route('verify') }}" method="POST" class="text-inr-white">
                 @csrf
                 <label for="email" class="block mb-5">
-                    <input type="text" class="py-2 px-3 w-full focus:outline-none focus:ring focus:ring-inr-yellow duration-300 rounded bg-transparent outline outline-gray-500 @error('username') border-2 border-pink-500 @enderror" name="username" id="username" placeholder="Username" value="{{ old('username') }}">
+                    <input type="text" class="py-2 px-3 w-full focus:outline-none focus:ring focus:ring-inr-yellow duration-300 rounded bg-transparent outline outline-gray-500 @error('username') border-2 border-pink-500 @enderror" name="username" id="username" placeholder="Email / Username" value="{{ old('username') }}">
                     @error('username')
                         <span class="text-xs text-rose-400">{{ $message }}</span>
                     @enderror
                 </label>
                 <label for="password" class="block mb-5">
-                    <input type="password" class="py-2 px-3 w-full focus:outline-none focus:ring focus:ring-inr-yellow duration-300 rounded bg-transparent outline outline-gray-500" name="password" id="password" placeholder="Password">
+                    <input type="password" class="py-2 px-3 w-full focus:outline-none focus:ring focus:ring-inr-yellow duration-300 rounded bg-transparent outline outline-gray-500 @error('password') is-invalid @enderror" name="password" id="password" placeholder="Password">
                     @error('password')
                         <span class="text-xs text-rose-400">{{ $message }}</span>
                     @enderror
