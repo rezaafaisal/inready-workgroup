@@ -1,4 +1,4 @@
-<aside class="w-3/12">
+<aside class="w-3/12 shrink-0">
     <h3 class="text-3xl font-light">Pengaturan</h3>
     <ul class="mt-5 font-extralight">
         <li class="text-xl">

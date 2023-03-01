@@ -15,6 +15,7 @@ use App\Http\Controllers\Controller;
 use App\Models\VerifyKey;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use SebastianBergmann\CodeUnit\FunctionUnit;
@@ -43,8 +44,6 @@ class ProfileController extends Controller
         ];
         return view('user.profile.personal', Data::view('personal', $data));
     }
-
-
     
     public function account(){
         $data = [
@@ -141,8 +140,6 @@ class ProfileController extends Controller
             'birth_place' => 'required',
             'birth_date' => 'required',
             'gender' => 'required',
-            // 'job' => 'required',
-            // 'instance' => 'required'
         ]);
 
         $profile = Profile::where('user_id', Auth::id())->first();
@@ -240,5 +237,21 @@ class ProfileController extends Controller
         ])->delete();
 
         return redirect()->back();
+    }
+
+    public function setPassword(Request $request){
+        $request->validate([
+            'password' => 'required|min:5|confirmed'
+        ]);
+    
+        $success = User::find(Auth::id())->update([
+            'password' => Hash::make($request->password)
+        ]);
+
+        if($success){
+            return Alert::success('Berhasil', 'Kata Sandi berhasil diubah');
+        }
+
+        return Alert::error('Gagal', 'Gagal mengubah kata sandi');
     }
 }

@@ -76,6 +76,7 @@ Route::prefix('pengguna')->name('user.')->group(function(){
     Route::get('pengaturan/akun', [ProfileController::class, 'account'])->name('setting.account');
     Route::post('pengaturan/akun/email', [MailController::class, 'verifyEmail'])->name('verifyEmail');
     Route::get('pengaturan/akun/email/batal', [ProfileController::class, 'cancelVerifyEmail'])->name('cancelVerifyEmail');
+    Route::post('pengaturan/akun/sandi-baru', [ProfileController::class, 'setPassword'])->name('setPassword');
     Route::get('pengaturan/lainnya', [ProfileController::class, 'etcetera'])->name('setting.etcetera');
     
     Route::prefix('lainnya')->name('etcetera.')->group(function($row){
