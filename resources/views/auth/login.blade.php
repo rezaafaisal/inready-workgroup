@@ -15,7 +15,7 @@
             <form action="{{ route('verify') }}" method="POST" class="text-inr-white">
                 @csrf
                 <label for="email" class="block mb-5">
-                    <input type="text" class="py-2 px-3 w-full focus:outline-none focus:ring focus:ring-inr-yellow duration-300 rounded bg-transparent outline outline-gray-500 @error('email') border-2 border-pink-500 @enderror" name="username" id="username" placeholder="Username" value="{{ old('username') }}">
+                    <input type="text" class="py-2 px-3 w-full focus:outline-none focus:ring focus:ring-inr-yellow duration-300 rounded bg-transparent outline outline-gray-500 @error('username') border-2 border-pink-500 @enderror" name="username" id="username" placeholder="Username" value="{{ old('username') }}">
                     @error('username')
                         <span class="text-xs text-rose-400">{{ $message }}</span>
                     @enderror

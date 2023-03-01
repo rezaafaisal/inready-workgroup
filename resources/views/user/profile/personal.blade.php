@@ -13,7 +13,7 @@
                 <x-forms.profile-setting title="Data Pribadi" route="{{ route('user.setting.setPersonal') }}">
                     <label class="block mb-7">
                         <span for="" class="font-semibold mb-2 block">No. Whatsapp</span>
-                        <div class="flex w-9/12 @error('whatsapp') is-invalid @enderror">
+                        <div class="flex w-full lg:w-9/12 @error('whatsapp') is-invalid @enderror">
                             <span
                                 class="shrink-0 bg-gray-200 w-16 rounded-l flex items-center justify-center border border-r-0 font-extralight">
                                 +62
@@ -26,7 +26,7 @@
                     </label>
                     <label class="block mb-7">
                         <span class="font-semibold mb-2 block">Kota Domisili</span>
-                        <select class="city w-9/12 @error('current_place') is-invalid rounded @enderror" name="current_place" placeholder="Ketikkan kota anda">
+                        <select class="city w-full lg:w-9/12 @error('current_place') is-invalid rounded @enderror" name="current_place" placeholder="Ketikkan kota anda">
                             <option value=""></option>
                             @foreach ($data['cities'] as $city)
                                 <option {{ ($data['profile']->current_place == $city->id) ? 'selected' : '' }}  value="{{ $city->id }}">{{ $city->name }} - {{ $city->province->name }}</option>
@@ -38,7 +38,7 @@
                     </label>
                     <label class="block mb-7">
                         <span class="font-semibold mb-2 block">Alamat Lengkap</span>
-                        <textarea name="address" rows="3" class="form-control w-9/12 @error('address') is-invalid @enderror"
+                        <textarea name="address" rows="3" class="form-control w-full lg:w-9/12 @error('address') is-invalid @enderror"
                             placeholder="Alamat anda saat ini">{{ $data['profile']->address }}</textarea>
                         @error('adress')
                             <span class="invalid-feedback">{{ $message }}</span>
@@ -46,7 +46,7 @@
                     </label>
                     <label class="block mb-7">
                         <span class="font-semibold mb-2 block">Tempat Lahir</span>
-                        <select class="city w-9/12 @error('birth_place') is-invalid rounded @enderror" name="birth_place" placeholder="Ketikkan kota anda">
+                        <select class="city w-full lg:w-9/12 @error('birth_place') is-invalid rounded @enderror" name="birth_place" placeholder="Ketikkan kota anda">
                             <option value=""></option>
                             @foreach ($data['cities'] as $city)
                                 <option {{ ($data['profile']->birth_place == $city->id) ? 'selected' : '' }} value="{{ $city->id }}">{{ $city->name }} - {{ $city->province->name }}</option>
@@ -56,7 +56,7 @@
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
                     </label>
-                    <div class="grid grid-cols-1 md:grid-cols-2 w-9/12 gap-10 mb-7">
+                    <div class="grid grid-cols-1 md:grid-cols-2 w-full lg:w-9/12 gap-10 mb-7">
                         <label class="block mb-7">
                             <span class="font-semibold mb-2 block">Tanggal Lahir</span>
                             <div class="flex @error('birth_date') is-invalid @enderror">
@@ -72,12 +72,12 @@
                         </label>
                         <div class="block mb-7 font-extralight">
                             <span class="font-semibold mb-2 block">Jenis Kelamin</span>
-                            <label class="flex items-center mb-5 cursor-pointer">
+                            <label class="flex items-center mb-5 cursor-pointer ml-2 md:ml-0">
                                 <input {{ ($data['profile']->gender_id == 1) ? 'checked' : '' }} type="radio" name="gender" id="" value="1"
                                     class="appearance-none h-3 w-3 rounded-full checked:bg-inr-yellow ring-offset-2 ring-offset-white ring ring-inr-yellow">
                                 <span class="ml-4">Laki-laki</span>
                             </label>
-                            <label class="flex items-center cursor-pointer">
+                            <label class="flex items-center cursor-pointer ml-2 md:ml-0">
                                 <input {{ ($data['profile']->gender_id == 2) ? 'checked' : '' }} type="radio" name="gender" id="" value="2"
                                     class="appearance-none h-3 w-3 rounded-full checked:bg-inr-yellow ring-offset-2 ring-offset-white ring ring-inr-yellow">
                                 <span class="ml-4">Perempuan</span>
@@ -89,14 +89,14 @@
                     </div>
                     <label class="block mb-7">
                         <span class="font-semibold mb-2 block">Pekerjaan Saat Ini</span>
-                        <input type="text" name="job" class="form-control w-9/12 @error('job') is-invalid @enderror" placeholder="Ketikkan pekerjaan anda" value="{{ old('job') ?? $data['profile']->job }}">
+                        <input type="text" name="job" class="form-control w-full lg:w-9/12 @error('job') is-invalid @enderror" placeholder="Ketikkan pekerjaan anda" value="{{ old('job') ?? $data['profile']->job }}">
                         @error('job')
                             <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
                     </label>
                     <label class="block mb-7">
                         <span class="font-semibold mb-2 block">Perusahaan Saat Ini</span>
-                        <input type="text" name="instance" class="form-control w-9/12 @error('instance') is-invalid @enderror"
+                        <input type="text" name="instance" class="form-control w-full lg:w-9/12 @error('instance') is-invalid @enderror"
                             placeholder="Ketikkan perusahaan tempat kerja anda" value="{{ old('instance') ?? $data['profile']->instance }}">
                         @error('instance')
                             <span class="invalid-feedback">{{ $message }}</span>

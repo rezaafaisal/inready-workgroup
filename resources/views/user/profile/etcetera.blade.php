@@ -57,7 +57,7 @@
                 <x-forms.profile-setting title="Sosial Media" route="{{ route('user.etcetera.social') }}">
                     <label class="block mb-7">
                         <span for="" class="font-semibold mb-2 block">Instagram</span>
-                        <div class="flex w-7/12">
+                        <div class="flex w-full lg:w-7/12">
                             <span
                                 class="shrink-0 bg-gray-200 w-10 rounded-l flex items-center justify-center border border-r-0 font-extralight">
                                 <i class="fab fa-instagram"></i>
@@ -67,7 +67,7 @@
                     </label>
                     <label class="block mb-7">
                         <span for="" class="font-semibold mb-2 block">Twitter</span>
-                        <div class="flex w-7/12">
+                        <div class="flex w-full lg:w-7/12">
                             <span
                                 class="shrink-0 bg-gray-200 w-10 rounded-l flex items-center justify-center border border-r-0 font-extralight">
                                 <i class="fab fa-twitter"></i>
@@ -77,7 +77,7 @@
                     </label>
                     <label class="block mb-7">
                         <span for="" class="font-semibold mb-2 block">Facebook</span>
-                        <div class="flex w-7/12">
+                        <div class="flex w-full lg:w-7/12">
                             <span
                                 class="shrink-0 bg-gray-200 w-10 rounded-l flex items-center justify-center border border-r-0 font-extralight">
                                 <i class="fab fa-facebook-f"></i>
@@ -87,7 +87,7 @@
                     </label>
                     <label class="block mb-7">
                         <span for="" class="font-semibold mb-2 block">LinkedIn</span>
-                        <div class="flex w-7/12">
+                        <div class="flex w-full lg:w-7/12">
                             <span
                                 class="shrink-0 bg-gray-200 w-10 rounded-l flex items-center justify-center border border-r-0 font-extralight">
                                 <i class="fab fa-linkedin-in"></i>
