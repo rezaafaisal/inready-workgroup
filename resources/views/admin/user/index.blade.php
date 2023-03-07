@@ -12,7 +12,7 @@
             <div class="card-toolbar">
                 <!--begin::Dropdown-->
                 <div class="dropdown dropdown-inline mr-2">
-                    <button type="button" class="btn btn-light-primary font-weight-bolder dropdown-toggle"
+                    {{-- <button type="button" class="btn btn-light-primary font-weight-bolder dropdown-toggle"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" disabled>
                         <span class="svg-icon svg-icon-md">
                             <!--begin::Svg Icon | path:assets/media/svg/icons/Design/PenAndRuller.svg-->
@@ -29,7 +29,7 @@
                                 </g>
                             </svg>
                             <!--end::Svg Icon-->
-                        </span>Export</button>
+                        </span>Export</button> --}}
                     <!--begin::Dropdown Menu-->
                     <!--end::Dropdown Menu-->
                 </div>

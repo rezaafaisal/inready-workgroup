@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('generations', function (Blueprint $table) {
             $table->id();
-            // $table->year('year');
             $table->integer('name');
+            // $table->string('period');
             $table->boolean('active')->default(false);
         });
     }

@@ -24,7 +24,14 @@ class ProfileController extends Controller
 {
     
     public function index(){
-        $data = Auth::user();
+        $biography = Biography::where('user_id', Auth::id())->get();
+        $data = [
+            'user' => Auth::user(),
+            'sd' => $biography->where('type', 'sd')->first(),
+            'sltp' => $biography->where('type', 'sltp')->first(),
+            'slta' => $biography->where('type', 'slta')->first(),
+            'organization' => $biography->where('type', 'organization')
+        ];
         return view('user.profile.index', Data::view('profile', $data));
     }
 

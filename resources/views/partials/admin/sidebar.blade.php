@@ -29,6 +29,24 @@
                     <span class="menu-text">Pengguna</span>
                 </a>
             </li>
+            <li class="menu-item {{ ($active=='generation')?'menu-item-active':'' }}"
+                aria-haspopup="true">
+                <a href="{{ route('admin.generation') }}" class="menu-link">
+                    <span class="svg-icon menu-icon">
+                        <i class="menu-icon fas fa-layer-group"></i>
+                    </span>
+                    <span class="menu-text">Periode Angkatan</span>
+                </a>
+            </li>
+            <li class="menu-item {{ ($active=='')?'menu-item-active':'' }}"
+                aria-haspopup="true">
+                <a href="" class="menu-link">
+                    <span class="svg-icon menu-icon">
+                        <i class="menu-icon fas fa-users-gear"></i>
+                    </span>
+                    <span class="menu-text">Pengurus Harian</span>
+                </a>
+            </li>
             <li class="menu-item menu-item-submenu {{ ($active == $type[1] || $active == $type[0] || $active == $type[2] || $active == 'history') ? 'menu-item-open' : '' }}"
                 aria-haspopup="true" data-menu-toggle="hover">
                 <a href="javascript:;" class="menu-link menu-toggle">
