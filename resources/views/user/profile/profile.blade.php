@@ -36,7 +36,7 @@
                             onchange="readImg(this)">
                         <input type="hidden" name="image_result" id="image_result">
                         <div class="flex flex-col md:flex-row gap-5">
-                            <img id="profile_image" src="{{ asset('profiles/'.$data['profile']->image) ?? asset('images/ui/eren.jpeg') }}"
+                            <img id="profile_image" src="{{ ($data['profile']->image != null) ? asset('profiles/'.$data['profile']->image) : asset('images/ui/user.png') }}"
                                 alt="" class="w-40 h-40 md:w-28 md:h-28 object-cover rounded">
                             <div>
                                 <button @click="$refs.image.click()" type="button" class="btn-yellow text-sm">Pilih
@@ -64,9 +64,15 @@
                     <label class="mb-7 block">
                         <span class="font-semibold block mb-2">Email</span>
                         <input disabled type="text" class="form-control lowercase w-full lg:w-9/12 disabled:bg-gray-100" value="{{ $data['user']->email }}">
-                        <span class="block text-xs font-light mt-2 text-inr-black">
-                            Anda dapat mengubah alamat email melalui menu <a class="font-semibold text-sky-500" href="{{ route('user.setting.account') }}">Akun</a>.
-                        </span>
+                        @if ($data['user']->email != null)
+                            <span class="block text-xs font-light mt-2 text-inr-black">
+                                Anda dapat mengubah alamat email melalui menu <a class="font-semibold text-sky-500" href="{{ route('user.setting.account') }}">Akun</a>.
+                            </span>
+                        @else
+                            <span class="block text-xs font-light mt-2 text-rose-500">
+                                Tambahkan alamat email melalui menu <a class="font-semibold text-sky-500" href="{{ route('user.setting.account') }}">Akun</a>.
+                            </span>
+                        @endif
                     </label>
                     <label class="mb-7 block">
                         <span class="font-semibold block mb-2">Jurusan</span>

@@ -21,7 +21,9 @@ class MailController extends Controller
     }
 
     public function verifyEmail(Request $request){
-        
+        $request->validate([
+            'email' => 'required|email|unique:users'
+        ]);
         $email = $request->email;
         $combined = $email.'|'.Auth::user()->username;
         $encrypt_key = Crypt::encryptString($combined);

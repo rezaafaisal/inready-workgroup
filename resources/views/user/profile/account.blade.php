@@ -31,7 +31,12 @@
                         <x-slot:submit>Ubah Email</x-slot:submit>
                         <label class="block mb-7">
                             <span for="" class="font-semibold mb-2 block">Email</span>
-                            <input type="email" name="email" class="form-control w-full lg:w-7/12" placeholder="email@domain.com">
+                            <input type="email" name="email" class="form-control w-full lg:w-7/12 @error('email') is-invalid @enderror" placeholder="email@domain.com" value="{{ old('email') }}">
+                            @error('email')
+                                <span class="invalid-feedback">
+                                    {{ $message }}
+                                </span>
+                            @enderror
                             <span class="block mt-2 font-extralight text-sm">Email akan berubah ketika Anda sudah menekan link verifikasi yang dikirimkan ke email baru Anda.</span>
                         </label>
                     </x-forms.profile-setting>

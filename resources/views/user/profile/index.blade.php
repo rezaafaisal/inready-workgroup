@@ -1,33 +1,34 @@
 @extends('layouts.user')
 @section('body')
-<section class="pt-20 bg-white">
+<section class="pt-20 bg-inr-black text-inr-white">
     <div class="wrapper py-20 border-b border-gray-200">
-        <div class="flex items-center flex-col md:flex-row gap-12 ">
+        <div class="flex items-start lg:items-center flex-col md:flex-row gap-12 ">
             <div class="flex justify-center shrink-0">
                 <div class="relative">
                     <img src="{{ asset('profiles/'.Auth::user()->profile->image) }}" alt=""
-                        class="h-60 w-60 object-cover rounded-full shadow-lg">
-                    <div class="absolute bottom-5 left-48">
-                        <a href="{{ route('user.setting.profile') }}" class="p-2 btn-yellow block">
-                            Edit
+                        class="h-40 w-40 lg:h-60 lg:w-60 object-cover rounded-full shadow-lg">
+                    <div class="absolute bottom-2 lg:bottom-4 left-32 lg:left-48">
+                        <a href="{{ route('user.setting.profile') }}" class="rounded-full p-5 justify-center items-center bg-inr-yellow flex w-10 border-2 text-inr-black border-inr-black h-10">
+                            <i class="las la-pen text-2xl"></i>
                         </a>
                     </div>
                 </div>
             </div>
             <div class="">
-                <h3 class="text-5xl font-extralight">Eren Jeager</h3>
-                <div class="mt-5 font-light first-line flex gap-5">
-                    <span><i class="fas fa-certificate text-teal-500"></i> Angkatan 10</span>
-                    <span><i class="fas fa-location-dot text-rose-500"></i> Kota makassar</span>
+                <h3 class="text-5xl font-extralight">{{ $data->name }}</h3>
+                <div class="mt-8">
+                    {{ $data->profile->headline }}
+                </div>
+                <div class="mt-3 font-light first-line flex gap-5">
+                    <span><i class="fas fa-certificate text-teal-500"></i> Angkatan {{ $data->profile->generation->name }}</span>
+                    <span><i class="fas fa-location-dot text-rose-500"></i> {{ $data->profile->currentPlace?->name ?? 'Belum ditentukan' }}</span>
                 </div>
             </div>
         </div>
-        <div class="mt-8 lg:ml-72">
+        <div class="mt-10 lg:mt-6 lg:ml-72">
             <h4 class="font-bold mb-3">Tentang Saya</h4>
             <p class="text-justify font-light">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate illo maxime ducimus molestias magnam,
-                reprehenderit distinctio iure fuga. Reprehenderit in asperiores eaque earum, alias quaerat doloribus
-                mollitia minima cumque similique?
+                {{ $data->profile->biography }}
             </p>
         </div>
     </div>

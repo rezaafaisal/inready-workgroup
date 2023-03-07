@@ -43,7 +43,7 @@ Route::prefix('data')->name('data.')->group(function(){
     Route::get('dokumen/{type}', [DataController::class, 'document'])->name('document');
 });
 
-Route::prefix('admin')->name('admin.')->group(function(){
+Route::prefix('admin')->name('admin.')->middleware('admin')->group(function(){
     Route::get('/', [AdminController::class, 'index'])->name('home');
 
     Route::resource('pengguna', UserController::class);

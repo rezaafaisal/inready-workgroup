@@ -34,6 +34,10 @@ class AuthController extends Controller
                 'password' => $request->password
             ], $remember = $remember)){
             $request->session()->regenerate();
+
+            if(Auth::user()->role->name == 'admin'){
+                return redirect()->route('admin.home');
+            }
             return redirect()->route('user.profile');
         }
 
