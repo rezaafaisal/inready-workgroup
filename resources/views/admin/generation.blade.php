@@ -10,9 +10,7 @@
                 </h3>
             </div>
             <div class="card-toolbar">
-                <a href="{{ route('admin.pengguna.create') }}"
-                    class="btn btn-primary font-weight-bolder">Tambah
-                    Data</a>
+                <button id="createConfirm" class="btn btn-primary font-weight-bolder">Tambah Angkatan</button>
             </div>
         </div>
         <div class="card-body">
@@ -39,7 +37,11 @@
                                 @endif
                             </td>
                             <td>
-                                <button class="btn btn-sm btn-primary">Jadikan Aktif</button>
+                                @if ($item->active == true)
+                                    <button class="btn btn-sm btn-warning">Selesaikan</button>
+                                @else
+                                    <button class="btn btn-sm btn-primary">Aktifkan</button>
+                                @endif
                             </td>
                         </tr>
                     @endforeach
@@ -49,4 +51,29 @@
         </div>
     </div>
 </div>
+@endsection
+@section('scripts')
+    <x-datatable-script />
+    <script>
+        $(document).ready(function () {
+            $('#table').DataTable()
+        })
+    </script>
+
+    <script>
+        $(document).ready(function(){
+            $('#createConfirm').click(()=>{
+                Swal.fire({
+                    icon:'question',
+                    title:'Yakin Tambah?',
+                    text:'Tekan iya jika sudah terdapat anggota baru yang sudah dilantik',
+                    showCancelButton:true,
+                }).then((e)=>{
+                    if(e.isConfirm){
+                        
+                    }
+                })
+            })
+        })
+    </script>
 @endsection

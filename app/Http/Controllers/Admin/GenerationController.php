@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class GenerationController extends Controller
 {
     public function index(){
-        $data = Generation::all();
+        $data = Generation::orderBy('id', 'DESC')->get();
         return view('admin.generation', Data::view('generation', $data));
     }
 }
