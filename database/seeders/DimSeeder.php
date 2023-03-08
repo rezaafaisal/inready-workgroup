@@ -32,11 +32,11 @@ class DimSeeder extends Seeder
         ];
 
         $generations = [
-            ['name' => 9, 'active' => false],
-            ['name' => 10, 'active' => false],
-            ['name' => 11, 'active' => false],
-            ['name' => 12, 'active' => true],
-            ['name' => 13, 'active' => false],
+            ['name' => 9, 'status' => 'outgoing'],
+            ['name' => 10, 'status' => 'outgoing'],
+            ['name' => 11, 'status' => 'outgoing'],
+            ['name' => 12, 'status' => 'active'],
+            ['name' => 13, 'status' => 'member'],
         ];
 
         $major = [

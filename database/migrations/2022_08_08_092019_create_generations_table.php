@@ -16,8 +16,7 @@ return new class extends Migration
         Schema::create('generations', function (Blueprint $table) {
             $table->id();
             $table->integer('name');
-            // $table->string('period');
-            $table->boolean('active')->default(false);
+            $table->enum('status', ['active', 'member', 'outgoing']);
         });
     }
 

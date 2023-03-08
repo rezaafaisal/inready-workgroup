@@ -31,7 +31,7 @@
             </li>
             <li class="menu-item {{ ($active=='generation')?'menu-item-active':'' }}"
                 aria-haspopup="true">
-                <a href="{{ route('admin.generation') }}" class="menu-link">
+                <a href="{{ route('admin.generation.index') }}" class="menu-link">
                     <span class="svg-icon menu-icon">
                         <i class="menu-icon fas fa-layer-group"></i>
                     </span>

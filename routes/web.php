@@ -51,7 +51,11 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function(){
     Route::get('pengguna/{id}/reset', [UserController::class, 'reset'])->name('pengguna.reset');
     Route::post('pengguna/{id}/reset', [UserController::class, 'reseted'])->name('pengguna.reseted');
 
-    Route::get('angkatan', [AdminGenerationController::class, 'index'])->name('generation');
+    Route::prefix('angkatan')->name('generation.')->group(function(){
+        Route::get('/', [AdminGenerationController::class, 'index'])->name('index');
+        Route::post('tambah', [AdminGenerationController::class, 'create'])->name('create');
+        Route::post('perbarui', [AdminGenerationController::class, 'set'])->name('set');
+    });
     Route::prefix('buku-besar')->name('ledger.')->group(function(){
         Route::prefix('sejarah')->name('history.')->group(function($row){
             Route::get('/', [HistoryController::class, 'index'])->name('index');

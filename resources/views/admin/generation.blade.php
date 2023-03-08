@@ -20,27 +20,34 @@
                     <tr>
                         <th>No</th>
                         <th>Angkatan</th>
+                        <th>Jumlah Anggota</th>
                         <th>Status</th>
-                        <th>Aksi</th>
+                        <th style="width:150px">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($data as $i => $item)
+                    @foreach($data as $i => $item)
                         <tr>
-                            <td>{{ $i+1}}</td>
-                            <td>{{ $item->name }}</td>
+                            <td>{{ $i+1 }}</td>
+                            <td>Angkatan {{ $item->name }}</td>
+                            <td>{{ $item->profiles->count() }} Orang</td>
                             <td>
-                                @if ($item->active == true)
+                                @if($item->status == 'active')
                                     <span class="label label-inline label-success">Pengurus Aktif</span>
+                                @elseif($item->status == 'outgoing')
+                                    <span class="label label-inline label-danger">Demisioner</span>
                                 @else
-                                    <span class="label label-inline label-danger">Bukan Pengurus</span>
+                                    <span class="label label-inline label-primary">Anggota</span>
                                 @endif
                             </td>
                             <td>
-                                @if ($item->active == true)
-                                    <button class="btn btn-sm btn-warning">Selesaikan</button>
+                                @if($item->status == 'active')
+                                    <button onclick="setOutgoing('{{ \Crypt::encryptString($item->name) }}')" class="btn btn-block btn-sm btn-primary">Jadikan Demisioner</button>
+                                @elseif($item->status == 'member')
+                                    <button onclick="setActive('{{ \Crypt::encryptString($item->name) }}')"
+                                        class="btn btn-sm btn-block btn-info">Jadikan Pengurus</button>
                                 @else
-                                    <button class="btn btn-sm btn-primary">Aktifkan</button>
+                                    <button class="btn btn-sm btn-block btn-secondary" disabled>Mantan Pengurus</button>
                                 @endif
                             </td>
                         </tr>
@@ -51,29 +58,82 @@
         </div>
     </div>
 </div>
+
+{{-- hidden form --}}
+<form id="create_generation" action="{{ route('admin.generation.create') }}" method="post">
+    @csrf
+    <input type="hidden" name="latest" value="{{ $data->first()->name }}">
+</form>
+
+{{-- form set active --}}
+<form id="set" action="{{ route('admin.generation.set') }}" method="post">
+    @csrf
+    <input type="hidden" id="set_status" name="status">
+    <input type="hidden" id="set_id" name="id">
+</form>
+
+<script>
+    function setActive(id) {
+        Swal.fire({
+            icon: 'question',
+            title: 'Konfirmasi Jadikan Pengurus?',
+            text: 'Perubahan tidak bisa dikembalikan jadi pertimbangkan baik-baik',
+            showCancelButton: true,
+            confirmButtonText: 'Ya',
+            cancelButtonText: 'Batal'
+        }).then((e) => {
+            if (e.isConfirmed) {
+                $('#set_id').val(id)
+                $('#set_status').val('active')
+                $('#set').submit()
+            }
+        })
+    }
+    function setOutgoing(id) {
+        Swal.fire({
+            icon: 'question',
+            title: 'Konfirmasi Jadikan Demisioner?',
+            text: 'Silahkan tekan iya jika telah selesai menjadi pengurus',
+            showCancelButton: true,
+            confirmButtonText: 'Ya',
+            cancelButtonText: 'Batal'
+        }).then((e) => {
+            if (e.isConfirmed) {
+                $('#set_id').val(id)
+                $('#set_status').val('outgoing')
+                $('#set').submit()
+            }
+        })
+    }
+
+</script>
 @endsection
 @section('scripts')
-    <x-datatable-script />
-    <script>
-        $(document).ready(function () {
-            $('#table').DataTable()
-        })
-    </script>
+<x-datatable-script />
+<script>
+    $(document).ready(function () {
+        $('#table').DataTable()
+    })
 
-    <script>
-        $(document).ready(function(){
-            $('#createConfirm').click(()=>{
-                Swal.fire({
-                    icon:'question',
-                    title:'Yakin Tambah?',
-                    text:'Tekan iya jika sudah terdapat anggota baru yang sudah dilantik',
-                    showCancelButton:true,
-                }).then((e)=>{
-                    if(e.isConfirm){
-                        
-                    }
-                })
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('#createConfirm').click(() => {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Yakin Tambah?',
+                text: 'Tekan iya jika sudah terdapat anggota baru yang sudah dilantik',
+                showCancelButton: true,
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Batal'
+            }).then((e) => {
+                if (e.isConfirmed) {
+                    $('#create_generation').submit()
+                }
             })
         })
-    </script>
+    })
+
+</script>
 @endsection
