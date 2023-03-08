@@ -4,6 +4,8 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+use App\Models\Admin\Bph;
+use App\Models\Admin\Bpo;
 use App\Models\User\Biography;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
@@ -50,6 +52,14 @@ class User extends Authenticatable
 
     public function verifyKey(){
         return $this->hasMany(VerifyKey::class);
+    }
+
+    public function bph(){
+        return $this->hasOne(Bph::class);
+    }
+
+    public function bpo(){
+        return $this->hasOne(Bpo::class);
     }
     
     protected $guarded = ['id'];

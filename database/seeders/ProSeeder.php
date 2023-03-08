@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Profile;
 use App\Models\User;
+use App\Models\Profile;
+use App\Models\Admin\Bph;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -36,7 +37,23 @@ class ProSeeder extends Seeder
             ]
         ];
 
+        $bphs = [
+            [
+                'period_id' => 1,
+                'division' => 'ketua umum',
+            ],
+            [
+                'period_id' => 1,
+                'division' => 'Bendahara umum',
+            ],
+            [
+                'period_id' => 1,
+                'division' => 'Sekretaris umum',
+            ],
+        ];
+
         User::insert($users);
         Profile::insert($profiles);
+        Bph::insert($bphs);
     }
 }

@@ -55,6 +55,9 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function(){
         Route::get('/', [AdminGenerationController::class, 'index'])->name('index');
         Route::post('tambah', [AdminGenerationController::class, 'create'])->name('create');
         Route::post('perbarui', [AdminGenerationController::class, 'set'])->name('set');
+
+        // tambah periode
+        Route::get('periode', [AdminGenerationController::class, 'createPeriod'])->name('createPeriod');
     });
     Route::prefix('buku-besar')->name('ledger.')->group(function(){
         Route::prefix('sejarah')->name('history.')->group(function($row){

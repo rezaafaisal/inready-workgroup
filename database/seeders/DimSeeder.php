@@ -6,6 +6,7 @@ use App\Models\Gender;
 use App\Models\Generation;
 use App\Models\LedgerType;
 use App\Models\Major;
+use App\Models\Period;
 use App\Models\Role;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -31,6 +32,13 @@ class DimSeeder extends Seeder
             ['name' => 'user']
         ];
 
+        $periods = [
+            ['period' => '2019 - 2020'],
+            ['period' => '2020 - 2021'],
+            ['period' => '2021 - 2022'],
+            ['period' => '2022 - 2023'],
+        ];
+
         $generations = [
             ['name' => 9, 'status' => 'outgoing'],
             ['name' => 10, 'status' => 'outgoing'],
@@ -43,6 +51,7 @@ class DimSeeder extends Seeder
             ['name' => 'teknik informatika'],
             ['name' => 'sistem informasi']
         ];
+        Period::insert($periods);
         Gender::insert($genders);
         Role::insert($roles);
         Generation::insert($generations);

@@ -31,5 +31,7 @@ class FactSeeder extends Seeder
         ];
 
         // Document::insert($juklak_juknis);
+
+        
     }
 }
