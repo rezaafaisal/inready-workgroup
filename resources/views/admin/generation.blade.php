@@ -164,7 +164,7 @@
             Swal.fire({
                 icon: 'warning',
                 title: 'Yakin Tambah?',
-                text: 'Tekan iya jika sudah terdapat anggota baru yang sudah dilantik',
+                text: 'Tekan iya jika sudah terdapat ANGGOTA BARU yang sudah DILANTIK',
                 showCancelButton: true,
                 confirmButtonText: 'Ya',
                 cancelButtonText: 'Batal'
@@ -179,7 +179,7 @@
             Swal.fire({
                 icon: 'warning',
                 title: 'Yakin Tambah Periode?',
-                text: 'Tekan iya jika sudah melaksanakan mubes dan terdapat formatur terbaru',
+                text: 'Tekan iya jika sudah melaksanakan MUBES dan terdapat formatur terbaru',
                 showCancelButton: true,
                 confirmButtonText: 'Ya',
                 cancelButtonText: 'Batal'

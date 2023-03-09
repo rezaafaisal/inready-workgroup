@@ -45,9 +45,10 @@ class GenerationController extends Controller
             // cek jika masih ada pengurus, maka tidak bisa menjadi demisioner
             if(Generation::where('name', $id-1)->first()->status == 'active') return Alert::error('Terjadi Kesalahan', 'Kepengurusan belum selesai, tidak bisa menjadi demisioner!');
 
-            // cek jika tidak ada pewaris
-            if(Generation::where('name', $id+1)->first() == null) return Alert::error('Terjadi Kesalahan', 'Setidaknya jadikan pengurus generasi selanjutnya sebelum demisioner');
+            // cek apakah sudah tersedia pewaris
+            if(Generation::where('name', $id+1)->first() == null || Generation::where('name', $id+1)->first()->status == 'member') return Alert::error('Terjadi Kesalahan', 'Setidaknya jadikan pengurus generasi selanjutnya sebelum demisioner');
         }
+
         $success = Generation::where('name', $id)->update([
             'status' => ($status == 'active') ? 'active' : 'outgoing'
         ]);
@@ -59,10 +60,16 @@ class GenerationController extends Controller
     public function createPeriod()
     {
         $period = Period::orderBy('id', 'DESC')->first()->period;
-        $latest = explode(' ',$period)[2];
-        if($latest != Carbon::now()->year()) return Alert::error('Gagal', 'Gagal menambahkan periode, periode tahun ini sudah ada');
+        $latest = explode(' ',$period)[0];
+        if($latest == Carbon::now()->format('Y')) return Alert::error('Gagal', 'Gagal menambahkan periode, periode tahun ini sudah ada');
 
-        
+        $new_period = Carbon::now()->format('Y').' - '.Carbon::now()->addYear()->format('Y');
+        $success = Period::create([
+            'period' => $new_period
+        ]);
 
+        if($success) return Alert::success('Berhasil', 'Periode baru berhasil ditambahkan');
+
+        return Alert::error('Gagal', 'Terjadi kesalahan');
     }
 }
