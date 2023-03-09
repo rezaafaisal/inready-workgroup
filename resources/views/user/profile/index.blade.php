@@ -38,6 +38,9 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
             <div class="rounded p-5 bg-white shadow-md">
                 <h3 class="font-bold mb-5">Riwayat Pendidikan</h3>
+                @if ($data['sd'] == null || $data['sltp'] == null || $data['slta'] == null)
+                    <span class="block text-center p-4 bg-yellow-100 text-yellow-500 ">Data masih kosong</span>
+                @endif
                 <ul class="list-disc ml-4 flex flex-col gap-2">
                     @if ($data['sd'])
                         <li>{{ $data['sd']->name }} ({{ $data['sd']->period }})</li>
@@ -51,7 +54,10 @@
                 </ul>
             </div>
             <div class="rounded p-5 bg-white shadow-md">
-                <h3 class="font-bold mb-5">Riwayat Organisasi</h3>
+            <h3 class="font-bold mb-5">Riwayat Organisasi</h3>
+                @if ($data['organization'])
+                    <span class="block text-center p-4 bg-yellow-100 text-yellow-500 ">Data masih kosong</span>
+                @endif
                 <ul class="list-disc ml-4 flex flex-col gap-2">
                     @foreach ($data['organization'] as $item)
                         <li>{{ $item->name }} ({{ $item->period }})</li>

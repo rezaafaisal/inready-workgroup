@@ -38,7 +38,7 @@
                     <span class="menu-text">Periode Angkatan</span>
                 </a>
             </li>
-            <li class="menu-item {{ ($active=='')?'menu-item-active':'' }}"
+            {{-- <li class="menu-item {{ ($active=='')?'menu-item-active':'' }}"
                 aria-haspopup="true">
                 <a href="" class="menu-link">
                     <span class="svg-icon menu-icon">
@@ -46,6 +46,37 @@
                     </span>
                     <span class="menu-text">Pengurus Harian</span>
                 </a>
+            </li> --}}
+            <li class="menu-item menu-item-submenu {{ ($active == 'bph') ? 'menu-item-open' : '' }}"
+                aria-haspopup="true" data-menu-toggle="hover">
+                <a href="javascript:;" class="menu-link menu-toggle">
+                    <i class="menu-icon fas fa-users-gear"></i>
+                    <span class="menu-text">Pengurus</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="menu-submenu">
+                    <i class="menu-arrow"></i>
+                    <ul class="menu-subnav">
+                        <li class="menu-item {{ ($active == 'bph') ? 'menu-item-active' : '' }}"
+                            aria-haspopup="true" data-menu-toggle="hover">
+                            <a href="{{ route('admin.ledger.history.index') }}" class="menu-link menu-toggle">
+                                <i class="menu-bullet menu-bullet-line">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Pengurus Harian</span>
+                            </a>
+                        </li>
+                        <li class="menu-item {{ ($active == 'bph') ? 'menu-item-active' : '' }}"
+                            aria-haspopup="true" data-menu-toggle="hover">
+                            <a href="{{ route('admin.ledger.history.index') }}" class="menu-link menu-toggle">
+                                <i class="menu-bullet menu-bullet-line">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Pengurus Organisasi</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </li>
             <li class="menu-item menu-item-submenu {{ ($active == $type[1] || $active == $type[0] || $active == $type[2] || $active == 'history') ? 'menu-item-open' : '' }}"
                 aria-haspopup="true" data-menu-toggle="hover">
