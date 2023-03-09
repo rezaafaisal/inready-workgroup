@@ -21,7 +21,7 @@ return new class extends Migration
             $table->foreignId('major_id')->nullable();
             $table->boolean('is_lead')->default(false);
             $table->boolean('is_manager')->default(false);
-            $table->string('image')->nullable();
+            $table->string('image')->default('user.png')->nullable();
             $table->unsignedBigInteger('current_place')->nullable();
             $table->text('address')->nullable();
             $table->unsignedBigInteger('birth_place')->nullable();

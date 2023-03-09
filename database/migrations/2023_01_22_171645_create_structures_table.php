@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->nullable();
             $table->foreignId('period_id');
-            $table->string('division');
+            $table->string('division')->nullable();
             $table->enum('position', ['leader', 'member'])->nullable();
             $table->enum('type', ['elder', 'dpo', 'bph', 'bpo'])->nullable();
         });

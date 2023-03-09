@@ -117,6 +117,5 @@
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
     $('.city').selectize({})
-
 </script>
 @endsection
