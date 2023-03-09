@@ -47,7 +47,7 @@
                     <span class="menu-text">Pengurus Harian</span>
                 </a>
             </li> --}}
-            <li class="menu-item menu-item-submenu {{ ($active == 'bph') ? 'menu-item-open' : '' }}"
+            <li class="menu-item menu-item-submenu {{ ($active == 'elder' || $active == 'dpo' || $active == 'bph' || $active == 'bpo') ? 'menu-item-open' : '' }}"
                 aria-haspopup="true" data-menu-toggle="hover">
                 <a href="javascript:;" class="menu-link menu-toggle">
                     <i class="menu-icon fas fa-users-gear"></i>
@@ -57,16 +57,16 @@
                 <div class="menu-submenu">
                     <i class="menu-arrow"></i>
                     <ul class="menu-subnav">
-                        <li class="menu-item {{ ($active == 'bph') ? 'menu-item-active' : '' }}"
+                        <li class="menu-item {{ ($active == 'elder') ? 'menu-item-active' : '' }}"
                             aria-haspopup="true" data-menu-toggle="hover">
-                            <a href="{{ route('admin.ledger.history.index') }}" class="menu-link menu-toggle">
+                            <a href="{{ route('admin.structure.elder.index') }}" class="menu-link menu-toggle">
                                 <i class="menu-bullet menu-bullet-line">
                                     <span></span>
                                 </i>
                                 <span class="menu-text">Pembina</span>
                             </a>
                         </li>
-                        <li class="menu-item {{ ($active == 'bph') ? 'menu-item-active' : '' }}"
+                        <li class="menu-item {{ ($active == 'dpo') ? 'menu-item-active' : '' }}"
                             aria-haspopup="true" data-menu-toggle="hover">
                             <a href="{{ route('admin.ledger.history.index') }}" class="menu-link menu-toggle">
                                 <i class="menu-bullet menu-bullet-line">
@@ -84,7 +84,7 @@
                                 <span class="menu-text">Pengurus Harian</span>
                             </a>
                         </li>
-                        <li class="menu-item {{ ($active == 'bph') ? 'menu-item-active' : '' }}"
+                        <li class="menu-item {{ ($active == 'bpo') ? 'menu-item-active' : '' }}"
                             aria-haspopup="true" data-menu-toggle="hover">
                             <a href="{{ route('admin.ledger.history.index') }}" class="menu-link menu-toggle">
                                 <i class="menu-bullet menu-bullet-line">

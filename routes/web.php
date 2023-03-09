@@ -61,7 +61,7 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function(){
     });
     Route::prefix('struktur-organisasi')->name('structure.')->group(function(){
         Route::prefix('pembina')->name('elder.')->group(function(){
-            Route::get('/', [ElderController::class, 'index'])->name('index');
+            Route::get('/{period?}', [ElderController::class, 'index'])->name('index');
         });
     });
     Route::prefix('buku-besar')->name('ledger.')->group(function(){

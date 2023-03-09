@@ -13,7 +13,7 @@ class Period extends Model
 
     protected $guarded = ['id'];
 
-    public function manager(){
-        return $this->hasOne(Bph::class);
+    public function structure(){
+        return $this->hasOne(Structure::class);
     }
 }

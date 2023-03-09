@@ -54,12 +54,8 @@ class User extends Authenticatable
         return $this->hasMany(VerifyKey::class);
     }
 
-    public function bph(){
-        return $this->hasOne(Bph::class);
-    }
-
-    public function bpo(){
-        return $this->hasOne(Bpo::class);
+    public function structures(){
+        return $this->hasMany(Structure::class);
     }
     
     protected $guarded = ['id'];

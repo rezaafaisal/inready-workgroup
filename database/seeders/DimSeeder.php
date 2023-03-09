@@ -33,10 +33,10 @@ class DimSeeder extends Seeder
         ];
 
         $periods = [
-            ['period' => '2019 - 2020'],
-            ['period' => '2020 - 2021'],
-            ['period' => '2021 - 2022'],
-            ['period' => '2022 - 2023'],
+            ['period' => '2019 - 2020', 'year' => '2019'],
+            ['period' => '2020 - 2021', 'year' => '2020'],
+            ['period' => '2021 - 2022', 'year' => '2021'],
+            ['period' => '2022 - 2023', 'year' => '2022'],
         ];
 
         $generations = [
