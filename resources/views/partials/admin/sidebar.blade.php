@@ -51,12 +51,30 @@
                 aria-haspopup="true" data-menu-toggle="hover">
                 <a href="javascript:;" class="menu-link menu-toggle">
                     <i class="menu-icon fas fa-users-gear"></i>
-                    <span class="menu-text">Pengurus</span>
+                    <span class="menu-text">Struktur Organisasi</span>
                     <i class="menu-arrow"></i>
                 </a>
                 <div class="menu-submenu">
                     <i class="menu-arrow"></i>
                     <ul class="menu-subnav">
+                        <li class="menu-item {{ ($active == 'bph') ? 'menu-item-active' : '' }}"
+                            aria-haspopup="true" data-menu-toggle="hover">
+                            <a href="{{ route('admin.ledger.history.index') }}" class="menu-link menu-toggle">
+                                <i class="menu-bullet menu-bullet-line">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Pembina</span>
+                            </a>
+                        </li>
+                        <li class="menu-item {{ ($active == 'bph') ? 'menu-item-active' : '' }}"
+                            aria-haspopup="true" data-menu-toggle="hover">
+                            <a href="{{ route('admin.ledger.history.index') }}" class="menu-link menu-toggle">
+                                <i class="menu-bullet menu-bullet-line">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">DPO</span>
+                            </a>
+                        </li>
                         <li class="menu-item {{ ($active == 'bph') ? 'menu-item-active' : '' }}"
                             aria-haspopup="true" data-menu-toggle="hover">
                             <a href="{{ route('admin.ledger.history.index') }}" class="menu-link menu-toggle">
