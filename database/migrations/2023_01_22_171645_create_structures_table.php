@@ -15,8 +15,11 @@ return new class extends Migration
     {
         Schema::create('structures', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('generation_id');
-            $table->string('image');
+            $table->foreignId('user_id')->nullable();
+            $table->foreignId('period_id');
+            $table->string('division');
+            $table->enum('position', ['leader', 'member'])->nullable();
+            $table->enum('type', ['elder', 'dpo', 'bph', 'bpo'])->nullable();
         });
     }
 
