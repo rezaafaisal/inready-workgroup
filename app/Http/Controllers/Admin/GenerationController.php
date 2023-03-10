@@ -59,13 +59,13 @@ class GenerationController extends Controller
 
     public function createPeriod()
     {
-        $period = Period::orderBy('id', 'DESC')->first()->period;
-        $latest = explode(' ',$period)[0];
-        if($latest == Carbon::now()->format('Y')) return Alert::error('Gagal', 'Gagal menambahkan periode, periode tahun ini sudah ada');
+        $year = Period::orderBy('id', 'DESC')->first()->year;
+        if($year == Carbon::now()->format('Y')) return Alert::error('Gagal', 'Gagal menambahkan periode, periode tahun ini sudah ada');
 
         $new_period = Carbon::now()->format('Y').' - '.Carbon::now()->addYear()->format('Y');
         $success = Period::create([
-            'period' => $new_period
+            'period' => $new_period,
+            'year' => Carbon::now()->format('Y')
         ]);
 
         if($success) return Alert::success('Berhasil', 'Periode baru berhasil ditambahkan');

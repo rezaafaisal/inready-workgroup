@@ -64,15 +64,12 @@
 @if ($elders != null)
     <script>
         const data = '{!! $elders !!}'
-        if(data != null){
-            const parse = JSON.parse(data)
-            console.log('hai');
-            parse.forEach(element => {
-                // id.append(element.id)
-                let $option = $("<option selected></option>").val(element.id).text(element.name);
-                $('#elders_input').append($option).trigger('change');
-            })
-        }
+        const parse = JSON.parse(data)
+        parse.forEach(element => {
+            // id.append(element.id)
+            let $option = $("<option selected></option>").val(element.id).text(element.name);
+            $('#elders_input').append($option).trigger('change');
+        })
     </script>
 @endif
 <script>
@@ -82,9 +79,6 @@
         $period.change(() => {
             window.location.href = route + '/' + $period.val()
         })
-
-
-        
 
         $('#elders_input').select2({
             ajax: {

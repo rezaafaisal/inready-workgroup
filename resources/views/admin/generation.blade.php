@@ -148,10 +148,11 @@
 <script>
     $(document).ready(function () {
         $('#table').DataTable({
-            "ordering":false
+            "ordering":false,
         })
         $('#period_table').DataTable({
             "ordering":false
+            "searching": false,
         })
     })
 

@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\GenerationController as AdminGenerationController
 use App\Http\Controllers\Admin\Ledger\DocumentController;
 use App\Http\Controllers\Admin\Ledger\HistoryController;
 use App\Http\Controllers\Admin\Ledger\JuklisConstroller;
+use App\Http\Controllers\Admin\Structure\DpoController;
 use App\Http\Controllers\Admin\Structure\ElderController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AuthController;
@@ -60,10 +61,15 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function(){
         Route::get('periode', [AdminGenerationController::class, 'createPeriod'])->name('createPeriod');
     });
     Route::prefix('struktur-organisasi')->name('structure.')->group(function(){
-        Route::prefix('pembina')->name('elder.')->group(function(){
-            Route::get('kelola', [ElderController::class, 'search'])->name('search');
-            Route::post('kelola', [ElderController::class, 'create'])->name('create');
-            Route::get('{period?}', [ElderController::class, 'index'])->name('index');
+        Route::controller(ElderController::class)->prefix('pembina')->name('elder.')->group(function(){
+            Route::get('kelola', 'search')->name('search');
+            Route::post('kelola','create')->name('create');
+            Route::get('{period?}', 'index')->name('index');
+        });
+        Route::controller(DpoController::class)->prefix('dpo')->name('dpo.')->group(function(){
+            Route::get('kelola', 'search')->name('search');
+            Route::post('kelola','create')->name('create');
+            Route::get('{period?}', 'index')->name('index');
         });
     });
     Route::prefix('buku-besar')->name('ledger.')->group(function(){
