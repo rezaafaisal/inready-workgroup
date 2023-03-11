@@ -27,7 +27,11 @@ class DpoController extends Controller
                 'id' => $dpos?->where('position', 'leader')->first()?->user->id,
                 'name' => $dpos?->where('position', 'leader')->first()?->user->name
             ]),
-            'dpo_options' => $dpos?->where('position', 'member')?->map(function($row){
+            'dpo_options' => $latest->structure?->where([
+                'type' => 'dpo',
+                'period_id' => $latest->id,
+                'position' => 'member',
+            ])->get()?->map(function($row){
               return [
                 'id' => $row->user->id,
                 'name' => $row->user->name
@@ -72,7 +76,7 @@ class DpoController extends Controller
             $success = $structure->save();
         }
 
-        if($success) return Alert::success('Berhasil', 'Data pembina berhasil diperbarui');
+        if($success) return Alert::success('Berhasil', 'Data DPO berhasil diperbarui');
         return Alert::error('Gagal', 'Gagal mengubah data');
 
     }

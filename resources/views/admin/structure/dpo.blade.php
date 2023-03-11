@@ -84,13 +84,13 @@
 @php
     $dpo_lead = $data['dpo_lead'];
     $dpo_members = $data['dpo_options'];
+    // dd($dpo_members);
 @endphp
 @endsection
 @section('scripts')
 <x-datatable-script />
 <script>
     $('#table').DataTable()
-
 </script>
 @if($dpo_members != null || $dpo_lead != null)
     <script>
