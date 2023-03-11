@@ -77,7 +77,7 @@
                         </li>
                         <li class="menu-item {{ ($active == 'bph') ? 'menu-item-active' : '' }}"
                             aria-haspopup="true" data-menu-toggle="hover">
-                            <a href="{{ route('admin.ledger.history.index') }}" class="menu-link menu-toggle">
+                            <a href="{{ route('admin.structure.bph.index') }}" class="menu-link menu-toggle">
                                 <i class="menu-bullet menu-bullet-line">
                                     <span></span>
                                 </i>

@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\GenerationController as AdminGenerationController
 use App\Http\Controllers\Admin\Ledger\DocumentController;
 use App\Http\Controllers\Admin\Ledger\HistoryController;
 use App\Http\Controllers\Admin\Ledger\JuklisConstroller;
+use App\Http\Controllers\Admin\Structure\BphController;
 use App\Http\Controllers\Admin\Structure\DpoController;
 use App\Http\Controllers\Admin\Structure\ElderController;
 use App\Http\Controllers\Admin\UserController;
@@ -67,6 +68,11 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function(){
             Route::get('{period?}', 'index')->name('index');
         });
         Route::controller(DpoController::class)->prefix('dpo')->name('dpo.')->group(function(){
+            Route::get('kelola', 'search')->name('search');
+            Route::post('kelola','create')->name('create');
+            Route::get('{period?}', 'index')->name('index');
+        });
+        Route::controller(BphController::class)->prefix('bph')->name('bph.')->group(function(){
             Route::get('kelola', 'search')->name('search');
             Route::post('kelola','create')->name('create');
             Route::get('{period?}', 'index')->name('index');

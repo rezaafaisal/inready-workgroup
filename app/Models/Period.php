@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Admin\Bph;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use PDO;
 
 class Period extends Model
 {
@@ -15,5 +16,9 @@ class Period extends Model
 
     public function structure(){
         return $this->hasOne(Structure::class);
+    }
+
+    public function division(){
+        return $this->hasMany(Division::class);
     }
 }
