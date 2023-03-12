@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Structure;
 use App\Models\User;
+use Illuminate\Support\Facades\Crypt;
+
+use function PHPUnit\Framework\returnSelf;
 
 class BphController extends Controller
 {
@@ -59,6 +62,18 @@ class BphController extends Controller
         $success = $structure->save();
 
         if($success) return Alert::success('Berhasil', 'Pengurus berhasil ditentukan');
+
+        return Alert::error('Gagal', 'Terjadi kesalahan');
+    }
+
+    public function destroyDivision(Request $request){
+        $id = Crypt::decryptString($request->destroy_id);
+
+        $structure = Structure::find($id);
+        if($structure->important == true) return Alert::error('Gagal', 'Divisi ini tidak dapat dihapus');
+        $success = $structure->delete();
+
+        if($success) return Alert::success('Berhasil', 'Divisi telah dihapus');
 
         return Alert::error('Gagal', 'Terjadi kesalahan');
     }

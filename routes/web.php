@@ -77,6 +77,7 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function(){
             Route::post('kelola','create')->name('create');
             Route::post('divisi', 'createDivision')->name('createDivision');
             Route::put('divisi', 'setDivision')->name('setDivision');
+            Route::delete('divisi', 'destroyDivision')->name('destroyDivision');
             Route::get('{period?}', 'index')->name('index');
         });
     });

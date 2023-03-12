@@ -49,7 +49,7 @@
                             <div class="d-flex" style="gap:5px">
                                 <button data-toggle="modal" data-target="#set_division_{{ $i }}"
                                     class="btn btn-sm btn-outline-primary">Tentukan</button>
-                                <button class="btn btn-sm btn-outline-danger">Hapus</button>
+                                <button onclick="confirmDelete('{{ \Crypt::encryptString($bph->id) }}')" class="btn btn-sm btn-outline-danger">Hapus</button>
                             </div>
                             {{-- set division modal --}}
                             <x-modal target="set_division_{{ $i }}" title="Tentukan Pengurus">
@@ -120,28 +120,12 @@
     </form>
 </x-modal>
 
-
-
-<x-modal target="dpo_modal" title="Tambahkan Pembina">
-    <form id="create_form" action="{{ route('admin.structure.bph.create') }}" method="post">
-        @csrf
-        <input type="hidden" name="period" value="{{ $data['current'] }}">
-        <div class="form-group">
-            <label for="leader" class="form-label">Ketua Umum</label>
-            <select name="leader" id="leader" style="width: 100%;" class="form-control select2">
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="secretary" class="form-label">Sekretaris Umum</label>
-
-        </div>
-        <div class="form-group">
-            <label for="treasurer" class="form-label">Bendahara Umum</label>
-            <select name="treasurer" id="treasurer" style="width: 100%;" class="form-control select2">
-            </select>
-        </div>
-    </form>
-</x-modal>
+{{-- form destroy --}}
+<form action="{{ route('admin.structure.bph.destroyDivision') }}" method="post" id="destroy_form">
+    @csrf
+    @method('DELETE')
+    <input type="hidden" name="destroy_id" id="destroy_id">
+</form>
 
 @endsection
 @section('scripts')
@@ -182,5 +166,23 @@
             $('#create_division_form').submit()
         })
     });
+
+function confirmDelete(id){
+    Swal.fire({
+        icon:'warning',
+        title:'Konfirmasi Hapus',
+        text:'Tindakan ini tidak dapat dibatalkan, yakin hapus?',
+        showCancelButton:true,
+        cancelButtonText:'Batal',
+        confirmButtonText:'Hapus',
+        confirmButtonColor:'#F54E60',
+        cancelButtonColor:'#3185D6',
+    }).then((e)=>{
+        if(e.isConfirmed){
+            $('#destroy_id').val(id)
+            $('#destroy_form').submit()
+        }
+    })
+}
 </script>
 @endsection
