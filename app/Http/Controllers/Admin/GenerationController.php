@@ -7,6 +7,7 @@ use App\Helper\Data;
 use App\Http\Controllers\Controller;
 use App\Models\Generation;
 use App\Models\Period;
+use App\Models\Structure;
 use Carbon\Carbon;
 use Generator;
 use Illuminate\Http\Request;
@@ -63,10 +64,35 @@ class GenerationController extends Controller
         if($year == Carbon::now()->format('Y')) return Alert::error('Gagal', 'Gagal menambahkan periode, periode tahun ini sudah ada');
 
         $new_period = Carbon::now()->format('Y').' - '.Carbon::now()->addYear()->format('Y');
-        $success = Period::create([
+        $period = Period::create([
             'period' => $new_period,
             'year' => Carbon::now()->format('Y')
         ]);
+
+        if($period){
+            $new_strucuture = [
+                [
+                    'period_id'=> $period->id,
+                    'division' => 'Ketua Umum',
+                    'type' => 'bph',
+                    'position' => 'leader'
+                ],
+                [
+                    'period_id'=> $period->id,
+                    'division' => 'Sekretaris Umum',
+                    'type' => 'bph',
+                    'position' => null
+                ],
+                [
+                    'period_id'=> $period->id,
+                    'division' => 'Bendahara Umum',
+                    'type' => 'bph',
+                    'position' => null
+                ],
+            ];
+
+            $success = Structure::insert($new_strucuture);
+        }
 
         if($success) return Alert::success('Berhasil', 'Periode baru berhasil ditambahkan');
 

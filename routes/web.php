@@ -75,6 +75,7 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function(){
         Route::controller(BphController::class)->prefix('bph')->name('bph.')->group(function(){
             Route::get('kelola', 'search')->name('search');
             Route::post('kelola','create')->name('create');
+            Route::post('divisi', 'createDivision')->name('createDivision');
             Route::get('{period?}', 'index')->name('index');
         });
     });

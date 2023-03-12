@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('period_id');
             $table->string('name');
+            $table->enum('type', ['bph', 'bpo']);
         });
     }
 

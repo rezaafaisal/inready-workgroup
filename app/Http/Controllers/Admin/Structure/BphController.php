@@ -30,6 +30,10 @@ class BphController extends Controller
         return view('admin.structure.daily', Data::view('bph', $data));
     }
 
+    public function createDivision(Request $request){
+        return $request;
+    }
+
     public function create(Request $request){
         // return $request;
         $users = array([$request->leader, $request->secretary, $request->treasurer
