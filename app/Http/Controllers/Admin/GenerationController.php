@@ -75,19 +75,22 @@ class GenerationController extends Controller
                     'period_id'=> $period->id,
                     'division' => 'Ketua Umum',
                     'type' => 'bph',
-                    'position' => 'leader'
+                    'position' => 'leader',
+                    'important' => true
                 ],
                 [
                     'period_id'=> $period->id,
                     'division' => 'Sekretaris Umum',
                     'type' => 'bph',
-                    'position' => null
+                    'position' => null,
+                    'important' => true
                 ],
                 [
                     'period_id'=> $period->id,
                     'division' => 'Bendahara Umum',
                     'type' => 'bph',
-                    'position' => null
+                    'position' => null,
+                    'important' => true
                 ],
             ];
 

@@ -1,4 +1,7 @@
 @extends('layouts.admin')
+@section('styles')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+@endsection
 @section('body')
 <div class="container">
     <div class="row">
@@ -21,15 +24,15 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    @if ($data['bph']?->count() == 0)
+                    @if($data['bph']?->count() == 0)
                         ksoong aokwaokw
                     @endif
-                    @foreach($data['bph'] ?? [] as $bph)
+                    @foreach($data['bph'] as $i => $bph)
                         <div class="d-flex align-items-center mb-10">
                             <!--begin::Symbol-->
                             <div class="symbol symbol-40 symbol-light-white mr-5">
-                                <img src="{{ asset('profiles/'.$bph->user?->profile->image ?? 'profiles/user.png')}}" class="symbol-label"
-                                    style="object-fit: cover" alt="">
+                                <img src="{{ asset('profiles/'.$bph->user?->profile->image ?? 'profiles/user.png') }}"
+                                    class="symbol-label" style="object-fit: cover" alt="">
                             </div>
                             <!--end::Symbol-->
                             <!--begin::Text-->
@@ -43,47 +46,53 @@
                                 <span class="text-muted">{{ $bph->division }}</span>
                             </div>
                             <!--end::Text-->
-
-                            <!--begin::Dropdown-->
-                            <div class="dropdown dropdown-inline ml-2" data-toggle="tooltip" title=""
-                                data-placement="left" aria-describedby="tooltip352885">
-                                <a href="#" class="btn btn-hover-light-primary btn-sm btn-icon" data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="true">
-                                    <i class="ki ki-bold-more-hor"></i>
-                                </a>
-                                <div class="dropdown-menu p-0 m-0 dropdown-menu-md dropdown-menu-right"
-                                    style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-220px, 30px, 0px);"
-                                    x-placement="bottom-end">
-                                    <!--begin::Navigation-->
-                                    <ul class="navi navi-hover">
-                                        <li class="navi-header font-weight-bold py-4">
-                                            <span class="font-size-lg">Pilih Tindakan</span>
-                                            <i class="flaticon2-information icon-md text-muted" data-toggle="tooltip"
-                                                data-placement="right" title=""
-                                                data-original-title="Click to learn more..."></i>
-                                        </li>
-                                        <li class="navi-separator mb-3 opacity-70"></li>
-                                        <li class="navi-item">
-                                            <a href="#" class="navi-link">
-                                                <span class="navi-text">
-                                                    <span
-                                                        class="label label-xl label-inline label-light-success">Ubah</span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li class="navi-item">
-                                            <a href="#" class="navi-link">
-                                                <span class="navi-text">
-                                                    <span
-                                                        class="label label-xl label-inline label-light-danger">Hapus</span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    <!--end::Navigation-->
-                                </div>
+                            <div class="d-flex" style="gap:5px">
+                                <button data-toggle="modal" data-target="#set_division_{{ $i }}"
+                                    class="btn btn-sm btn-outline-primary">Tentukan</button>
+                                <button class="btn btn-sm btn-outline-danger">Hapus</button>
                             </div>
-                            <!--end::Dropdown-->
+                            {{-- set division modal --}}
+                            <x-modal target="set_division_{{ $i }}" title="Tentukan Pengurus">
+                                <form id="set_division_form_{{ $i }}" action="{{ route('admin.structure.bph.setDivision') }}"
+                                    method="post">
+                                    @csrf
+                                    @method('PUT')
+                                    <input type="hidden" name="structure_id" value="{{ $bph->id }}">
+                                    <div class="form-group">
+                                        <label for="division" class="label-form">Nama Divisi</label>
+                                        <input type="text" name="division" id="division" class="form-control"
+                                            value="{{ $bph->division }}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="user_{{ $i }}" class="form-label">{{ $bph->division }}</label>
+                                        <select name="user" id="user_{{ $i }}" style="width: 100%;"
+                                            class="form-control select2" autofocus>
+                                        </select>
+                                    </div>
+                                </form>
+                            </x-modal>
+                            {{-- script to trigger --}}
+                            @php
+                                $bph_user[$i] = collect([
+                                    'id' => $data['latest']->structure?->where([
+                                        'user_id' => $bph->user->id ?? 0,
+                                        'type' => 'bph'
+                                        ])->first()?->user->id,
+                                    'name' => $data['latest']->structure?->where([
+                                        'user_id' => $bph->user->id ?? 0,
+                                        'type' => 'bph'
+                                        ])->first()?->user->name
+                                ]);
+                            @endphp
+                            <script>
+                                // selected user
+                                $('#user_{{ $i }}').append($("<option selected></option>").val(JSON.parse('{!! $bph_user[$i] !!}').id).text(JSON.parse('{!! $bph_user[$i] !!}').name)).trigger('change');
+
+                                // submit button
+                                $("#submit_modal_set_division_{{ $i }}").click(() => {
+                                    $("#set_division_form_{{ $i }}").submit()
+                                })
+                            </script>
                         </div>
                     @endforeach
                 </div>
@@ -94,15 +103,22 @@
 
 {{-- modal create new division --}}
 <x-modal target="create_division" title="Tambahkan Divisi BPH">
-    <form action="" method="POST">
+    <form id="create_division_form" action="{{ route('admin.structure.bph.createDivision') }}"
+        method="POST">
         @csrf
+        <input type="hidden" name="period" value="{{ $data['current'] }}">
         <div class="form-group">
             <label for="division" class="form-label">Nama Divisi</label>
-            <input type="text" name="division" id="division" class="form-control" placeholder="Wakil Ketua 1">
+            <input type="text" name="division" id="division"
+                class="form-control @error('division') is-invalid @enderror" placeholder="Wakil Ketua 1">
+            @error('division')
+                <small class="text-danger">
+                    {{ $message }}
+                </small>
+            @enderror
         </div>
     </form>
 </x-modal>
-
 
 
 
@@ -117,8 +133,7 @@
         </div>
         <div class="form-group">
             <label for="secretary" class="form-label">Sekretaris Umum</label>
-            <select name="secretary" id="secretary" style="width: 100%;" class="form-control select2">
-            </select>
+
         </div>
         <div class="form-group">
             <label for="treasurer" class="form-label">Bendahara Umum</label>
@@ -127,61 +142,44 @@
         </div>
     </form>
 </x-modal>
-{{-- @php
-    $dpo_lead = $data['dpo_lead'];
-    $dpo_members = $data['dpo_options'];
-    // dd($dpo_members);
-@endphp--}}
+
 @endsection
 @section('scripts')
 <x-datatable-script />
 <script>
     $('#table').DataTable()
 </script>
-{{-- @if($dpo_members != null || $dpo_lead != null) --}}
-<script>
-    // set leader
-    const data_lead = ''
-    const lead = JSON.parse(data_lead)
-    let $option_lead = $("<option selected></option>").val(lead.id).text(lead.name);
-    $('#dpo_lead').append($option_lead).trigger('change');
-
-</script>
-{{-- @endif --}}
 <script>
     $(document).ready(function () {
         const route = "{{ route('admin.structure.bph.index') }}"
         $period = $('#periods')
         $period.change(() => {
-            window.location.href = route + '/' + $period.val()
+        window.location.href = route + '/' + $period.val()
         })
 
         $('.select2').select2({
-            placeholder: "Select an option",
-            ajax: {
-                url: "{{ route('admin.structure.bph.search') }}",
-                dataType: 'json',
-                delay: 250,
-                processResults: function (data) {
-                    return {
-                        results: $.map(data, function (item) {
-                            return {
-                                text: item.name,
-                                id: item.id
-                            }
-                        })
-                    };
-                },
-                cache: true
-            }
+        placeholder: "Pilih pengurus",
+        ajax: {
+            url: "{{ route('admin.structure.bph.search') }}",
+            dataType: 'json',
+            delay: 250,
+            processResults: function (data) {
+                return {
+                    results: $.map(data, function (item) {
+                        return {
+                            text: item.name,
+                            id: item.id
+                        }
+                    })
+                };
+            },
+            cache: true
+        }
         });
-    })
 
-
-
-    $('#submit_modal_dpo_modal').click(() => {
-        $('#create_form').submit()
-    })
-
+        $('#submit_modal_create_division').click(()=>{
+            $('#create_division_form').submit()
+        })
+    });
 </script>
 @endsection

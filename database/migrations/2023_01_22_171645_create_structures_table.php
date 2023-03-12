@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('division')->nullable();
             $table->enum('position', ['leader', 'member'])->nullable();
             $table->enum('type', ['elder', 'dpo', 'bph', 'bpo'])->nullable();
+            $table->boolean('important')->nullable();
         });
     }
 

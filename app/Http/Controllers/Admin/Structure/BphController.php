@@ -24,6 +24,7 @@ class BphController extends Controller
         $data = [
             'period' => Period::orderBy('id', 'DESC')->get(),
             'current' => $period??$latest->year,
+            'latest' => $latest,
             'bph' => $bph,
         ];
 
@@ -31,7 +32,35 @@ class BphController extends Controller
     }
 
     public function createDivision(Request $request){
-        return $request;
+        $request->validate([
+            'division' => 'required'
+        ]);
+
+        $period = Period::where('year', $request->period)->first();
+        $structure = new Structure();
+        $structure->period_id = $period->id;
+        $structure->division = $request->division;
+        $structure->type = $this->type;
+        $success = $structure->save();
+
+        if($success) return Alert::success('Berhasil', 'Divisi BPH telah ditambahkan, silahkan tentukan pengurusnya');
+
+        return Alert::error('Gagal', 'Terjadi kesalahan');
+    }
+
+    public function setDivision(Request $request){
+        $request->validate([
+            'structure_id' => 'required'
+        ]);
+
+        $structure = Structure::find($request->structure_id);
+        $structure->division = $request->division;
+        $structure->user_id = $request->user;
+        $success = $structure->save();
+
+        if($success) return Alert::success('Berhasil', 'Pengurus berhasil ditentukan');
+
+        return Alert::error('Gagal', 'Terjadi kesalahan');
     }
 
     public function create(Request $request){
@@ -62,15 +91,22 @@ class BphController extends Controller
     }
 
     public function search(Request $request){
+        $exclude_user = [];
         $data = [];
 
+        $exclude_user = Structure::whereIn('type', ['bph', 'bpo'])->get()->map(function($row){
+            return $row->user_id ?? 0;
+        });
+
+        // return $exclude_user;
+
         if($request->filled('q')){
-            $data = User::where('name', 'LIKE', '%'. $request->get('q'). '%')
+            $data = User::where('name', 'LIKE', '%'. $request->get('q'). '%')->whereNotIn('id', $exclude_user)
                         ->get()->map(function($row){
                             return [
                                 'name' => $row->name,
                                 'id' => $row->id,
-                                'generation' => $row->profile->generation->name
+                                // 'generation' => $row->profile->generation->name
                             ];
                         });
         }
