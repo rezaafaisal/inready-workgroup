@@ -78,33 +78,6 @@ class BphController extends Controller
         return Alert::error('Gagal', 'Terjadi kesalahan');
     }
 
-    public function create(Request $request){
-        // return $request;
-        $users = array([$request->leader, $request->secretary, $request->treasurer
-        ]);
-        
-        $period_id = Period::where('year', $request->period)->first()->id;
-        
-        Structure::where([
-            'period_id' => $period_id,
-            'type' => $this->type
-        ])->whereIn('division', $this->division)->delete();
-        
-        foreach ($users as $i => $user) {
-            $structure = new Structure();
-            $structure->period_id = $period_id;
-            $structure->user_id = $user;
-            $structure->division = $this->division[$i];
-            $structure->type = $this->type;
-            $success = $structure->save();
-        }
-        
-
-        if($success) return Alert::success('Berhasil', 'Data pembina berhasil diperbarui');
-        return Alert::error('Gagal', 'Gagal mengubah data');
-
-    }
-
     public function search(Request $request, $period = null){
 
         $period_id = Period::where('year', $period)->first('id')->id;
