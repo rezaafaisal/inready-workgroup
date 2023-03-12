@@ -90,11 +90,13 @@ class BphController extends Controller
 
     }
 
-    public function search(Request $request){
+    public function search(Request $request, $period = null){
+
+        $period_id = Period::where('year', $period)->first('id')->id;
         $exclude_user = [];
         $data = [];
 
-        $exclude_user = Structure::whereIn('type', ['bph', 'bpo'])->get()->map(function($row){
+        $exclude_user = Structure::whereIn('type', ['bph', 'bpo'])->where('period_id', $period_id)->get()->map(function($row){
             return $row->user_id ?? 0;
         });
 

@@ -27,7 +27,7 @@
                     @if($data['bph']?->count() == 0)
                         ksoong aokwaokw
                     @endif
-                    @foreach($data['bph'] as $i => $bph)
+                    @foreach($data['bph'] ?? [] as $i => $bph)
                         <div class="d-flex align-items-center mb-10">
                             <!--begin::Symbol-->
                             <div class="symbol symbol-40 symbol-light-white mr-5">
@@ -149,6 +149,7 @@
 <script>
     $('#table').DataTable()
 </script>
+@php($current = $data['current'])
 <script>
     $(document).ready(function () {
         const route = "{{ route('admin.structure.bph.index') }}"
@@ -160,7 +161,7 @@
         $('.select2').select2({
         placeholder: "Pilih pengurus",
         ajax: {
-            url: "{{ route('admin.structure.bph.search') }}",
+            url: "{{ route('admin.structure.bph.search', ['period' => $current]) }}",
             dataType: 'json',
             delay: 250,
             processResults: function (data) {
