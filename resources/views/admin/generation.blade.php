@@ -81,7 +81,7 @@
                             @foreach ($data['period'] as $item)
                                 <tr>
                                     <td>{{ $item->period }}</td>
-                                    <td>99</td>
+                                    <td>{{ $item->structure?->whereIn('type', ['bph', 'bpo'])->count() ?? 0 }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

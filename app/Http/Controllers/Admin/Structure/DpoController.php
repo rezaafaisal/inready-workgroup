@@ -18,7 +18,7 @@ class DpoController extends Controller
         $dpos = $latest->structure?->where([
             'type' => 'dpo',
             'period_id' => $latest->id
-        ])->get();
+        ]);
         $data = [
             'period' => Period::orderBy('id', 'DESC')->get(),
             'current' => $period??$latest->year,
@@ -31,7 +31,7 @@ class DpoController extends Controller
                 'type' => 'dpo',
                 'period_id' => $latest->id,
                 'position' => 'member',
-            ])->get()?->map(function($row){
+            ])->map(function($row){
               return [
                 'id' => $row->user->id,
                 'name' => $row->user->name

@@ -18,7 +18,7 @@ class ElderController extends Controller
         $elders = $latest->structure?->where([
             'type' => 'elder',
             'period_id' => $latest->id
-        ])->get();
+        ]);
         $data = [
             'period' => Period::orderBy('id', 'DESC')->get(),
             'current' => $period??$latest->year,

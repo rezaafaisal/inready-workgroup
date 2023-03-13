@@ -23,7 +23,7 @@ class BphController extends Controller
         $bph = $latest->structure?->where([
             'type' => $this->type,
             'period_id' => $latest->id
-        ])->get();
+        ]);
         $data = [
             'period' => Period::orderBy('id', 'DESC')->get(),
             'current' => $period??$latest->year,

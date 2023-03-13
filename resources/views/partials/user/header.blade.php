@@ -8,6 +8,10 @@
         'juklat-juknis' => asset('documents/'.$type[1].'/'.$juklis),
         'ad-art' => asset('documents/'.$type[2].'/'.$gbho),
     ];
+
+    $periods = App\Models\Period::orderBy('year', 'DESC')->get();
+
+    // dd($organizer);
 @endphp
 <header class="bg-inr-black w-full fixed z-20">
     <div x-data="{nav:false}" class="wrapper flex justify-between items-center">
@@ -55,34 +59,27 @@
                     Pengurus
                 </span>
                 <ul class="group-hover:visible invisible group-hover:translate-y-0 translate-y-5 group-hover:opacity-100 opacity-0 group-hover:delay-100 delay-300  block h-auto ease-in-out duration-300 absolute text-sm mt-8 bg-[#292929] md:p-3 rounded">
-                    @for ($i = 0; $i < 4; $i++)
-                    <li class="relative group/item">
-                        <span class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 md:transition-none rounded text-inr-white hover:text-inr-black font-light cursor-pointer delay-300 ease-in-out group-hover/item:bg-inr-yellow group-hover/item:text-inr-black">Periode 2022</span>
-                        <ul class="group-hover/item:visible invisible absolute bg-[#292929] top-0 group-hover/item:translate-x-32 translate-x-24 delay-150 w-56 h-auto ease-out duration-300 text-sm md:p-3 rounded opacity-0 group-hover/item:opacity-100">
-                            <li>
-                                <a href="" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 md:transition-none rounded text-inr-white hover:text-inr-black font-light">Pembina</a>
-                            </li>
-                            <li>
-                                <a href="" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 md:transition-none rounded text-inr-white hover:text-inr-black font-light">DPO</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('manager', ['year' => 2019, 'division' => 'pengurus']) }}" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 md:transition-none rounded text-inr-white hover:text-inr-black font-light">Pengurus Harian</a>
-                            </li>
-                            <li>
-                                <a href="" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 md:transition-none rounded text-inr-white hover:text-inr-black font-light">Keorganisasian</a>
-                            </li>
-                            <li>
-                                <a href="" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 md:transition-none rounded text-inr-white hover:text-inr-black font-light">Keilmuan</a>
-                            </li>
-                            <li>
-                                <a href="" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 md:transition-none rounded text-inr-white hover:text-inr-black font-light">Kewirausahaan</a>
-                            </li>
-                            <li>
-                                <a href="" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 md:transition-none rounded text-inr-white hover:text-inr-black font-light">Kewirausahaan</a>
-                            </li>
-                        </ul>
-                    </li>
-                    @endfor
+                    @foreach ($periods->take(4) as $period)
+                        <li class="relative group/item">
+                            <span class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 md:transition-none rounded text-inr-white hover:text-inr-black font-light cursor-pointer delay-300 ease-in-out group-hover/item:bg-inr-yellow group-hover/item:text-inr-black">Periode {{ $period->year }}</span>
+                            <ul class="group-hover/item:visible invisible absolute bg-[#292929] top-0 group-hover/item:translate-x-32 translate-x-24 delay-150 w-56 h-auto ease-out duration-300 text-sm md:p-3 rounded opacity-0 group-hover/item:opacity-100">
+                                <li>
+                                    <a href="" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 md:transition-none rounded text-inr-white hover:text-inr-black font-light">Pembina</a>
+                                </li>
+                                <li>
+                                    <a href="" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 md:transition-none rounded text-inr-white hover:text-inr-black font-light">DPO</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('manager', ['year' => 2019, 'division' => 'pengurus']) }}" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 md:transition-none rounded text-inr-white hover:text-inr-black font-light">Pengurus Harian</a>
+                                </li>
+                                @foreach ($period->structure?->where('type', 'bpo')->unique('division') ?? [] as $bpo)
+                                    <li>
+                                        <a href="" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 md:transition-none rounded text-inr-white hover:text-inr-black font-light">{{ $bpo->division }}</a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
+                    @endforeach
                 </ul>
             </li>
             <li>

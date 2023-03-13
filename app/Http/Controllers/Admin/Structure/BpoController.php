@@ -19,7 +19,7 @@ class BpoController extends Controller
         $latest = ($period != null) ? Period::where('year', $period)->first() : Period::orderBy('id', 'DESC')->first();
 
         // get divisi
-        $division = $latest?->structure?->where([
+        $division = Structure::where([
             'type' => $this->type,
             'period_id' => $latest->id
         ])->orderBy('division')->get()->unique('division');
@@ -29,8 +29,6 @@ class BpoController extends Controller
             'type' => $this->type,
             'period_id' => $latest->id
         ])->orderBy('position')->get();
-
-        // dd($bpo);
 
         $data = [
             'period' => Period::orderBy('id', 'DESC')->get(),
