@@ -25,7 +25,9 @@
                 </div>
                 <div class="card-body">
                     @if($data['bph']?->count() == 0)
-                        ksoong aokwaokw
+                        <div class="alert alert-custom alert-light-primary fade show mb-5" role="alert">
+                            <div class="alert-text">Belum ada data tersedia!</div>
+                        </div>
                     @endif
                     @foreach($data['bph'] ?? [] as $i => $bph)
                         <div class="d-flex align-items-center mb-10">

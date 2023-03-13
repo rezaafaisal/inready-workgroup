@@ -103,7 +103,9 @@
                     </div>
 
                     @if($data['bpo']?->count() == 0)
-                        ksoong aokwaokw
+                    <div class="alert alert-custom alert-light-primary fade show mb-5" role="alert">
+                        <div class="alert-text">Belum ada data tersedia!</div>
+                    </div>
                     @endif
                 </div>
             </div>
