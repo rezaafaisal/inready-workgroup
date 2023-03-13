@@ -25,10 +25,13 @@ class BpoController extends Controller
         ])->orderBy('division')->get()->unique('division');
         
         // get bpo
-        $bpo = $latest?->structure?->where([
+        $bpo = Structure::where([
             'type' => $this->type,
             'period_id' => $latest->id
-        ])->orderBy('position');
+        ])->orderBy('position')->get();
+
+        // dd($bpo);
+
         $data = [
             'period' => Period::orderBy('id', 'DESC')->get(),
             'current' => $period??$latest->year,
@@ -44,7 +47,7 @@ class BpoController extends Controller
         $request->validate([
             'division' => 'required',
             'elder' => 'required',
-            'members' => 'required'
+            // 'members' => 'required'
         ]);
         
         $period = Period::where('year', $request->period)->first();

@@ -3,6 +3,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 @endsection
 @section('body')
+@php
+    $structure = new App\Models\Structure();
+@endphp
 <div class="container">
     <div class="row">
         <div class="col-12 col-md-12">
@@ -39,27 +42,30 @@
                                         <div class="d-flex" style="gap:5px">
 
                                             @php
+                                            $bpo_members = $structure::where([
+                                                    'type' => 'bpo',
+                                                    'period_id' => $data['latest']->id,
+                                                    'division' => $division->division,
+                                                ])->orderBy('position')->get();
                                                 $current_bpo = [
                                                     'division' => $division->division,
-                                                    'elder' => $data['bpo']->where([
+                                                    'elder' => $structure->where([
                                                         'division' => $division->division,
                                                         'position' => 'leader'
                                                     ])->first()->user_id,
-                                                    'members' => $data['bpo']->where([
+                                                    'members' => $structure->where([
                                                         'division' => $division->division,
                                                         'position' => 'member'])->get()->map(function($row){
                                                             return $row->user_id;
                                                     })
                                                 ];
-                                                dd($data['bpo']->where([
-                                                        'division' => $division->division])->get());
                                             @endphp
                                             
                                             <button data-toggle="modal" data-target="#renew_division" class="btn btn-sm btn-outline-primary">Perbarui</button>
                                             <button class="btn btn-sm btn-outline-danger">Hapus Divisi</button>
                                         </div>
                                     </div>
-                                    @foreach($data['bpo']->where('division', $division->division) ?? [] as $i => $bpo_member)
+                                    @foreach($bpo_members ?? [] as $i => $bpo_member)
                                     <div class="d-flex align-items-center mb-10">
                                         <!--begin::Symbol-->
                                         <div class="symbol symbol-40 symbol-light-white mr-5">
@@ -71,11 +77,11 @@
                                         <div class="d-flex flex-column flex-grow-1 font-weight-bold">
                                             <span class="text-dark text-hover-primary mb-1 font-size-lg">
                                                 <span>{{ $bpo_member->user?->name ?? 'Belum ditentukan' }}</span>
-                                                {{-- @if ($dpo->position == 'leader') --}}
-                                                {{-- <span class="label label-inline label-light-info ml-4">Ketua</span> --}}
-                                                {{-- @endif --}}
+                                                @if ($bpo_member->position == 'leader')
+                                                    <span class="label label-inline label-light-info ml-4">Kepala</span>
+                                                @endif
                                             </span>
-                                            <span class="text-muted">{{ $bpo_member->division }}</span>
+                                            <span class="text-muted">{{ $bpo_member->position == 'leader' ? 'Ketua Divisi' : 'Anggota' }}</span>
                                         </div>
                                     </div>
                                     @endforeach
