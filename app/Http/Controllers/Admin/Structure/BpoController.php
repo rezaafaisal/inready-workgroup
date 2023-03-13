@@ -79,16 +79,38 @@ class BpoController extends Controller
     }
 
     public function setDivision(Request $request){
-        return $request;
-        // $request->validate([
-        //     'structure_id' => 'required'
-        // ]);
+        $request->validate([
+            'division' => 'required',
+            'leader' => 'required'
+        ]);
 
+        $period = Period::where('year', $request->period)->first();
 
-        $structure = Structure::find($request->structure_id);
+        // delete structure old
+        Structure::where([
+            'period_id' => $period->id,
+            'division' => $request->old_division
+        ])->delete();
+
+        // insert leader of division
+        $structure = new Structure();
+        $structure->user_id = $request->leader;
         $structure->division = $request->division;
-        $structure->user_id = $request->user;
+        $structure->position = 'leader';
+        $structure->type = $this->type;
+        $structure->period_id = $period->id;
         $success = $structure->save();
+
+
+        foreach ($request->members ?? [] as $member) {
+            $structure = new Structure();
+            $structure->user_id = $member;
+            $structure->division = $request->division;
+            $structure->period_id = $period->id;
+            $structure->position = 'member';
+            $structure->type = $this->type;
+            $success = $structure->save();
+        }
 
         if($success) return Alert::success('Berhasil', 'Pengurus berhasil ditentukan');
 
@@ -96,11 +118,19 @@ class BpoController extends Controller
     }
 
     public function destroyDivision(Request $request){
-        $id = Crypt::decryptString($request->destroy_id);
+        $structure = Structure::where([
+            'period_id' => $request->period,
+            'division' => $request->division
+        ])->get();
 
-        $structure = Structure::find($id);
-        if($structure->important == true) return Alert::error('Gagal', 'Divisi ini tidak dapat dihapus');
-        $success = $structure->delete();
+        $structure->map(function($row){
+            if($row->important == true) return Alert::error('Gagal', 'Divisi ini tidak dapat dihapus');
+        });
+
+        $success = Structure::where([
+            'period_id' => $request->period,
+            'division' => $request->division
+        ])->delete();
 
         if($success) return Alert::success('Berhasil', 'Divisi telah dihapus');
 

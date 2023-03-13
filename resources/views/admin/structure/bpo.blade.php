@@ -40,7 +40,6 @@
                                 <div class="card-body">
                                     <div class="d-flex justify-content-end">
                                         <div class="d-flex" style="gap:5px">
-
                                             @php
                                             // data bpo member by division
                                             $bpo_members = $structure::where([
@@ -74,7 +73,7 @@
                                             @endphp
                                             
                                             <button data-toggle="modal" data-target="#set_division" onclick="setBpo('{{ json_encode($current_bpo) }}', '{{ $division->division }}')" class="btn btn-sm btn-outline-primary">Perbarui</button>
-                                            <button class="btn btn-sm btn-outline-danger">Hapus Divisi</button>
+                                            <button class="btn btn-sm btn-outline-danger" onclick="confirmDelete('{{ $division->division }}')">Hapus Divisi</button>
                                         </div>
                                     </div>
                                     @foreach($bpo_members ?? [] as $i => $bpo_member)
@@ -174,10 +173,11 @@
 </x-modal>
 
 {{-- form destroy --}}
-<form action="{{ route('admin.structure.bph.destroyDivision') }}" method="post" id="destroy_form">
+<form action="{{ route('admin.structure.bpo.destroyDivision') }}" method="post" id="destroy_form">
     @csrf
     @method('DELETE')
-    <input type="hidden" name="destroy_id" id="destroy_id">
+    <input type="hidden" name="period" value="{{ $data['latest']->id }}">
+    <input type="hidden" name="division" id="destroy_division">
 </form>
 
 @endsection
@@ -245,7 +245,7 @@
         }
 
         // confirm delete division function
-        function confirmDelete(id) {
+        function confirmDelete(division) {
             Swal.fire({
                 icon: 'warning',
                 title: 'Konfirmasi Hapus',
@@ -257,7 +257,7 @@
                 cancelButtonColor: '#3185D6',
             }).then((e) => {
                 if (e.isConfirmed) {
-                    $('#destroy_id').val(id)
+                    $('#destroy_division').val(division)
                     $('#destroy_form').submit()
                 }
             })
