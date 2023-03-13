@@ -42,51 +42,60 @@
                                         <div class="d-flex" style="gap:5px">
 
                                             @php
+                                            // data bpo member by division
                                             $bpo_members = $structure::where([
                                                     'type' => 'bpo',
                                                     'period_id' => $data['latest']->id,
                                                     'division' => $division->division,
                                                 ])->orderBy('position')->get();
 
+                                                // data to set select
                                                 $current_bpo = [
                                                     'division' => $division->division,
-                                                    'elder' => $structure->where([
-                                                        'division' => $division->division,
-                                                        'position' => 'leader'
-                                                    ])->first()->user_id,
+                                                    'leader' => [
+                                                        'name' => $structure->where([
+                                                            'division' => $division->division,
+                                                            'position' => 'leader'
+                                                        ])->first()->user->name,
+                                                        'id' => $structure->where([
+                                                            'division' => $division->division,
+                                                            'position' => 'leader'
+                                                        ])->first()->user_id
+                                                    ],
                                                     'members' => $structure->where([
                                                         'division' => $division->division,
                                                         'position' => 'member'])->get()->map(function($row){
-                                                            return $row->user_id;
+                                                            return [
+                                                                'name' => $row->user->name,
+                                                                'id' =>  $row->user_id
+                                                            ];
                                                     })->toArray()
                                                 ];
-
-                                                dd($current_bpo);
                                             @endphp
                                             
-                                            <button data-toggle="modal" data-target="#renew_division" class="btn btn-sm btn-outline-primary">Perbarui</button>
+                                            <button data-toggle="modal" data-target="#set_division" onclick="setBpo('{{ json_encode($current_bpo) }}', '{{ $division->division }}')" class="btn btn-sm btn-outline-primary">Perbarui</button>
                                             <button class="btn btn-sm btn-outline-danger">Hapus Divisi</button>
                                         </div>
                                     </div>
                                     @foreach($bpo_members ?? [] as $i => $bpo_member)
-                                    <div class="d-flex align-items-center mb-10">
-                                        <!--begin::Symbol-->
-                                        <div class="symbol symbol-40 symbol-light-white mr-5">
-                                            <img src="{{ asset('profiles/'.$bpo_member->user?->profile->image ?? 'profiles/user.png') }}"
-                                                class="symbol-label" style="object-fit: cover" alt="">
+                                        <div class="d-flex align-items-center mb-10">
+                                            <!--begin::Symbol-->
+                                            <div class="symbol symbol-40 symbol-light-white mr-5">
+                                                <img src="{{ asset('profiles/'.$bpo_member->user?->profile->image ?? 'profiles/user.png') }}"
+                                                    class="symbol-label" style="object-fit: cover" alt="">
+                                            </div>
+                                            <!--end::Symbol-->
+                                            <!--begin::Text-->
+                                            <div class="d-flex flex-column flex-grow-1 font-weight-bold">
+                                                <span class="text-dark text-hover-primary mb-1 font-size-lg">
+                                                    <span>{{ $bpo_member->user?->name ?? 'Belum ditentukan' }}</span>
+                                                    @if ($bpo_member->position == 'leader')
+                                                        <span class="label label-inline label-light-info ml-4">Kepala</span>
+                                                    @endif
+                                                </span>
+                                                <span class="text-muted">{{ $bpo_member->position == 'leader' ? 'Ketua Divisi' : 'Anggota' }}</span>
+                                            </div>
                                         </div>
-                                        <!--end::Symbol-->
-                                        <!--begin::Text-->
-                                        <div class="d-flex flex-column flex-grow-1 font-weight-bold">
-                                            <span class="text-dark text-hover-primary mb-1 font-size-lg">
-                                                <span>{{ $bpo_member->user?->name ?? 'Belum ditentukan' }}</span>
-                                                @if ($bpo_member->position == 'leader')
-                                                    <span class="label label-inline label-light-info ml-4">Kepala</span>
-                                                @endif
-                                            </span>
-                                            <span class="text-muted">{{ $bpo_member->position == 'leader' ? 'Ketua Divisi' : 'Anggota' }}</span>
-                                        </div>
-                                    </div>
                                     @endforeach
                                 </div>
                             </div>
@@ -134,11 +143,13 @@
 
 
 {{-- modal set division --}}
-<x-modal target="renew_division" title="Perbarui Divisi BPO">
-    <form id="renew_division_form" action="{{ route('admin.structure.bpo.createDivision') }}"
+<x-modal target="set_division" title="Perbarui Divisi BPO">
+    <form id="set_division_form" action="{{ route('admin.structure.bpo.setDivision') }}"
         method="POST">
+        @method('PUT')
         @csrf
         <input type="hidden" name="period" value="{{ $data['current'] }}">
+        <input type="hidden" name="old_division" id="old_division">
         <div class="form-group">
             <label for="division" class="form-label">Nama Divisi</label>
             <input type="text" name="division" id="division"
@@ -150,13 +161,13 @@
             @enderror
         </div>
         <div class="form-group">
-            <label for="renew_elder" class="form-label">Kepala Divisi</label>
-            <select name="elder" id="renew_elder" style="width: 100%;" class="form-control select2" autofocus>
+            <label for="set_leader" class="form-label">Kepala Divisi</label>
+            <select name="leader" id="set_leader" style="width: 100%;" class="form-control select2" autofocus>
             </select>
         </div>
         <div class="form-group">
-            <label for="renew_member" class="form-label">Anggota Divisi</label>
-            <select name="members[]" id="renew_member" multiple="multiple" style="width: 100%;" class="form-control select2" autofocus>
+            <label for="set_member" class="form-label">Anggota Divisi</label>
+            <select name="members[]" id="set_member" multiple="multiple" style="width: 100%;" class="form-control select2" autofocus>
             </select>
         </div>
     </form>
@@ -174,7 +185,6 @@
 <x-datatable-script />
 <script>
     $('#table').DataTable()
-
 </script>
 @php($current = $data['current'])
     <script>
@@ -208,8 +218,33 @@
             $('#submit_modal_create_division').click(() => {
                 $('#create_division_form').submit()
             })
+
+            $('#submit_modal_set_division').click(() => {
+                $('#set_division_form').submit()
+            })
         });
 
+        // set division function
+        function setBpo(data, division){
+            const leader = JSON.parse(data).leader;
+            const members = JSON.parse(data).members;
+
+            // set division
+            $('#set_division_form #division').val(division)
+            $('#set_division_form #old_division').val(division)
+            
+            // set leader
+            let $option_lead = $("<option selected></option>").val(leader.id).text(leader.name);
+            $('#set_leader').append($option_lead).trigger('change');
+
+            // set member
+            members.forEach(element => {
+                let $option_members = $("<option selected></option>").val(element.id).text(element.name);
+                $('#set_member').append($option_members).trigger('change');
+            })
+        }
+
+        // confirm delete division function
         function confirmDelete(id) {
             Swal.fire({
                 icon: 'warning',

@@ -79,9 +79,11 @@ class BpoController extends Controller
     }
 
     public function setDivision(Request $request){
-        $request->validate([
-            'structure_id' => 'required'
-        ]);
+        return $request;
+        // $request->validate([
+        //     'structure_id' => 'required'
+        // ]);
+
 
         $structure = Structure::find($request->structure_id);
         $structure->division = $request->division;
