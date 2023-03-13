@@ -47,6 +47,7 @@
                                                     'period_id' => $data['latest']->id,
                                                     'division' => $division->division,
                                                 ])->orderBy('position')->get();
+
                                                 $current_bpo = [
                                                     'division' => $division->division,
                                                     'elder' => $structure->where([
@@ -57,8 +58,10 @@
                                                         'division' => $division->division,
                                                         'position' => 'member'])->get()->map(function($row){
                                                             return $row->user_id;
-                                                    })
+                                                    })->toArray()
                                                 ];
+
+                                                dd($current_bpo);
                                             @endphp
                                             
                                             <button data-toggle="modal" data-target="#renew_division" class="btn btn-sm btn-outline-primary">Perbarui</button>
