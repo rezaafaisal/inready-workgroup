@@ -9,7 +9,7 @@
         'ad-art' => asset('documents/'.$type[2].'/'.$gbho),
     ];
 
-    $periods = App\Models\Period::orderBy('year', 'DESC')->get();
+    $periods = App\Models\Period::orderBy('year', 'DESC')->with('structure')->get();
 
     // dd($organizer);
 @endphp
@@ -64,17 +64,17 @@
                             <span class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 md:transition-none rounded text-inr-white hover:text-inr-black font-light cursor-pointer delay-300 ease-in-out group-hover/item:bg-inr-yellow group-hover/item:text-inr-black">Periode {{ $period->year }}</span>
                             <ul class="group-hover/item:visible invisible absolute bg-[#292929] top-0 group-hover/item:translate-x-32 translate-x-24 delay-150 w-56 h-auto ease-out duration-300 text-sm md:p-3 rounded opacity-0 group-hover/item:opacity-100">
                                 <li>
-                                    <a href="" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 md:transition-none rounded text-inr-white hover:text-inr-black font-light">Pembina</a>
+                                    <a href="{{ route('manager', ['year' => $period->year, 'division' => 'elder']) }}" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 md:transition-none rounded text-inr-white hover:text-inr-black font-light">Pembina</a>
                                 </li>
                                 <li>
-                                    <a href="" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 md:transition-none rounded text-inr-white hover:text-inr-black font-light">DPO</a>
+                                    <a href="{{ route('manager', ['year' => $period->year, 'division' => 'dpo']) }}" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 md:transition-none rounded text-inr-white hover:text-inr-black font-light">DPO</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('manager', ['year' => 2019, 'division' => 'pengurus']) }}" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 md:transition-none rounded text-inr-white hover:text-inr-black font-light">Pengurus Harian</a>
+                                    <a href="{{ route('manager', ['year' => $period->year, 'division' => 'bph']) }}" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 md:transition-none rounded text-inr-white hover:text-inr-black font-light">Pengurus Harian</a>
                                 </li>
                                 @foreach ($period->structure?->where('type', 'bpo')->unique('division') ?? [] as $bpo)
                                     <li>
-                                        <a href="" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 md:transition-none rounded text-inr-white hover:text-inr-black font-light">{{ $bpo->division }}</a>
+                                        <a href="{{ route('manager', ['year' => $period->year, 'division' => \Str::slug($bpo->division)]) }}" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 md:transition-none rounded text-inr-white hover:text-inr-black font-light">{{ $bpo->division }}</a>
                                     </li>
                                 @endforeach
                             </ul>

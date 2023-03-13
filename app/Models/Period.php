@@ -15,10 +15,6 @@ class Period extends Model
     protected $guarded = ['id'];
 
     public function structure(){
-        return $this->hasMany(Structure::class);
-    }
-
-    public function division(){
-        return $this->hasMany(Division::class);
+        return $this->hasMany(Structure::class)->orderBy('division');
     }
 }
