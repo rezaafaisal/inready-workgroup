@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,6 +11,26 @@ class Profile extends Model
     use HasFactory;
     public $timestamps = false;
     protected $guarded = ['id'];
+
+
+    public function instagram():Attribute{
+        return new Attribute(
+            get: fn($val) => ($val) ? 'https://instagram.com/'.$val : null,
+        );
+    }
+
+    public function linkedin():Attribute{
+        return new Attribute(
+            get: fn($val) => ($val) ? 'https://www.linkedin.com/in/'.$val : null,
+        );
+    }
+
+    public function facebook():Attribute{
+        return new Attribute(
+            get: fn($val) => ($val) ? 'https://facebook.com/'.$val : null,
+        );
+    }
+
 
     public function user(){
         return $this->belongsTo(User::class);
