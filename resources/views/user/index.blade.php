@@ -6,9 +6,7 @@
         <div class="md:grid md:grid-cols-2 gap-2 items-center">
             <div class="">
                 <h1 class="text-inr-yellow font-bold text-3xl md:text-5xl mb-16">Kita Berkarya</h1>
-                <p class="text-inr-white w-10/12 md:w-10/12 m-auto md:m-0 text-justify">Inready Workgroup adalah Lorem
-                    ipsum dolor sit amet, consectetur adipiscing elit. Pharetra egestas sit feugiat at euismod tellus
-                    scelerisque enim lorem. Morbi faucibus ipsum, ut cursus viverra egestas.</p>
+                <p class="text-inr-white w-10/12 md:w-10/12 m-auto md:m-0 text-justify">Inready Workgroup adalah study club yang berada dilingkup Universitas Islam Negeri Aladdin Makassa. Study club ini fokus pada keilmuan Teknologi Informasi seperti Mobile Development, Web Development, dan UI/UX Design.</p>
                 <button class="mt-10 btn-yellow">Lihat Kegiatan Kami</button>
             </div>
             <img src="{{ asset('images/ui/banner.png') }}" alt="" class="hidden md:block">
@@ -31,7 +29,21 @@
         </div>
     </div>
 </section>
+
+
+{{-- on progress --}}
 <section class="bg-inr-black py-20">
+    <div class="wrapper py-20">
+        <div class="text-center flex justify-center">
+            <iframe src="https://embed.lottiefiles.com/animation/78289"></iframe>
+        </div>
+        <h1 class=" text-inr-white text-5xl text-center block">Coming Soon as Possible :)</h1>
+        
+    </div>
+</section>
+
+{{-- temporary --}}
+{{-- <section class="bg-inr-black py-20">
     <div class="wrapper">
         <h2 class="font-semibold text-3xl mb-20 text-white">
             <span class="border-b-4 border-b-inr-yellow">Berita</span>
@@ -204,6 +216,6 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 
 @endsection

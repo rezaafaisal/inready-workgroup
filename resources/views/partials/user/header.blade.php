@@ -36,7 +36,9 @@
                 </ul>
             </li>
             @endif
-            <li>
+
+{{-- coming soon --}}
+            {{-- <li>
                 <a href="{{ route('activity') }}" class="hover:text-inr-yellow flex justify-between items-center duration-150 w-full py-3 md:py-0 md:inline">
                     Kegiatan
                     <i class="md:hidden fas fa-arrow-up rotate-45 text-xs"></i>
@@ -47,7 +49,9 @@
                     Karya
                     <i class="md:hidden fas fa-arrow-up rotate-45 text-xs"></i>
                 </a>
-            </li>
+            </li> --}}
+
+
             <li>
                 <a href="{{ route('generation') }}" class="hover:text-inr-yellow flex justify-between items-center duration-150 w-full py-3 md:py-0 md:inline">
                     Angkatan
