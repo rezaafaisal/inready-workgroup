@@ -41,8 +41,12 @@ class UserController extends Controller
         $filename = md5(Carbon::now()->format('YmdHis')).'.'.$file->extension();
         Storage::putFileAs('import', $file, $filename);
 
-        Excel::import(new UserImport, public_path('/import/'.$filename));
-        return $request;
+        $success = Excel::import(new UserImport, public_path('/import/'.$filename));
+
+        if($success) return Alert::success('Berhasil', 'Data berhasil diimport');
+
+        return Alert::error('Gagal', 'Gagal mengimport data');
+        
     }
 
     /**

@@ -22,23 +22,8 @@ class ProSeeder extends Seeder
         $users = [
             [
                 'role_id' => 1,
-                'name' => 'reza',
-                'username' => 'rezafaisal',
-                'email' => 'reza@gmail.com',
-                'password' => $passwd,
-            ],
-            [
-                'role_id' => 2,
-                'name' => 'faisal',
-                'username' => 'rezafaisal1',
-                'email' => 'reza@gmail1.com',
-                'password' => $passwd,
-            ],
-            [
-                'role_id' => 2,
-                'name' => 'afdal',
-                'username' => 'rezafaisal2',
-                'email' => 'reza@gmail2.com',
+                'name' => 'admin',
+                'username' => 'inready_admin',
                 'password' => $passwd,
             ],
         ];
@@ -46,18 +31,8 @@ class ProSeeder extends Seeder
         $profiles = [
             [
                 'user_id' => 1,
-                'gender_id' => 2,
-                'generation_id' => 5
-            ],
-            [
-                'user_id' => 2,
-                'gender_id' => 2,
-                'generation_id' => 5
-            ],
-            [
-                'user_id' => 3,
-                'gender_id' => 2,
-                'generation_id' => 5
+                'gender_id' => 1,
+                'generation_id' => 1
             ],
         ];
 

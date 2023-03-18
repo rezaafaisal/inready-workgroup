@@ -39,13 +39,12 @@ class DimSeeder extends Seeder
             ['period' => '2022 - 2023', 'year' => '2022'],
         ];
 
-        $generations = [
-            ['name' => 9, 'status' => 'outgoing'],
-            ['name' => 10, 'status' => 'outgoing'],
-            ['name' => 11, 'status' => 'outgoing'],
-            ['name' => 12, 'status' => 'active'],
-            ['name' => 13, 'status' => 'member'],
-        ];
+        $generations = [];
+            for ($i=0; $i <= 13; $i++) { 
+                array_push($generations, [
+                    'name' => $i
+                ]);
+            }
 
         $major = [
             ['name' => 'teknik informatika'],

@@ -33,14 +33,14 @@ class FactSeeder extends Seeder
 
         // Document::insert($juklak_juknis);
 
-        $elder = [
-            [
-                'user_id' => 3,
-                'period_id' => 4,
-                'type' => 'elder'
-            ]
-        ];
+        // $elder = [
+        //     [
+        //         'user_id' => 3,
+        //         'period_id' => 4,
+        //         'type' => 'elder'
+        //     ]
+        // ];
 
-        Structure::insert($elder);
+        // Structure::insert($elder);
     }
 }
