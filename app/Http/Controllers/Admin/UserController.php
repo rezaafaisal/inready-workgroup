@@ -2,15 +2,19 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Carbon\Carbon;
 use App\Helper\Data;
 use App\Models\User;
 use App\Helper\Alert;
 use App\Models\Major;
 use App\Models\Profile;
 use App\Models\Generation;
+use App\Imports\UserImport;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -25,6 +29,20 @@ class UserController extends Controller
             'generation' => Generation::all()
         ];
         return view('admin.user.index', Data::view('user', $data));
+    }
+
+
+    public function import(Request $request){
+        $request->validate([
+            'file' => 'mimes:xls,xlsx',
+        ]);
+
+        $file = $request->file;
+        $filename = md5(Carbon::now()->format('YmdHis')).'.'.$file->extension();
+        Storage::putFileAs('import', $file, $filename);
+
+        Excel::import(new UserImport, public_path('/import/'.$filename));
+        return $request;
     }
 
     /**

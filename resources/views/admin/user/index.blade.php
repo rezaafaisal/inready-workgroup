@@ -66,11 +66,16 @@
 
 {{-- import modal --}}
 <x-modal target="import" title="Import Pengguna dari Spreadsheet">
-    <form action="" method="post">
+    <form id="import_form" action="{{ route('admin.pengguna.import') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label for="" class="form-label">File</label>
-            <input type="file" class="form-control">
+            <input type="file" name="file" class="form-control @error('file') is-invalid @enderror">
+            @error('file')
+                <small class="text-danger">
+                    {{ $message }}
+                </small>
+            @enderror
         </div>
     </form>
 </x-modal>
@@ -124,6 +129,11 @@
     })
 </script>
 <script>
+
+    $('#submit_modal_import').click(()=>{
+        $('#import_form').submit();
+    })
+    
     function delete_data(data) {
         const input = $('#delete_form input[name="id"]');
         Swal.fire({

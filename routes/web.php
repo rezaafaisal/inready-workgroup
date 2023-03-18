@@ -52,6 +52,7 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function(){
     Route::get('/', [AdminController::class, 'index'])->name('home');
 
     Route::resource('pengguna', UserController::class);
+    Route::post('pengguna/import', [UserController::class, 'import'])->name('pengguna.import');
     Route::get('pengguna/{id}/reset', [UserController::class, 'reset'])->name('pengguna.reset');
     Route::post('pengguna/{id}/reset', [UserController::class, 'reseted'])->name('pengguna.reseted');
 
