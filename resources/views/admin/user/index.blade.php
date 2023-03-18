@@ -35,8 +35,13 @@
                 </div>
                 <!--end::Dropdown-->
                 <!--begin::Button-->
-                <a href="{{ route('admin.pengguna.create') }}" class="btn btn-primary font-weight-bolder">Tambah
-                    Data</a>
+                <div class="d-flex" style="gap:10px">
+                    <button class="btn btn-primary font-weight-bolder" data-toggle="modal" data-target="#import">Import
+                        Data</button>
+                    <a href="{{ route('admin.pengguna.create') }}" class="btn btn-primary font-weight-bolder">Tambah
+                        Data</a>
+
+                </div>
                 <!--end::Button-->
             </div>
         </div>
@@ -59,6 +64,16 @@
     </div>
 </div>
 
+{{-- import modal --}}
+<x-modal target="import" title="Import Pengguna dari Spreadsheet">
+    <form action="" method="post">
+        @csrf
+        <div class="form-group">
+            <label for="" class="form-label">File</label>
+            <input type="file" class="form-control">
+        </div>
+    </form>
+</x-modal>
 
 @endsection
 @section('scripts')

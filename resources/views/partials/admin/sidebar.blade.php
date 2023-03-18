@@ -7,9 +7,9 @@
         data-menu-dropdown-timeout="500">
         <!--begin::Menu Nav-->
         <ul class="menu-nav">
-            <li class="menu-item "
+            <li class="menu-item {{ ($active=='dashboard')?'menu-item-active':'' }}"
                 aria-haspopup="true">
-                <a href="" class="menu-link">
+                <a href="{{ route('admin.home') }}" class="menu-link">
                     <span class="svg-icon menu-icon">
                         <i class="menu-icon fa-brands fa-hive"></i>
                     </span>
