@@ -30,8 +30,16 @@
                 </div>
             </div> --}}
             <div class="grid grid-cols-1 gap-5 leading-8 text-justify">
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Temporibus, dolorem? Officiis et eligendi culpa perferendis placeat quas, quae corporis quibusdam nemo iusto similique explicabo! Nemo, magnam id adipisci exercitationem laudantium velit, optio quas aperiam ipsam neque illo omnis voluptates qui enim quis consequuntur numquam placeat vero. Ipsa repellendus dolorem nobis porro vero eum ducimus fugiat, repudiandae iusto dolores dignissimos sed eius ex consectetur quaerat voluptatem nemo reiciendis! Doloribus natus mollitia iure dolorem voluptatem. Non ad eius similique alias deleniti repellendus sequi ducimus nesciunt, ex architecto laborum laudantium laboriosam ratione consequatur pariatur iste magni recusandae dolorem atque accusantium porro! Rerum, quibusdam!</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit cum adipisci, odio blanditiis, earum possimus nostrum asperiores exercitationem voluptatem aut distinctio animi officia et ea veniam laborum. Optio officia accusantium dolores, debitis voluptatem iusto expedita quam assumenda perspiciatis possimus modi earum fuga architecto, saepe aperiam provident numquam totam cupiditate maiores!</p>
+                <p>
+                    Inready Workgroup adalah Study Club yang berfokus pada dunia IT khususnya di bidang web, mobile dan desain. Study Club ini sudah berdiri sejak tahun 2007 serta menghimpun mahasiwa jurusan Teknik Informatika dan Sistem Informasi UIN Alauddin Makassar. Bagi mahasiswa, study club menjadi salah satu alternatif untuk belajar. Sebab, dengan mengikuti study club, mereka mendapatkan ilmu tambahan selain dari dosen ketika belajar di kelas. 
+                </p>
+                <p>
+                    Inready Workgroup ini juga merupakan study club yang berbentuk organisasi. Bergabung dengan organisasi dapat meningkatkan keterampilan kepemimpinan dan sosial, serta mempelajari keterampilan khusus yang sejalan dengan tujuan organisasi. Adapun tujuan dari organisasi ini adalah :
+                    1. Mengembangkan wawasan dan kemampuan anggota INREADY WORKGROUP dalam bidang IT.
+                    2. Menanamkan aspek pengembangan diri keorganisasian pada setiap anggota INREADY WORKGROUP.
+                    3. Membangun jaringan kerjsama mutualisme semua anggota INREADY WORKGROUP ke arah profesional.
+                </p>
+
             </div>
         </div>
     </section>
