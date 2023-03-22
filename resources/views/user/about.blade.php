@@ -37,7 +37,7 @@
                     Inready Workgroup ini juga merupakan study club yang berbentuk organisasi. Bergabung dengan organisasi dapat meningkatkan keterampilan kepemimpinan dan sosial, serta mempelajari keterampilan khusus yang sejalan dengan tujuan organisasi. Adapun tujuan dari organisasi ini adalah :
                     1. Mengembangkan wawasan dan kemampuan anggota INREADY WORKGROUP dalam bidang IT.
                     2. Menanamkan aspek pengembangan diri keorganisasian pada setiap anggota INREADY WORKGROUP.
-                    3. Membangun jaringan kerjsama mutualisme semua anggota INREADY WORKGROUP ke arah profesional.
+                    3. Membangun jaringan kerjasama mutualisme semua anggota INREADY WORKGROUP ke arah profesional.
                 </p>
 
             </div>
