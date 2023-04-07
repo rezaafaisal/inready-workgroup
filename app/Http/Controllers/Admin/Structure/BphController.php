@@ -20,10 +20,10 @@ class BphController extends Controller
     
     public function index($period = null){
         $latest = ($period != null) ? Period::where('year', $period)->first() : Period::orderBy('id', 'DESC')->first();
-        $bph = $latest->structure?->where([
-            'type' => $this->type,
+        $bph = Structure::where([
+            'type' => 'bph',
             'period_id' => $latest->id
-        ]);
+        ])->get();
         $data = [
             'period' => Period::orderBy('id', 'DESC')->get(),
             'current' => $period??$latest->year,

@@ -19,6 +19,7 @@
             </div>
         </div>
         <div class="card-body">
+            {{-- {{ dd($data['dpos']) }} --}}
             @if($data['dpos']?->count() > 0)
                 @foreach($data['dpos'] as $dpo)
                     <div class="d-flex align-items-center mb-10">

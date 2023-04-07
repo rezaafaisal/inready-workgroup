@@ -13,12 +13,13 @@ use App\Http\Controllers\Controller;
 class DpoController extends Controller
 {
     private $type = "dpo";
+
     public function index($period = null){
         $latest = ($period != null) ? Period::where('year', $period)->first() : Period::orderBy('id', 'DESC')->first();
-        $dpos = $latest->structure?->where([
+        $dpos = Structure::where([
             'type' => 'dpo',
             'period_id' => $latest->id
-        ]);
+        ])->get();
         $data = [
             'period' => Period::orderBy('id', 'DESC')->get(),
             'current' => $period??$latest->year,
