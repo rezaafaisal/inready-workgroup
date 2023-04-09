@@ -10,7 +10,7 @@
 </head>
 <body class="h-screen bg-inr-black">
     <div class="flex h-screen items-center justify-center mx-5">
-        <div class="p-20 w-full md:w-8/12 lg:w-6/12 rounded-xl bg-inr-white/10 shadow">
+        <div class="py-20 px-10 md:px-20 w-full md:w-8/12 lg:w-6/12 rounded-xl bg-inr-white/10 shadow">
             <h2 class="text-center text-inr-yellow font-bold text-xl pb-5">MASUK</h2>
             <form action="{{ route('verify') }}" method="POST" class="text-inr-white">
                 @csrf
@@ -37,7 +37,7 @@
                     <a href="#" class="">Lupa Password?</a>
                 </div>
                 <button class="rounded w-full mb-5 px-3 py-2 text-inr-black bg-inr-yellow hover:bg-inr-yellow-1 duration-150">Masuk</button>
-                <span class="block text-center text-inr-white text-sm">Belum punya akun? <a href="#" class="font-semibold text-inr-yellow">Daftar Sekarang</a></span>
+                <span class="block text-center text-inr-white text-sm">Akun bermasalah? <a href="#" class="font-semibold text-inr-yellow">Hubungi admin</a></span>
             </form>
         </div>
     </div>

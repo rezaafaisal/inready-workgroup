@@ -91,7 +91,7 @@ class DpoController extends Controller
                             return [
                                 'name' => $row->name,
                                 'id' => $row->id,
-                                'generation' => $row->profile->generation->name
+                                // 'generation' => $row->profile->generation->name
                             ];
                         });
         }

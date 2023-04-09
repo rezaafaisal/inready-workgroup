@@ -69,13 +69,15 @@
     <form id="import_form" action="{{ route('admin.pengguna.import') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
-            <label for="" class="form-label">File</label>
-            <input type="file" name="file" class="form-control @error('file') is-invalid @enderror">
-            @error('file')
-                <small class="text-danger">
-                    {{ $message }}
-                </small>
-            @enderror
+            <div class="custom-file">
+                <input type="file" name="file" class="custom-file-input @error('file') is-invalid @enderror" id="file" placeholder="Pilih gambar artikel">
+                <label class="custom-file-label" for="file">Pilih File</label>
+                @error('file')
+                    <small class="text-danger">
+                        {{ $message }}
+                    </small>
+                @enderror
+            </div>
         </div>
     </form>
 </x-modal>

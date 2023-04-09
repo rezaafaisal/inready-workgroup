@@ -41,8 +41,11 @@ class DimSeeder extends Seeder
 
         $generations = [];
             for ($i=0; $i <= 13; $i++) { 
+                if($i >= 0 && $i <= 12) $status = 'outgoing';
+                else $status = 'active';
                 array_push($generations, [
-                    'name' => $i
+                    'name' => $i,
+                    'status' => $status
                 ]);
             }
 

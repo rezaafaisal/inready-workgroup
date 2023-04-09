@@ -51,7 +51,6 @@
                 </a>
             </li> --}}
 
-
             <li>
                 <a href="{{ route('generation') }}" class="hover:text-inr-yellow flex justify-between items-center duration-150 w-full py-3 md:py-0 md:inline">
                     Angkatan
@@ -156,7 +155,7 @@
                     </ul>
                 </div>
             @endif
-            <ul :class="nav?'translate-y-0 opacity-100 visible fixed':'-translate-y-10 opacity-0 invisible absolute'" class="md:hidden py-5 px-10 h-screen top-0 bottom-0 left-0 right-0 w-full duration-300 ease-in-out bg-inr-black text-white text-sm">
+            <ul  :class="nav?'translate-y-0 opacity-100 visible fixed':'-translate-y-10 opacity-0 invisible absolute'" class="md:hidden py-5 px-10 h-screen top-0 bottom-0 left-0 right-0 w-full duration-300 ease-in-out bg-inr-black text-white text-sm">
                 <li class="md:hidden flex justify-between mb-5">
                     <input type="search" name="" id="" placeholder="Apa yang Ingin Anda Cari?" class="text-sm font-light bg-inr-white rounded px-4 py-2 w-9/12 text-inr-black focus:outline-none">
                     <button @click="nav=!nav" class="text-inr-white  h-10 rounded">
@@ -169,22 +168,23 @@
                         <i class="md:hidden fas fa-arrow-up rotate-45 text-xs"></i>
                     </a>
                 </li>
-                <li x-data="{profile:false}" class="group">
-                    <span x-on:click="profile = !profile" class="md:hidden hover:text-inr-yellow flex justify-between items-center duration-150 w-full py-3 cursor-pointer">
-                        Buku Besar
-                        <i :class="profile?'-rotate-180':''" class="duration-300 ml-1 text-xs fas fa-angle-down"></i>
-                    </span>
-                    <ul  :class="profile?'h-56':'h-0'"  class="block overflow-hidden ease-in-out duration-300 bg-[#292929] rounded">
-                        <li>
-                            <a href="{{ route('history') }}" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 rounded text-inr-white hover:text-inr-black font-light">Sejarah</a>
-                        </li>
-                        <li><a href="" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 rounded text-inr-white hover:text-inr-black font-light">AD-ART</a></li>
-                        <li><a href="{{ asset('document/dokumen.pdf') }}" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 rounded text-inr-white hover:text-inr-black font-light">JUKLAK JUKNIS</a></li>
-                        <li><a href="{{ asset('document/dokumen.pdf') }}" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 rounded text-inr-white hover:text-inr-black font-light">GBHO</a></li>
-                        <li><a href="{{ route('leader') }}" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 rounded text-inr-white hover:text-inr-black font-light">Mantan Ketua</a></li>
-                    </ul>
-                </li>
-    
+                @if (Auth::user())
+                    <li x-data="{profile:false}" class="group">
+                        <span x-on:click="profile = !profile" class="md:hidden hover:text-inr-yellow flex justify-between items-center duration-150 w-full py-3 cursor-pointer">
+                            Buku Besar
+                            <i :class="profile?'-rotate-180':''" class="duration-300 ml-1 text-xs fas fa-angle-down"></i>
+                        </span>
+                        <ul  :class="profile?'h-min':'h-0'"  class="block overflow-hidden ease-in-out duration-300 bg-[#292929] rounded">
+                            <li>
+                                <a href="{{ route('history') }}" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 rounded text-inr-white hover:text-inr-black font-light">Sejarah</a>
+                            </li>
+                            <li><a href="" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 rounded text-inr-white hover:text-inr-black font-light">AD-ART</a></li>
+                            <li><a href="{{ asset('document/dokumen.pdf') }}" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 rounded text-inr-white hover:text-inr-black font-light">JUKLAK JUKNIS</a></li>
+                            <li><a href="{{ asset('document/dokumen.pdf') }}" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 rounded text-inr-white hover:text-inr-black font-light">GBHO</a></li>
+                            <li><a href="{{ route('leader') }}" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 rounded text-inr-white hover:text-inr-black font-light">Mantan Ketua</a></li>
+                        </ul>
+                    </li>
+                @endif
     
                 {{-- on progress --}}
                 {{-- <li>
@@ -208,6 +208,34 @@
                     </a>
                 </li>
                 
+                {{-- pengurus --}}
+                @php
+                    $period = $periods[0];
+                @endphp
+                <li x-data="{profile:false}" class="group">
+                    <span x-on:click="profile = !profile" class="md:hidden hover:text-inr-yellow flex justify-between items-center duration-150 w-full py-3 cursor-pointer">
+                        Pengurus
+                        <i :class="profile?'-rotate-180':''" class="duration-300 ml-1 text-xs fas fa-angle-down"></i>
+                    </span>
+                    <ul  :class="profile?'h-min':'h-0'"  class="block overflow-hidden ease-in-out duration-300 bg-[#292929] rounded">
+                        <li>
+                            <a href="{{ route('manager', ['year' => $period->year, 'division' => 'elder']) }}" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 rounded text-inr-white hover:text-inr-black font-light">Pembina</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('manager', ['year' => $period->year, 'division' => 'dpo']) }}" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 rounded text-inr-white hover:text-inr-black font-light">DPO</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('manager', ['year' => $period->year, 'division' => 'bph']) }}" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 rounded text-inr-white hover:text-inr-black font-light">Pengurus Harian</a>
+                        </li>
+                         @foreach ($period->structure?->where('type', 'bpo')->unique('division') ?? [] as $bpo)
+                            <li>
+                                <a href="{{ route('manager', ['year' => $period->year, 'division' => \Str::slug($bpo->division)]) }}" class="py-2 px-3 w-full block hover:bg-inr-yellow duration-150 rounded text-inr-white hover:text-inr-black font-light">
+                                    {{ $bpo->division }}
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </li>
                 <li>
                     <a href="" class="hover:text-inr-yellow flex justify-between items-center duration-150 w-full py-3">
                         Tentang Kami
@@ -215,7 +243,11 @@
                     </a>
                 </li>
                 <li>
-                    <button class="mt-4 w-full md:mt-0 md:w-auto btn-yellow">Masuk</button>
+                    @if (Auth::user())
+                        <a href="{{ route('logout') }}" class="mt-4 w-full block text-center md:mt-0 md:w-auto btn-red">Keluar</a>
+                    @else
+                        <a href="{{ route('login') }}" class="mt-4 w-full block text-center md:mt-0 md:w-auto btn-yellow">Masuk</a>
+                    @endif
                 </li>
             </ul>
             <button @click="nav = !nav" class="text-inr-yellow border border-inr-yellow w-12 h-10 rounded md:hidden ">

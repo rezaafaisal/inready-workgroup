@@ -6,6 +6,10 @@
     @apply px-4 py-2 text-inr-black rounded-full bg-inr-yellow font-semibold hover:bg-inr-yellow-1 duration-150
 }
 
+.btn-red{
+    @apply px-4 py-2 text-inr-black rounded-full bg-rose-500 font-semibold hover:bg-rose-400 duration-150
+}
+
 .wrapper{
     @apply container mx-auto w-11/12 md:w-10/12 lg:w-9/12
 }

@@ -86,7 +86,7 @@ class DocumentController extends Controller
         }
 
         // set all to false
-        $generation_active = Generation::where('active', true)->first()?->id;
+        $generation_active = Generation::where('status', 'active')->first()?->id;
         if(Document::all()->count() > 0){
             Document::where('status', true)->where('generation_id', '!=', $generation_active)->update(['status' => false]);
         }

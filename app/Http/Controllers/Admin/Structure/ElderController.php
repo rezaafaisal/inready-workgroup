@@ -15,10 +15,10 @@ class ElderController extends Controller
     private $type = "elder";
     public function index($period = null){
         $latest = ($period != null) ? Period::where('year', $period)->first() : Period::orderBy('id', 'DESC')->first();
-        $elders = $latest->structure?->where([
+        $elders = Structure::where([
             'type' => 'elder',
             'period_id' => $latest->id
-        ]);
+        ])->get();
         $data = [
             'period' => Period::orderBy('id', 'DESC')->get(),
             'current' => $period??$latest->year,
@@ -67,7 +67,7 @@ class ElderController extends Controller
                             return [
                                 'name' => $row->name,
                                 'id' => $row->id,
-                                'generation' => $row->profile->generation->name
+                                // 'generation' => $row->profile->generation->name
                             ];
                         });
         }
