@@ -4,14 +4,14 @@
     <div class="wrapper py-20">
         <h1 class="section-title text-center">Pengurus Periode {{ $data['period'] }}</h1>
         <h2 class="font-medium text-inr-black text-2xl mb-10">{{ $data['division'] }}</h2>
-        <p class="text-justify leading-8 mb-10">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis rerum
+        {{-- <p class="text-justify leading-8 mb-10">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis rerum
             perferendis, maxime obcaecati beatae nam id illum quia mollitia, laborum qui nostrum autem dicta doloremque
             in architecto dolores. Odit, praesentium distinctio nisi blanditiis neque eos voluptas, eius eum, ad at
             consequuntur delectus obcaecati voluptates. Vitae officia consectetur earum accusantium nam, deleniti nisi
             necessitatibus enim sed, modi ducimus quia dolore incidunt error adipisci voluptatem sint a fugit quo minima
             harum tempora quas repellendus temporibus. Corrupti recusandae magni quia, eveniet, temporibus explicabo
             itaque ullam eaque placeat nihil vero? Quaerat quam laboriosam debitis asperiores commodi natus possimus
-            odit, enim, earum, quos aliquid dolorem.</p>
+            odit, enim, earum, quos aliquid dolorem.</p> --}}
 
         @if($data['leader'])
             <div class="mb-10 grid grid-cols-1 md:grid-cols-4 lg:grid-cols-3 gap-10">

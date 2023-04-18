@@ -128,26 +128,29 @@ Route::prefix('pengguna')->name('user.')->group(function(){
     });
 });
 // verifikasi email baru
-Route::get('email/verifikasi/{key}', [ProfileController::class, 'verifyEmail'])->name('verifyEmail');
-Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('berita', [NewsController::class, 'index'])->name('news');
-Route::get('berita/{slug}', [NewsController::class, 'show'])->name('show_news');
 
-Route::get('kegiatan', [ActivityController::class, 'index'])->name('activity');
-Route::get('kegiatan/{slug}', [ActivityController::class, 'show'])->name('show_activity');
-
-Route::get('karya', [MasterpieceController::class, 'index'])->name('masterpiece');
-
-Route::get('angkatan', [GenerationController::class, 'index'])->name('generation');
-Route::get('angkatan/{generation}', [GenerationController::class, 'show'])->name('show_generation');
-
-Route::get('pengurus/{year}/{division}', [ManagerController::class, 'index'])->name('manager');
-
-Route::get('tentang', [AboutController::class, 'index'])->name('about');
-
-
-Route::get('dokumen/sejarah', [InternalController::class, 'history'])->name('history');
-Route::get('dokumen/mantan-ketua', [InternalController::class, 'leader'])->name('leader');
+Route::middleware('check')->group(function(){
+    Route::get('email/verifikasi/{key}', [ProfileController::class, 'verifyEmail'])->name('verifyEmail');
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('berita', [NewsController::class, 'index'])->name('news');
+    Route::get('berita/{slug}', [NewsController::class, 'show'])->name('show_news');
+    
+    Route::get('kegiatan', [ActivityController::class, 'index'])->name('activity');
+    Route::get('kegiatan/{slug}', [ActivityController::class, 'show'])->name('show_activity');
+    
+    Route::get('karya', [MasterpieceController::class, 'index'])->name('masterpiece');
+    
+    Route::get('angkatan', [GenerationController::class, 'index'])->name('generation');
+    Route::get('angkatan/{generation}', [GenerationController::class, 'show'])->name('show_generation');
+    
+    Route::get('pengurus/{year}/{division}', [ManagerController::class, 'index'])->name('manager');
+    
+    Route::get('tentang', [AboutController::class, 'index'])->name('about');
+    
+    
+    Route::get('dokumen/sejarah', [InternalController::class, 'history'])->name('history');
+    Route::get('dokumen/mantan-ketua', [InternalController::class, 'leader'])->name('leader');
+});
 
 Route::get('masuk', [AuthController::class, 'login'])->name('login');
 Route::post('masuk', [AuthController::class, 'verify'])->name('verify');

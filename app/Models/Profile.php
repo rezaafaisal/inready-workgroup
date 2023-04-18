@@ -31,6 +31,12 @@ class Profile extends Model
         );
     }
 
+    public function twitter():Attribute{
+        return new Attribute(
+            get: fn($val) => ($val) ? 'https://twitter.com/'.$val : null,
+        );
+    }
+
 
     public function user(){
         return $this->belongsTo(User::class);

@@ -82,7 +82,6 @@
         <div class="form-group">
             <span>
                 Unduh contoh template spreadsheet, <a href="{{ asset('document/template.xlsx') }}" class="font-weight-bold" download="">Disini</a>
-
             </span>
         </div>
     </form>

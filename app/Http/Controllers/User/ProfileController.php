@@ -125,11 +125,17 @@ class ProfileController extends Controller
     }
 
     public function social(Request $request){
+        $data = [
+            'instagram' => explode('/',$request->instagram),
+            'twitter' => explode('/',$request->twitter),
+            'facebook' => explode('/',$request->facebook),
+            'linkedin' => explode('/',$request->linkedin),
+        ];
         $success = Profile::where('user_id', Auth::id())->update([
-            'instagram' => $request->instagram,
-            'twitter' => $request->twitter,
-            'facebook' => $request->facebook,
-            'linkedin' => $request->linkedin,
+            'instagram' => end($data['instagram']),
+            'twitter' => end($data['twitter']),
+            'facebook' => end($data['facebook']),
+            'linkedin' => end($data['linkedin']),
         ]);
 
         if($success){
