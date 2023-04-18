@@ -28,15 +28,15 @@ class DpoController extends Controller
                 'id' => $dpos?->where('position', 'leader')->first()?->user->id,
                 'name' => $dpos?->where('position', 'leader')->first()?->user->name
             ]),
-            'dpo_options' => $latest->structure?->where([
+            'dpo_options' => Structure::where([
                 'type' => 'dpo',
                 'period_id' => $latest->id,
-                'position' => 'member',
-            ])->map(function($row){
-              return [
-                'id' => $row->user->id,
-                'name' => $row->user->name
-              ]; 
+                'position' => 'member'
+            ])->get()->map(function($row){
+                return [
+                    'id' => $row->user->id,
+                    'name' => $row->user->name
+                ];
             })
         ];
 

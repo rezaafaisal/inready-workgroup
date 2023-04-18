@@ -28,80 +28,84 @@
                 </div>
                 <div class="card-body">
                     <div class="accordion accordion-solid accordion-toggle-plus" id="accordionExample3">
+                        {{ dd($structure::where([
+                                                        'type' => 'bpo',
+                                                        'period_id' => $data['latest']->id,
+                                                        'division' => 'keilmuan',
+                                                    ])->orderBy('position')->get()) }}
                         @foreach ($data['division'] ?? [] as $i => $division)
-                        <div class="card">
-                            <div class="card-header" id="headingThree3_{{ $i }}">
-                                <div class="card-title collapsed" data-toggle="collapse"
-                                    data-target="#collapseThree3_{{ $i }}">
-                                    {{ $division->division }}
-                                </div>
-                            </div>
-                            <div id="collapseThree3_{{ $i }}" class="collapse" data-parent="#accordionExample3">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-end">
-                                        <div class="d-flex" style="gap:5px">
-                                            @php
-                                            // data bpo member by division
-                                            $bpo_members = $structure::where([
-                                                    'type' => 'bpo',
-                                                    'period_id' => $data['latest']->id,
-                                                    'division' => $division->division,
-                                                ])->orderBy('position')->get();
-
-                                                // data to set select
-                                                $current_bpo = [
-                                                    'division' => $division->division,
-                                                    'leader' => [
-                                                        'name' => $structure->where([
-                                                            'division' => $division->division,
-                                                            'position' => 'leader'
-                                                        ])->first()->user->name,
-                                                        'id' => $structure->where([
-                                                            'division' => $division->division,
-                                                            'position' => 'leader'
-                                                        ])->first()->user_id
-                                                    ],
-                                                    'members' => $structure->where([
-                                                        'division' => $division->division,
-                                                        'position' => 'member'])->get()->map(function($row){
-                                                            return [
-                                                                'name' => $row->user->name,
-                                                                'id' =>  $row->user_id
-                                                            ];
-                                                    })->toArray()
-                                                ];
-                                            @endphp
-                                            
-                                            <button data-toggle="modal" data-target="#set_division" onclick="setBpo('{{ json_encode($current_bpo) }}', '{{ $division->division }}')" class="btn btn-sm btn-outline-primary">Perbarui</button>
-                                            <button class="btn btn-sm btn-outline-danger" onclick="confirmDelete('{{ $division->division }}')">Hapus Divisi</button>
-                                        </div>
+                            <div class="card">
+                                <div class="card-header" id="headingThree3_{{ $i }}">
+                                    <div class="card-title collapsed" data-toggle="collapse"
+                                        data-target="#collapseThree3_{{ $i }}">
+                                        {{ $division->division }}
                                     </div>
-                                    @foreach($bpo_members ?? [] as $i => $bpo_member)
-                                        <div class="d-flex align-items-center mb-10">
-                                            <!--begin::Symbol-->
-                                            <div class="symbol symbol-40 symbol-light-white mr-5">
-                                                <img src="{{ asset('profiles/'.$bpo_member->user?->profile->image ?? 'profiles/user.png') }}"
-                                                    class="symbol-label" style="object-fit: cover" alt="">
-                                            </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Text-->
-                                            <div class="d-flex flex-column flex-grow-1 font-weight-bold">
-                                                <span class="text-dark text-hover-primary mb-1 font-size-lg">
-                                                    <span>{{ $bpo_member->user?->name ?? 'Belum ditentukan' }}</span>
-                                                    @if ($bpo_member->position == 'leader')
-                                                        <span class="label label-inline label-light-info ml-4">Kepala</span>
-                                                    @endif
-                                                </span>
-                                                <span class="text-muted">{{ $bpo_member->position == 'leader' ? 'Ketua Divisi' : 'Anggota' }}</span>
+                                </div>
+                                <div id="collapseThree3_{{ $i }}" class="collapse" data-parent="#accordionExample3">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-end">
+                                            <div class="d-flex" style="gap:5px">
+                                                @php
+                                                // data bpo member by division
+                                                $bpo_members = $structure::where([
+                                                        'type' => 'bpo',
+                                                        'period_id' => $data['latest']->id,
+                                                        'division' => $division->division,
+                                                    ])->orderBy('position')->get();
+
+                                                    // data to set select
+                                                    $current_bpo = collect([
+                                                        'division' => $division->division,
+                                                        'leader' => [
+                                                            'name' => $structure->where([
+                                                                'division' => $division->division,
+                                                                'position' => 'leader'
+                                                            ])->first()->user->name,
+                                                            'id' => $structure->where([
+                                                                'division' => $division->division,
+                                                                'position' => 'leader'
+                                                            ])->first()->user_id
+                                                        ],
+                                                        'members' => $structure->where([
+                                                            'division' => $division->division,
+                                                            'position' => 'member'])->get()->map(function($row){
+                                                                return [
+                                                                    'name' => $row->user->name,
+                                                                    'id' =>  $row->user_id
+                                                                ];
+                                                        })
+                                                    ]);
+                                                @endphp
+                                                <button data-toggle="modal" onclick="setBpo('{{ $current_bpo }}')" data-target="#set_division" class="btn btn-sm btn-outline-primary">Perbarui</button>
+                                                <button class="btn btn-sm btn-outline-danger" onclick="confirmDelete('{{ $division->division }}')">Hapus Divisi</button>
                                             </div>
                                         </div>
-                                    @endforeach
+                                        @foreach($bpo_members ?? [] as $bpo_member)
+                                            <div class="d-flex align-items-center mb-10">
+                                                <!--begin::Symbol-->
+                                                <div class="symbol symbol-40 symbol-light-white mr-5">
+                                                    <img src="{{ asset('profiles/'.$bpo_member->user?->profile->image ?? 'profiles/user.png') }}"
+                                                        class="symbol-label" style="object-fit: cover" alt="">
+                                                </div>
+                                                <!--end::Symbol-->
+                                                <!--begin::Text-->
+                                                <div class="d-flex flex-column flex-grow-1 font-weight-bold">
+                                                    <span class="text-dark text-hover-primary mb-1 font-size-lg">
+                                                        <span>{{ $bpo_member->user?->name ?? 'Belum ditentukan' }}</span>
+                                                        @if ($bpo_member->position == 'leader')
+                                                            <span class="label label-inline label-light-info ml-4">Kepala</span>
+                                                        @endif
+                                                    </span>
+                                                    <span class="text-muted">{{ $bpo_member->position == 'leader' ? 'Ketua Divisi' : 'Anggota' }}</span>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+
                         @endforeach
                     </div>
-
                     @if($data['bpo']?->count() == 0)
                     <div class="alert alert-custom alert-light-primary fade show mb-5" role="alert">
                         <div class="alert-text">Belum ada data tersedia!</div>
@@ -165,6 +169,7 @@
             <label for="set_leader" class="form-label">Kepala Divisi</label>
             <select name="leader" id="set_leader" style="width: 100%;" class="form-control select2" autofocus>
             </select>
+            
         </div>
         <div class="form-group">
             <label for="set_member" class="form-label">Anggota Divisi</label>
@@ -187,6 +192,10 @@
 <x-datatable-script />
 <script>
     $('#table').DataTable()
+
+    $('#submit_modal_set_division').click(() => {
+        $('#set_division_form').submit()
+    })
 </script>
 @php($current = $data['current'])
     <script>
@@ -221,15 +230,15 @@
                 $('#create_division_form').submit()
             })
 
-            $('#submit_modal_set_division').click(() => {
-                $('#set_division_form').submit()
-            })
+       
         });
 
         // set division function
-        function setBpo(data, division){
+        function setBpo(data){
             const leader = JSON.parse(data).leader;
             const members = JSON.parse(data).members;
+            const division = JSON.parse(data).division;
+            console.log(leader);
 
             // set division
             $('#set_division_form #division').val(division)
@@ -238,11 +247,12 @@
             // set leader
             let $option_lead = $("<option selected></option>").val(leader.id).text(leader.name);
             $('#set_leader').append($option_lead).trigger('change');
-
+            
             // set member
             members.forEach(element => {
                 let $option_members = $("<option selected></option>").val(element.id).text(element.name);
                 $('#set_member').append($option_members).trigger('change');
+
             })
         }
 

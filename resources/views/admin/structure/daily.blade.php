@@ -76,20 +76,21 @@
                             {{-- script to trigger --}}
                             @php
                                 $bph_user[$i] = collect([
-                                    'id' => $data['latest']->structure?->where([
-                                        'user_id' => $bph->user->id ?? 0,
-                                        'type' => 'bph'
-                                        ])->first()?->user->id,
-                                    'name' => $data['latest']->structure?->where([
-                                        'user_id' => $bph->user->id ?? 0,
-                                        'type' => 'bph'
-                                        ])->first()?->user->name
+                                    'id' => \App\Models\Structure::where([
+                                        'user_id' => $bph->user?->id,
+                                        'type' => 'bph',
+                                        'period_id' => $data['latest']->id
+                                    ])->first()?->user?->id,
+                                    'name' => \App\Models\Structure::where([
+                                        'user_id' => $bph->user?->id,
+                                        'type' => 'bph',
+                                        'period_id' => $data['latest']->id
+                                    ])->first()?->user?->name
                                 ]);
+                                // dd($bph_user[$i]);
                             @endphp
                             <script>
-                                // selected user
-                                $('#user_{{ $i }}').append($("<option selected></option>").val(JSON.parse('{!! $bph_user[$i] !!}').id).text(JSON.parse('{!! $bph_user[$i] !!}').name)).trigger('change');
-
+                                $("#user_{{ $i }}").append($("<option selected></option>").val(JSON.parse('{!! $bph_user[$i] !!}').id).text(JSON.parse('{!! $bph_user[$i] !!}').name)).trigger('change');
                                 // submit button
                                 $("#submit_modal_set_division_{{ $i }}").click(() => {
                                     $("#set_division_form_{{ $i }}").submit()
