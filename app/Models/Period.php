@@ -17,4 +17,8 @@ class Period extends Model
     public function structure(){
         return $this->hasMany(Structure::class)->orderBy('division');
     }
+
+    public function documents(){
+        return $this->hasMany(Document::class);
+    }
 }

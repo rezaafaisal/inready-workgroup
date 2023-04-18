@@ -9,6 +9,7 @@ use App\Models\Document;
 use App\Models\Generation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Period;
 use Illuminate\Support\Facades\Storage;
 
 use function PHPSTORM_META\type;
@@ -65,6 +66,7 @@ class DocumentController extends Controller
     public function create($type){
          $data = [
             'generation' => Generation::all(),
+            'period' => Period::orderBy('id', 'desc')->get(),
             'route' => $this->route(),
             'type' => $type,
             'title' => $this->title($type)

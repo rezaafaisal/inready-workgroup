@@ -23,8 +23,8 @@
                                         <select name="generation" id="generation" class="form-control @error('generation') is-invalid @enderror">
                                             <x-slot:name>Generation</x-slot:name>
                                             <option selected disabled>Pilih Periode</option>
-                                            @foreach ($data['generation'] as $row)
-                                                <option value="{{ $row->id }}">{{ $row->name }}</option>
+                                            @foreach ($data['period'] as $row)
+                                                <option value="{{ $row->id }}">{{ $row->period }}</option>
                                             @endforeach
                                         </select>
                                         @error('generation')

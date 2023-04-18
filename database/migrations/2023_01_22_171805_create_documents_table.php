@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('generation_id');
+            $table->foreignId('period_id');
             $table->enum('type', ['ad-art', 'juklat-juknis', 'gbho']);
             $table->string('name');
             $table->string('file');

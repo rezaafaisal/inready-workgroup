@@ -98,7 +98,7 @@ class DataController extends Controller
             })
             ->removeColumn('generation_id')
             ->addColumn('generation', function($row){
-                return $row->generation?->name;
+                return $row->period?->period;
             })
             ->rawColumns(['action', 'status'])
             ->escapeColumns()

@@ -25,10 +25,13 @@ class GenerationController extends Controller
     }
 
     public function create(Request $request){
-        $latest = $request->latest;
-
+        $latest = (int)$request->latest;
+        // return $latest;
+        if(Generation::where('name', $latest)->first()->status == 'member'){
+            return Alert::error('Gagal Menambahkan Angkatan', 'Jadikan pengurus angkatan sebelumnya terlebih dahulu!');
+        }
         $success = Generation::create([
-            'name' => (int)$latest+1,
+            'name' => $latest+1,
             'status' => 'member'
         ]);
 
@@ -42,6 +45,17 @@ class GenerationController extends Controller
         $status = $request->status;
         $id = Crypt::decryptString($request->id);
 
+        $id_check = 1;
+        while($id_check > 0){
+            if(Generation::where('id', $id - $id_check)->exists()){
+                $id_check = 0;
+                if(Generation::find($id)->status == 'member'){
+                    return Alert::error('Gagal menjadikan pengurus', 'Angkatan sebelumnya belum menjadi pengurus!');
+                }
+            }
+            else $id_check++;
+        }
+        
         if($status == 'outgoing'){
             // cek jika masih ada pengurus, maka tidak bisa menjadi demisioner
             if(Generation::where('name', $id-1)->first()->status == 'active') return Alert::error('Terjadi Kesalahan', 'Kepengurusan belum selesai, tidak bisa menjadi demisioner!');
