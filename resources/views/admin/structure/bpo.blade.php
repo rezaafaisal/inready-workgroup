@@ -28,11 +28,6 @@
                 </div>
                 <div class="card-body">
                     <div class="accordion accordion-solid accordion-toggle-plus" id="accordionExample3">
-                        {{ dd($structure::where([
-                                                        'type' => 'bpo',
-                                                        'period_id' => $data['latest']->id,
-                                                        'division' => 'keilmuan',
-                                                    ])->orderBy('position')->get()) }}
                         @foreach ($data['division'] ?? [] as $i => $division)
                             <div class="card">
                                 <div class="card-header" id="headingThree3_{{ $i }}">
@@ -252,7 +247,6 @@
             members.forEach(element => {
                 let $option_members = $("<option selected></option>").val(element.id).text(element.name);
                 $('#set_member').append($option_members).trigger('change');
-
             })
         }
 
@@ -274,6 +268,10 @@
                 }
             })
         }
+
+        $('.close-modal').click(()=>{
+            $('#set_member').empty();
+        })
 
     </script>
     @endsection
