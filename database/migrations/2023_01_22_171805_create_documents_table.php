@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('period_id');
             $table->enum('type', ['ad-art', 'juklat-juknis', 'gbho']);
-            $table->string('name');
+            // $table->string('name');
             $table->string('file');
             $table->boolean('status')->default(false);
             $table->timestamps();

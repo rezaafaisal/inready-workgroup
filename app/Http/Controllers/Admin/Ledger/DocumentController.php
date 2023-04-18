@@ -10,6 +10,7 @@ use App\Models\Generation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Period;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 
 use function PHPSTORM_META\type;
@@ -28,8 +29,8 @@ class DocumentController extends Controller
         return "documents/".$type;
     }
     
-    private function generation(){
-        return Generation::where('active', true)->first()->id;
+    private function now($format){
+        return Carbon::now()->format($format);
     }
 
     private function title($type){
@@ -65,7 +66,6 @@ class DocumentController extends Controller
 
     public function create($type){
          $data = [
-            'generation' => Generation::all(),
             'period' => Period::orderBy('id', 'desc')->get(),
             'route' => $this->route(),
             'type' => $type,
@@ -76,21 +76,19 @@ class DocumentController extends Controller
 
     public function store(Request $request, $type){
         $request->validate([
-            'filename' => 'required',
             'file' => 'required|mimes:pdf,doc,docx',
-            'generation' => 'required'
+            'period' => 'required'
         ]);
 
-        $is_exist = Document::where(['type' => $type, 'generation_id' => $request->generation])->count();
         // cek apakah sudah ada dokumen
-        if($is_exist > 0){
-            return Alert::error('Gagal', 'Dokumen sudah ada untuk periode angkatan '.Generation::find($request->generation)->name, $this->route('index'));
+        if(Document::where(['type' => $type, 'period_id' => $request->period])->exists()){
+            return Alert::error('Gagal', 'Dokumen sudah ada untuk periode '.Period::find($request->period)->period, $this->route('index'),['type' => $type]);
         }
 
         // set all to false
-        $generation_active = Generation::where('status', 'active')->first()?->id;
+        $period_active = Period::where('year', $this->now('Y'))->first()?->id;
         if(Document::all()->count() > 0){
-            Document::where('status', true)->where('generation_id', '!=', $generation_active)->update(['status' => false]);
+            Document::where('status', true)->where('period_id', '!=', $period_active)->update(['status' => false]);
         }
         
         $file = $request->file;
@@ -98,10 +96,9 @@ class DocumentController extends Controller
         Storage::putFileAs($this->path($type), $file, $filename);
     
         $document = new Document();
-        $document->name = $request->filename;
-        $document->generation_id = $request->generation;
+        $document->period_id = $request->period;
         $document->file = $filename;
-        $document->status = ($request->generation == $generation_active) ? true : false;
+        $document->status = ($request->period == $period_active) ? true : false;
         $document->type = $type;
         $success = $document->save();
 
@@ -114,7 +111,6 @@ class DocumentController extends Controller
 
     public function edit($type, $id){
         $data = [
-            'generation' => Generation::all(),
             'document' => Document::find($id),
             'route' => $this->route(),
             'type' => $type,
@@ -125,25 +121,23 @@ class DocumentController extends Controller
 
     public function update(Request $request, $type, $id){
         $request->validate([
-            'filename' => 'required|min:3',
+            'file' => 'required',
         ]);  
         
         $document = Document::find($id);
         
         if($request->file){
-            Storage::delete($this->path($document->type).$document->file);
+            Storage::delete($this->path($document->type).'/'.$document->file);
             $file = $request->file;
             $filename = Filename::make($request->file->extension());
             Storage::putFileAs($this->path($document->type), $file, $filename);
 
             $document->file = $filename;
         }
-
-        $document->name = $request->filename;
         $success = $document->save();
 
         if($success){
-            return Alert::default(true, 'Diedit', $this->route('index'));
+            return Alert::default(true, 'Diedit', $this->route('index'), ['type' => $type]);
         }
 
         return Alert::default(false, 'Diedit');
@@ -152,9 +146,9 @@ class DocumentController extends Controller
 
     public function destroy(Request $request, $type){
         $document = Document::find($request->id);
-        
+        $period_active = Period::where('year', $this->now('Y'))->first();
         // kalau periode aktif tidak dapat dihapus
-        if($document->generation_id == $this->generation()){
+        if($document->period_id == $period_active->id){
             return Alert::error('Gagal', 'Dokumen periode yang aktif tidak dapat dihapus');
         }
         $success = $document->delete();

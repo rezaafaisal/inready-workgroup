@@ -15,9 +15,6 @@
                             @method('PUT')
                             @csrf
                             <div class="form-group">
-                                <x-input type="type" name="filename" label="Nama File" placeholder="Nama File" value="{{ $data['document']->name }}" />
-                            </div>
-                            <div class="form-group">
                                 <x-input-file name="file" label="Dokumen Juklak Juknis" />
                             </div>
                             <div class="form-group d-flex justify-content-end">

@@ -13,21 +13,18 @@
                     <div class="card-body">
                         <form action="{{ route($data['route'].'store', ['type' => $data['type']]) }}" method="post" enctype="multipart/form-data">
                             @csrf
-                            <div class="form-group">
-                                <x-input type="type" name="filename" label="Nama File" placeholder="Nama File" value="{{ old('filename') }}" />
-                            </div>
                             <div class="row">
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="" class="form-label">Periode Angkatan</label>
-                                        <select name="generation" id="generation" class="form-control @error('generation') is-invalid @enderror">
-                                            <x-slot:name>Generation</x-slot:name>
+                                        <select name="period" id="period" class="form-control @error('period') is-invalid @enderror">
+                                            <x-slot:name>Period</x-slot:name>
                                             <option selected disabled>Pilih Periode</option>
                                             @foreach ($data['period'] as $row)
                                                 <option value="{{ $row->id }}">{{ $row->period }}</option>
                                             @endforeach
                                         </select>
-                                        @error('generation')
+                                        @error('period')
                                             <small class="text-danger">{{ $message }}</small>
                                         @enderror
                                     </div>

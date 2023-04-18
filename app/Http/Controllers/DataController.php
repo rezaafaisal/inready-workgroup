@@ -60,7 +60,7 @@ class DataController extends Controller
 
     public function document($type){
         $this->type = $type;
-        return DataTables::of(Document::where('type', $type)->orderBy('generation_id', 'desc')->get())
+        return DataTables::of(Document::where('type', $type)->orderBy('period_id', 'desc')->get())
             ->addIndexColumn()
             ->editColumn('file', function($row){
                 $ext = '.'.last(explode('.', $row->file));
@@ -96,8 +96,8 @@ class DataController extends Controller
                 ";
                 return $button;
             })
-            ->removeColumn('generation_id')
-            ->addColumn('generation', function($row){
+            ->removeColumn('period_id')
+            ->addColumn('period', function($row){
                 return $row->period?->period;
             })
             ->rawColumns(['action', 'status'])

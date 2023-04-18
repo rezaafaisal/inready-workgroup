@@ -19,7 +19,6 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama Dokumen</th>
                         <th>Dokumen</th>
                         <th>Periode Angkatan</th>
                         <th>Status</th>
@@ -64,9 +63,8 @@
                     orderable: false,
                     searchable: false
                 },
-                {data: 'name'},
                 {data: 'file'},
-                {data: 'generation'},
+                {data: 'period'},
                 {data: 'status'},
                 {data: 'action'}
             ]
