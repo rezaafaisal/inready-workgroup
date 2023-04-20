@@ -22,7 +22,7 @@ class GenerationController extends Controller
         $generation_id = Generation::where('name', $generation)->first()->id;
         $data = [
             'members' => Profile::where('generation_id', $generation_id)->get(),
-            'generation' => $generation
+            'generation' => $generation,
         ];
         return view('user.generation.detail', Data::view('detail', $data));
     }
