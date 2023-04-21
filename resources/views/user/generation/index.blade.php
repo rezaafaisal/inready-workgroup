@@ -12,6 +12,7 @@
             cumque autem magni quos doloremque expedita non unde aliquam fuga quibusdam esse voluptatem perspiciatis,
             optio quaerat corporis, est nisi ad in. Odit, neque!</p>
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+
             @foreach ($data['generations'] as $generation)
                 <div class="group p-2 lg:p-0 rounded shadow w-full border h-40 flex flex-col items-center justify-between relative overflow-hidden">
                     <div class="flex justify-center items-center flex-col h-full">
@@ -51,6 +52,9 @@
                     </div>
                 </div>
             @endforeach
+        </div>
+        <div class="flex justify-end mt-10">
+            <a href="#" class="text-blue-500 block underline underline-offset-4">Lihat semua anggota</a>
         </div>
     </div>
 </section>

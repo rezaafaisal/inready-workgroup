@@ -141,7 +141,7 @@ Route::middleware('check')->group(function(){
     Route::get('karya', [MasterpieceController::class, 'index'])->name('masterpiece');
     
     Route::get('angkatan', [GenerationController::class, 'index'])->name('generation');
-    Route::get('angkatan/{generation}', [GenerationController::class, 'show'])->name('show_generation');
+    Route::get('angkatan/{generation}/{keyword?}', [GenerationController::class, 'show'])->name('show_generation');
     
     Route::get('pengurus/{year}/{division}', [ManagerController::class, 'index'])->name('manager');
     
