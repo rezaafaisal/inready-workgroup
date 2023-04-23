@@ -60,7 +60,9 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function(){
 
     Route::prefix('note')->name('note.')->controller(NoteController::class)->group(function(){
         Route::get('/', 'index')->name('index');
-        // Route::get()
+        Route::post('/', 'store')->name('store');
+        Route::put('/', 'update')->name('update');
+        Route::delete('/', 'destroy')->name('destroy');
     });
 
     Route::prefix('angkatan')->name('generation.')->group(function(){

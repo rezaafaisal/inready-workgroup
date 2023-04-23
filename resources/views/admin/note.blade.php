@@ -1,4 +1,7 @@
 @extends('layouts.admin')
+@section('styles')
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+@endsection
 @section('body')
     <div class="container">
         <div class="row">
@@ -12,7 +15,7 @@
                             </h3>
                         </div>
                         <div class="card-toolbar">
-                            <button id="createConfirm" class="btn btn-primary font-weight-bolder">Tambah Tulisan</button>
+                            <button id="create" data-toggle="modal" data-target="#create_note" class="btn btn-primary font-weight-bolder">Tambah Tulisan</button>
                         </div>
                     </div>
                     <div class="card-body">
@@ -34,8 +37,71 @@
             </div>
         </div>
     </div>
+
+    {{-- modal --}}
+    <x-modal-large target="create_note" title="Tambahkan Catatan dalam Aplikasi">
+        <form id="create_note_form" action="{{ route('admin.note.store') }}" method="post">
+            @csrf
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="type" class="form-label">Jenis Catatan</label>
+                        <input type="text" name="type" id="type" class="form-control font-lowercase @error('type') is-invalid @enderror">
+                        @error('type')
+                            <small class="text-danger">
+                                {{ $message }}
+                            </small>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="form-label">Deskripsi (tidak wajib)</label>
+                        <textarea name="description" id="description" cols="30" rows="4" class="form-control">{{ old('description') }}</textarea>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="body" class="form-label">Catatan</label>
+                        <textarea id="summernote" name="body" class="form-control @error('body') is-invalid @enderror">
+                            {{ old('body') ?? '' }}
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </x-modal-large>
+
+    <x-modal-large target="edit_note" title="Tambahkan Catatan dalam Aplikasi">
+        <form id="edit_note_form" action="" method="post">
+            @csrf
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="type" class="form-label">Jenis Catatan</label>
+                        <input type="text" id="type" class="form-control font-lowercase">
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="form-label">Deskripsi (tidak wajib)</label>
+                        <textarea name="" id="description" cols="30" rows="4" class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="body" class="form-label">Catatan</label>
+                        <textarea id="summernote" name="history" class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </x-modal-large>
 @endsection
 @section('scripts')
+    <script>
+        $(document).ready(()=>{
+            $('#submit_modal_create_note').click(()=>{
+                $('#create_note_form').submit();
+            })
+        })
+    </script>
     <x-datatable-script />
     <script>
         $(document).ready(function () {
@@ -79,5 +145,21 @@
         })
         })
 
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#summernote').summernote({
+                height:300,
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['font', ['strikethrough', 'superscript', 'subscript']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['height', ['height']]
+                ]
+            });
+        });
     </script>
 @endsection

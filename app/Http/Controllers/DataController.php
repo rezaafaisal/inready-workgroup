@@ -74,10 +74,9 @@ class DataController extends Controller
                             class='btn btn-sm btn-clean btn-outline-info btn-icon' data-toggle='tooltip' data-placement='top' title='Detail'>
                             <i class='las la-info'></i>
                         </a>
-                        <a href='$edit'
-                            class='btn btn-sm btn-clean btn-outline-success btn-icon' data-toggle='tooltip' data-placement='top' title='Edit'>
+                        <button class='btn btn-sm btn-clean btn-outline-success btn-icon' data-toggle='modal' data-target='#edit_note' data-toggle='tooltip' data-placement='top' title='Edit'>
                             <i class='la la-edit'></i>
-                        </a>
+                        </button>
                         <button onclick='delete_data($data)'
                             class='btn btn-sm btn-clean btn-outline-danger btn-icon' data-toggle='tooltip' data-placement='top' title='Hapus'>
                             <i class='la la-trash'></i>
