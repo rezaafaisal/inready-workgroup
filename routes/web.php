@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\GenerationController as AdminGenerationController
 use App\Http\Controllers\Admin\Ledger\DocumentController;
 use App\Http\Controllers\Admin\Ledger\HistoryController;
 use App\Http\Controllers\Admin\Ledger\JuklisConstroller;
+use App\Http\Controllers\Admin\NoteController;
 use App\Http\Controllers\Admin\Structure\BphController;
 use App\Http\Controllers\Admin\Structure\BpoController;
 use App\Http\Controllers\Admin\Structure\DpoController;
@@ -43,9 +44,10 @@ use Illuminate\Support\Facades\Route;
 // Route::get('kirim/email', [MailController::class, 'view']);
 
 
-Route::prefix('data')->name('data.')->group(function(){
-    Route::get('user', [DataController::class, 'user'])->name('user');
-    Route::get('dokumen/{type}', [DataController::class, 'document'])->name('document');
+Route::prefix('data')->name('data.')->controller(DataController::class)->group(function(){
+    Route::get('user', 'user')->name('user');
+    Route::get('note', 'note')->name('note');
+    Route::get('dokumen/{type}', 'document')->name('document');
 });
 
 Route::prefix('admin')->name('admin.')->middleware('admin')->group(function(){
@@ -55,6 +57,11 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function(){
     Route::post('pengguna/import', [UserController::class, 'import'])->name('pengguna.import');
     Route::get('pengguna/{id}/reset', [UserController::class, 'reset'])->name('pengguna.reset');
     Route::post('pengguna/{id}/reset', [UserController::class, 'reseted'])->name('pengguna.reseted');
+
+    Route::prefix('note')->name('note.')->controller(NoteController::class)->group(function(){
+        Route::get('/', 'index')->name('index');
+        // Route::get()
+    });
 
     Route::prefix('angkatan')->name('generation.')->group(function(){
         Route::get('/', [AdminGenerationController::class, 'index'])->name('index');

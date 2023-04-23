@@ -148,7 +148,7 @@ class DocumentController extends Controller
         $document = Document::find($request->id);
         $period_active = Period::where('year', $this->now('Y'))->first();
         // kalau periode aktif tidak dapat dihapus
-        if($document->period_id == $period_active->id){
+        if($document->period_id == $period_active?->id){
             return Alert::error('Gagal', 'Dokumen periode yang aktif tidak dapat dihapus');
         }
         $success = $document->delete();

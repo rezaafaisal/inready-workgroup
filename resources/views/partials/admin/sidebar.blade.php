@@ -38,6 +38,15 @@
                     <span class="menu-text">Periode Angkatan</span>
                 </a>
             </li>
+            <li class="menu-item {{ ($active=='note')?'menu-item-active':'' }}"
+                aria-haspopup="true">
+                <a href="{{ route('admin.note.index') }}" class="menu-link">
+                    <span class="svg-icon menu-icon">
+                        <i class="menu-icon fas fa-pen"></i>
+                    </span>
+                    <span class="menu-text">Catatan di Aplikasi</span>
+                </a>
+            </li>
             {{-- <li class="menu-item {{ ($active=='')?'menu-item-active':'' }}"
                 aria-haspopup="true">
                 <a href="" class="menu-link">
