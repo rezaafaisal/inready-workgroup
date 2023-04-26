@@ -62,6 +62,9 @@ class DataController extends Controller
     public function note(){
         return DataTables::of(Note::all())
             ->addIndexColumn()
+            ->editColumn('body', function($row){
+                return Str::limit($row->body, 100);
+            })
             ->addColumn('action', function($row){
                 $id = $row->id;
                 $edit = route('admin.pengguna.edit', ['pengguna' => $id]);
@@ -74,10 +77,10 @@ class DataController extends Controller
                             class='btn btn-sm btn-clean btn-outline-info btn-icon' data-toggle='tooltip' data-placement='top' title='Detail'>
                             <i class='las la-info'></i>
                         </a>
-                        <button class='btn btn-sm btn-clean btn-outline-success btn-icon' data-toggle='modal' data-target='#edit_note' data-toggle='tooltip' data-placement='top' title='Edit'>
+                        <button class='btn btn-sm btn-clean btn-outline-success btn-icon' onclick='setNote($row)' data-toggle='modal' data-target='#edit_note' data-toggle='tooltip' data-placement='top' title='Edit'>
                             <i class='la la-edit'></i>
                         </button>
-                        <button onclick='delete_data($data)'
+                        <button onclick='deleteNote($id)'
                             class='btn btn-sm btn-clean btn-outline-danger btn-icon' data-toggle='tooltip' data-placement='top' title='Hapus'>
                             <i class='la la-trash'></i>
                         </button>
@@ -85,8 +88,8 @@ class DataController extends Controller
                 ";
                 return $button;
             })
-            ->rawColumns(['action'])
-            ->escapeColumns()
+            ->rawColumns(['action', 'body'])
+            // ->escapeColumns(['body'])
             ->toJson();
     }
 

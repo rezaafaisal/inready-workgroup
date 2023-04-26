@@ -22,7 +22,7 @@ class NoteController extends Controller
         ]);
 
         $note = new Note();
-        $note->type = Str::slug($request->type);
+        $note->type = Str::slug(strtolower($request->type));
         $note->description = $request->description;
         $note->body = $request->body;
         $success = $note->save();
@@ -32,5 +32,32 @@ class NoteController extends Controller
         }
 
         return Alert::default(false, 'Ditambahkan');
+    }
+
+    public function update(Request $request){
+        $id = $request->id;
+
+        $request->validate([
+            'type' => 'required|min:3',
+            'body' => 'required|min:5'
+        ]);
+
+        $note = Note::find($id);
+        $note->type = $request->type;
+        $note->description = $request->description;
+        $note->body = $request->body;
+
+        $success = $note->save();
+
+        if($success) return Alert::default(true, 'Ditambahkan');
+        return Alert::default(false, 'Ditambahkan');
+    }
+
+    public function destroy(Request $request){
+        $id = $request->id;
+
+        Note::find($id)->delete();
+
+        return Alert::default(true, 'Dihapus', 'admin.note.index');
     }
 }
