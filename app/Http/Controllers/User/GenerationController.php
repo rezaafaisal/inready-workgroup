@@ -8,6 +8,7 @@ use App\Models\Profile;
 use App\Models\Generation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Note;
 
 class GenerationController extends Controller
 {
@@ -15,7 +16,8 @@ class GenerationController extends Controller
     
     public function index(){
         $data = [
-            'generations' => Generation::all()
+            'generations' => Generation::all(),
+            'text' => Note::where('type', 'generation')->first()->body
         ];
 
         return view('user.generation.index', Data::view('generation', $data));

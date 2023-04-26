@@ -41,4 +41,6 @@
 .selectize-input{
     @apply rounded bg-white border border-slate-300 px-3 py-3 duration-150 focus:outline-none focus:ring focus:ring-inr-yellow/40 font-extralight
 }
-
+ ol{
+    @apply list-decimal ml-3
+ }

@@ -30,16 +30,7 @@
                 </div>
             </div> --}}
             <div class="grid grid-cols-1 gap-5 leading-8 text-justify">
-                <p>
-                    Inready Workgroup adalah Study Club yang berfokus pada dunia IT khususnya di bidang web, mobile dan desain. Study Club ini sudah berdiri sejak tahun 2007 serta menghimpun mahasiwa jurusan Teknik Informatika dan Sistem Informasi UIN Alauddin Makassar. Bagi mahasiswa, study club menjadi salah satu alternatif untuk belajar. Sebab, dengan mengikuti study club, mereka mendapatkan ilmu tambahan selain dari dosen ketika belajar di kelas. 
-                </p>
-                <p>
-                    Inready Workgroup ini juga merupakan study club yang berbentuk organisasi. Bergabung dengan organisasi dapat meningkatkan keterampilan kepemimpinan dan sosial, serta mempelajari keterampilan khusus yang sejalan dengan tujuan organisasi. Adapun tujuan dari organisasi ini adalah :
-                    1. Mengembangkan wawasan dan kemampuan anggota INREADY WORKGROUP dalam bidang IT.
-                    2. Menanamkan aspek pengembangan diri keorganisasian pada setiap anggota INREADY WORKGROUP.
-                    3. Membangun jaringan kerjasama mutualisme semua anggota INREADY WORKGROUP ke arah profesional.
-                </p>
-
+                {!! $data['text'] !!}
             </div>
         </div>
     </section>

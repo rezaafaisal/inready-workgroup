@@ -73,10 +73,6 @@ class DataController extends Controller
                 $data = json_encode($row->only(['id', 'type', 'body']));
                 $button = "
                     <div class='d-flex flex-nowrap gap-3'>
-                        <a href='$detail'
-                            class='btn btn-sm btn-clean btn-outline-info btn-icon' data-toggle='tooltip' data-placement='top' title='Detail'>
-                            <i class='las la-info'></i>
-                        </a>
                         <button class='btn btn-sm btn-clean btn-outline-success btn-icon' onclick='setNote($row)' data-toggle='modal' data-target='#edit_note' data-toggle='tooltip' data-placement='top' title='Edit'>
                             <i class='la la-edit'></i>
                         </button>
@@ -89,7 +85,7 @@ class DataController extends Controller
                 return $button;
             })
             ->rawColumns(['action', 'body'])
-            // ->escapeColumns(['body'])
+            ->escapeColumns(['body'])
             ->toJson();
     }
 

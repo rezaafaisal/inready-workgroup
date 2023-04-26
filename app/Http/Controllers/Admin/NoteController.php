@@ -41,7 +41,7 @@ class NoteController extends Controller
             'type' => 'required|min:3',
             'body' => 'required|min:5'
         ]);
-
+        
         $note = Note::find($id);
         $note->type = $request->type;
         $note->description = $request->description;

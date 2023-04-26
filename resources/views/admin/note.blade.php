@@ -79,7 +79,7 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label for="type" class="form-label">Jenis Catatan</label>
-                        <input type="text" id="type" class="form-control font-lowercase">
+                        <input type="text" id="type" name="type" class="form-control font-lowercase">
                     </div>
                     <div class="form-group">
                         <label for="description" class="form-label">Deskripsi (tidak wajib)</label>

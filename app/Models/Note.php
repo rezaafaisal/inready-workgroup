@@ -14,7 +14,7 @@ class Note extends Model
     public function body():Attribute{
         return new Attribute(
             set:fn($value) => strtolower($value),
-            // get: fn($value) => 
+            // get: fn($value) => htmlspecialchars($value)
         );
     }
 }

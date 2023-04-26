@@ -3,14 +3,9 @@
 <section class="pt-20">
     <div class="wrapper py-20 text-inr-black">
         <h1 class="section-title">Keluarga Besar Inready Workgroup</h1>
-        <p class="py-10 text-justify leading-8 mb-10">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugit
-            ipsam quaerat voluptatibus quod quisquam animi eaque, saepe nostrum reprehenderit inventore iure laborum
-            consequuntur dolores veniam? Impedit, labore vel. Beatae dolores necessitatibus explicabo voluptatum veniam
-            inventore similique aspernatur totam libero voluptatem vel natus et excepturi dicta, consequuntur, nesciunt
-            harum velit voluptas eius quisquam sapiente placeat. Eius qui odio, excepturi consequatur natus inventore
-            labore fugit nam maxime beatae quos! Ullam provident vero eveniet consectetur eaque? Ex sint nemo itaque
-            cumque autem magni quos doloremque expedita non unde aliquam fuga quibusdam esse voluptatem perspiciatis,
-            optio quaerat corporis, est nisi ad in. Odit, neque!</p>
+        <p class="py-10 text-justify leading-8 mb-10">
+            {{ $data['text'] }}
+        </p>
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
 
             @foreach ($data['generations'] as $generation)
