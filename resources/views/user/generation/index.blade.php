@@ -54,7 +54,7 @@
             @endforeach
         </div>
         <div class="flex justify-end mt-10">
-            <a href="#" class="text-blue-500 block underline underline-offset-4">Lihat semua anggota</a>
+            <a href="{{ route('all_generation') }}" class="text-blue-500 block underline underline-offset-4">Lihat semua anggota</a>
         </div>
     </div>
 </section>

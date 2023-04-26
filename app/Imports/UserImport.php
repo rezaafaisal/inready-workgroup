@@ -27,6 +27,7 @@ class UserImport implements WithStartRow, ToCollection
                 'user_id' => $user->id,
                 'generation_id' => $this->generation($row[5]),
                 'address' => $row[2],
+                'nri' => $row[0],
                 'whatsapp' => $row[4]
             ]);
         }

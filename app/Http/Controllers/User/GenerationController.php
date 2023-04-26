@@ -21,6 +21,30 @@ class GenerationController extends Controller
         return view('user.generation.index', Data::view('generation', $data));
     }
 
+    public function all(Request $request){
+        $keyword = $request->keyword;
+
+        if($keyword){
+            $generation = User::where('name', 'LIKE', '%'.$keyword.'%')->paginate(12);
+
+            $generation->transform(function($row){
+                return $row->profile;
+            });
+        }
+
+        else{
+            $generation = Profile::where('id', '!=', 1)->paginate(12);
+        }
+
+        $data = [
+            'generation' => $generation,
+            'keyword' => $keyword,
+        ];
+        
+
+        return view('user.generation.all', Data::view('all', $data));
+    }
+
     public function show($generation, Request $request){
         $generation_id = $this->generation_id = Generation::where('name', $generation)->first()->id;
 
