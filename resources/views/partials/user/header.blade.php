@@ -20,11 +20,11 @@
         {{-- list tab - desktop --}}
         <ul class="hidden bg-inr-black md:flex items-center gap-7 text-white text-sm">
             <li>
-                <a href="{{ route('home') }}" class="hover:text-inr-yellow duration-150 inline">Beranda</a>
+                <a href="{{ route('home') }}" class="hover:text-inr-yellow{{ ($active == 'home') ? ' text-inr-yellow ' : ' ' }}duration-150 inline">Beranda</a>
             </li>
             @if (Auth::user())
             <li class="group">
-                <span class="hover:text-inr-yellow py-0 cursor-pointer">
+                <span class="hover:text-inr-yellow py-0 cursor-pointer{{ ($active == 'history') ? ' text-inr-yellow' : '' }}">
                     Buku Besar
                 </span>
                 <ul class="group-hover:visible invisible group-hover:translate-y-0 translate-y-5 group-hover:opacity-100 opacity-0 group-hover:delay-100 delay-300  block h-auto ease-in-out duration-300 absolute text-sm mt-8 bg-[#292929] md:p-3 rounded">
@@ -52,13 +52,13 @@
             </li> --}}
 
             <li>
-                <a href="{{ route('generation') }}" class="hover:text-inr-yellow flex justify-between items-center duration-150 w-full py-3 md:py-0 md:inline">
+                <a href="{{ route('generation') }}" class="hover:text-inr-yellow flex justify-between items-center duration-150 w-full py-3 md:py-0 md:inline{{ ($active == 'generation') ? ' text-inr-yellow' : '' }}">
                     Angkatan
                     <i class="md:hidden fas fa-arrow-up rotate-45 text-xs"></i>
                 </a>
             </li>
             <li class="group">
-                <span class="hover:text-inr-yellow py-0 cursor-pointer">
+                <span class="hover:text-inr-yellow py-0 cursor-pointer{{ ($active == 'manager') ? ' text-inr-yellow' : '' }}">
                     Pengurus
                 </span>
                 <ul class="group-hover:visible invisible group-hover:translate-y-0 translate-y-5 group-hover:opacity-100 opacity-0 group-hover:delay-100 delay-300  block h-auto ease-in-out duration-300 absolute text-sm mt-8 bg-[#292929] md:p-3 rounded">
@@ -86,7 +86,7 @@
                 </ul>
             </li>
             <li>
-                <a href="{{ route('about') }}" class="hover:text-inr-yellow flex justify-between items-center duration-150 w-full py-3 md:py-0 md:inline">
+                <a href="{{ route('about') }}" class="hover:text-inr-yellow flex justify-between items-center duration-150 w-full py-3 md:py-0 md:inline{{ ($active == 'about') ? ' text-inr-yellow' : '' }}">
                     Tentang Kami
                     <i class="md:hidden fas fa-arrow-up rotate-45 text-xs"></i>
                 </a>

@@ -43,7 +43,6 @@ use Illuminate\Support\Facades\Route;
 // Route::get('kirim', [MailController::class, 'verifyEmail']);
 // Route::get('kirim/email', [MailController::class, 'view']);
 
-
 Route::prefix('data')->name('data.')->controller(DataController::class)->group(function(){
     Route::get('user', 'user')->name('user');
     Route::get('note', 'note')->name('note');

@@ -44,7 +44,7 @@ class GenerationController extends Controller
         ];
         
 
-        return view('user.generation.all', Data::view('all', $data));
+        return view('user.generation.all', Data::view('generation', $data));
     }
 
     public function show($generation, Request $request){
@@ -68,6 +68,6 @@ class GenerationController extends Controller
             'members' => $members,
             'generation' => $generation,
         ];
-        return view('user.generation.detail', Data::view('detail', $data));
+        return view('user.generation.detail', Data::view('generation', $data));
     }
 }
