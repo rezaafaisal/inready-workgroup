@@ -9,6 +9,7 @@
     @vite('resources/js/app.js')
 </head>
 <body class="h-screen bg-inr-black">
+    <x-alert />
     <div class="flex h-screen items-center justify-center mx-5">
         <div class="py-20 px-10 md:px-20 w-full md:w-8/12 lg:w-6/12 rounded-xl bg-inr-white/10 shadow">
             <h2 class="text-center text-inr-yellow font-bold text-xl pb-5">MASUK</h2>
@@ -34,10 +35,10 @@
                         <input type="checkbox" name="remember" id="remember" class="appearance-none mr-2 duration-150 cursor-pointer w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-lg focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 checked:bg-inr-yellow">
                         <span>Ingat Saya</span>
                     </label>
-                    <a href="#" class="">Lupa Password?</a>
+                    <a href="{{ route('forgot_password') }}" class="">Lupa Password?</a>
                 </div>
                 <button class="rounded w-full mb-5 px-3 py-2 text-inr-black bg-inr-yellow hover:bg-inr-yellow-1 duration-150">Masuk</button>
-                <span class="block text-center text-inr-white text-sm">Akun bermasalah? <a href="#" class="font-semibold text-inr-yellow">Hubungi admin</a></span>
+                {{-- <span class="block text-center text-inr-white text-sm">Akun bermasalah? <a href="#" class="font-semibold text-inr-yellow">Hubungi admin</a></span> --}}
             </form>
         </div>
     </div>

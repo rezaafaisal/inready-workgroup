@@ -13,12 +13,12 @@
             <span class="ml-4 text-2xl font-semibold text-yellow-400" style="margin-left: 16px; font-size: 20px; font-weight: 600; color: #facc15;margin-top:20px">Inready Workgroup</span>
         </div>
         <div class="px-8 py-10 leading-8 text-lg text-gray-800" style="padding-left: 32px; padding-right: 32px; padding-top: 40px; padding-bottom: 40px; font-size: 18px; line-height: 32px; color: #1f2937;">
-            <h1 class="text-3xl mb-4" style="margin-bottom: 16px; font-size: 30px;">Salam, Reza Faisal</h1>
+            {{-- <h1 class="text-3xl mb-4" style="margin-bottom: 16px; font-size: 30px;">Salam, {{ $details['name'] }}</h1> --}}
             <p class="mb-5" style="margin-bottom: 20px;">
-                Anda baru saja meminta untuk mengubah email Anda menjadi rezha.faizal567@gmail.com. Mohon untuk memverifikasi email ini menggunakan link di bawah ini.
+                Anda baru saja meminta untuk mengubah kata sandi Anda. Mohon untuk verifikasi email ini menggunakan link di bawah ini.
             </p>
             <div class=" mb-5" style="margin-bottom: 20px;">
-                <a href="google.com" class="bg-sky-500 border-0 hover:bg-sky-600 duration-150 outline-none text-white px-4 py-2 rounded" style="border-radius: 0.25rem; border-width: 0px; background-color: #0ea5e9; padding-left: 25px; padding-right: 25px; padding-top: 7px; padding-bottom: 7px; color: #fff; outline: 2px solid transparent; outline-offset: 2px; transition-duration: 150ms;cursor: pointer;margin-left:auto;margin-right:auto;display:inline-block;font-size:18px;text-decoration:none;">Verifikasi</a>
+                <a href="{{ $details }}" class="bg-sky-500 border-0 hover:bg-sky-600 duration-150 outline-none text-white px-4 py-2 rounded" style="border-radius: 0.25rem; border-width: 0px; background-color: #0ea5e9; padding-left: 25px; padding-right: 25px; padding-top: 7px; padding-bottom: 7px; color: #fff; outline: 2px solid transparent; outline-offset: 2px; transition-duration: 150ms;cursor: pointer;margin-left:auto;margin-right:auto;display:inline-block;font-size:18px;text-decoration:none;">Verifikasi</a>
             </div>
             <p class="mb-5" style="margin-bottom: 20px;">
                 Bila Anda tidak pernah melakukan permintaan di atas, Anda dapat mengabaikan email ini.

@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Data\User;
 use App\Http\Controllers\DataController;
+use App\Http\Controllers\ForgotController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\TestController;
@@ -159,6 +160,13 @@ Route::middleware('check')->group(function(){
     
     Route::get('dokumen/sejarah', [InternalController::class, 'history'])->name('history');
     Route::get('dokumen/mantan-ketua', [InternalController::class, 'leader'])->name('leader');
+});
+
+Route::controller(ForgotController::class)->prefix('lupa-password')->group(function(){
+    Route::get('/', 'forgot')->name('forgot_password');
+    Route::post('/', 'verifyEmail')->name('verify_email');
+    Route::get('/{token}', 'newPassword')->name('new_password');
+    Route::post('/{token}', 'setPassword')->name('set_password');
 });
 
 Route::get('masuk', [AuthController::class, 'login'])->name('login');

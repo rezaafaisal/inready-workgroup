@@ -12,11 +12,14 @@ class AuthController extends Controller
 
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest')->except(['logout', 'login']);
         $this->username = $this->findUsername();
     }
     
     public function login(){
+        if(Auth::user()){
+            return redirect()->route('home');
+        }
         return view('auth.login');
     }
 
